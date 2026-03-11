@@ -21,40 +21,42 @@ const itemVariants = {
 
 export default function Impact() {
   return (
-    // Changed bg-slate-900 to bg-slate-50 for a subtle section break
-    <section id="impact" className="w-full py-28 bg-slate-50 relative z-10 overflow-hidden cursor-none border-t border-slate-200">
+    // FIX: Alternating bg-slate-50 and responsive vertical padding
+    <section id="impact" className="w-full py-20 md:py-32 bg-slate-50 relative z-10 overflow-hidden cursor-none border-t border-slate-200">
       
       {/* Light Mode Glows */}
       <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-blue-100 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-indigo-50 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10">
+        <div className="text-center mb-16 md:mb-20">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight"
+            className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 md:mb-6 tracking-tight"
           >
-            Real Impact. <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Measurable Results.</span>
+            Real Impact. <br className="md:hidden" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Measurable Results.</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, delay: 0.1 }}
-            className="text-lg text-slate-500 max-w-2xl mx-auto font-medium"
+            className="text-base md:text-lg text-slate-500 max-w-2xl mx-auto font-medium"
           >
             We don't just build software. We build systems that directly impact your bottom line and scale your operations automatically.
           </motion.p>
         </div>
 
-        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* FIX: Reduced gap for mobile */}
+        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8">
           {stats.map((stat, index) => (
             <motion.div 
               key={index} variants={itemVariants}
-              className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 group text-center cursor-none"
+              // FIX: Tightened padding on mobile cards
+              className="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 group text-center cursor-none"
             >
-              <h3 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-blue-400 mb-4 group-hover:scale-110 transition-transform duration-500 drop-shadow-sm">
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-blue-400 mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-500 drop-shadow-sm">
                 {stat.value}
               </h3>
-              <p className="text-xl font-bold text-slate-900 mb-3">{stat.label}</p>
-              <p className="text-sm text-slate-500 font-medium leading-relaxed">{stat.desc}</p>
+              <p className="text-lg md:text-xl font-bold text-slate-900 mb-2 md:mb-3">{stat.label}</p>
+              <p className="text-xs md:text-sm text-slate-500 font-medium leading-relaxed">{stat.desc}</p>
             </motion.div>
           ))}
         </motion.div>

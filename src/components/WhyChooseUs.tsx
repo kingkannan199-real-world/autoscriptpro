@@ -38,24 +38,25 @@ const itemVariants = {
 
 export default function WhyChooseUs() {
   return (
-    <section className="w-full py-28 bg-white relative z-10 border-t border-slate-100 cursor-none">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    // FIX: Alternating bg-white and responsive vertical padding
+    <section className="w-full py-20 md:py-32 bg-white relative z-10 border-t border-slate-100 cursor-none">
+      <div className="max-w-7xl mx-auto px-5 lg:px-8">
         
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16 md:mb-20">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight"
+            className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 md:mb-6 tracking-tight"
           >
-            Why Businesses Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">AutoScriptPro</span>
+            Why Businesses Choose <br className="md:hidden" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">AutoScriptPro</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, delay: 0.1 }}
-            className="text-lg text-slate-500 max-w-2xl mx-auto font-medium"
+            className="text-base md:text-lg text-slate-500 max-w-2xl mx-auto font-medium"
           >
             We don't just sell software. We partner with you to build scalable, high-performance engines that drive your business forward.
           </motion.p>
@@ -66,27 +67,28 @@ export default function WhyChooseUs() {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          viewport={{ once: true, margin: "-50px" }}
+          // FIX: Reduced gap on mobile
+          className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8"
         >
           {features.map((feature, index) => (
             <motion.div 
               key={index}
               variants={itemVariants}
-              className="bg-white p-8 md:p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-200 hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden cursor-none"
+              // FIX: Tightened padding on mobile
+              className="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-200 hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden cursor-none"
             >
-              {/* Subtle Blue Hover Wash */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
               
               <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 border border-slate-100 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors duration-500">
-                  <feature.icon className="w-7 h-7 text-slate-600 group-hover:text-white transition-colors duration-500" strokeWidth={2} />
+                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-slate-50 flex items-center justify-center mb-5 md:mb-6 border border-slate-100 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors duration-500">
+                  <feature.icon className="w-6 h-6 md:w-7 md:h-7 text-slate-600 group-hover:text-white transition-colors duration-500" strokeWidth={2} />
                 </div>
                 
-                <h3 className="text-2xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight group-hover:text-blue-600 transition-colors duration-300">
                   {feature.title}
                 </h3>
-                <p className="text-slate-500 leading-relaxed font-medium">
+                <p className="text-sm md:text-base text-slate-500 leading-relaxed font-medium">
                   {feature.desc}
                 </p>
               </div>
