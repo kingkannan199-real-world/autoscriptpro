@@ -5,36 +5,34 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Force the body to be white and have NO margin/gap at the top */
+html, body {
+  background-color: #ffffff !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* This fixes the scroll jumping too far */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
 }
 
 /* --- CUSTOM CURSOR LOGIC --- */
-/* ONLY apply the hidden cursor on desktop devices with a real mouse */
 @media (hover: hover) and (pointer: fine) {
-  /* Hide default cursor globally */
   * {
     cursor: none !important;
   }
-  
-  /* Bring back the normal text cursor ONLY for typing in forms/chat */
-  input, textarea, select {
-    cursor: text !important;
+  input, textarea, select, button, a {
+    cursor: none !important; /* Keep it consistent for the smooth dot */
   }
+}
+
+/* Hide Vercel Development/Feedback Toolbar */
+.vercel-toolbar, 
+#vercel-live-feedback-widget,
+[data-vercel-toolbar] {
+  display: none !important;
 }

@@ -1,122 +1,109 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Search, Lightbulb, Code, Rocket } from "lucide-react";
+import { Search, GitMerge, Cpu, Rocket } from "lucide-react";
 
 const steps = [
   {
-    num: "01",
-    title: "Discovery",
-    desc: "Understand your bottlenecks and identify high-ROI automation opportunities.",
     icon: Search,
+    title: "1. Architecture Audit",
+    desc: "We analyze your current bottlenecks, map your data silos, and identify exact workflows where manual hours are being wasted."
   },
   {
-    num: "02",
-    title: "Strategy",
-    desc: "Architect the optimal tech stack and solution tailored for your specific goals.",
-    icon: Lightbulb,
+    icon: Cpu,
+    title: "2. System Design",
+    desc: "Our architects blueprint a custom solution—from AI agent prompting structures to database schemas—ensuring maximum scalability."
   },
   {
-    num: "03",
-    title: "Implementation",
-    desc: "Build, test, and deploy the system with precision and zero operational downtime.",
-    icon: Code,
+    icon: GitMerge,
+    title: "3. Development & Integration",
+    desc: "We build the frontend interfaces and wire up the backend automations, integrating seamlessly with your existing tech stack."
   },
   {
-    num: "04",
-    title: "Optimization",
-    desc: "Monitor analytics, refine workflows, and scale the infrastructure as you grow.",
     icon: Rocket,
-  },
+    title: "4. Deployment & Scale",
+    desc: "We launch the system, monitor the data pipelines, and hand over the keys to a completely automated, high-converting engine."
+  }
 ];
 
 export default function Process() {
   return (
-    <section id="process" className="w-full py-28 bg-slate-50 relative z-10 overflow-hidden cursor-none">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section id="process" className="w-full py-28 bg-white relative z-10 border-t border-slate-100 cursor-none scroll-mt-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         
-        {/* --- HEADER --- */}
+        {/* Section Header */}
         <div className="text-center mb-24">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-100/50 border border-blue-200 cursor-none"
+            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100 cursor-none"
           >
-            <span className="text-sm font-bold text-blue-700 tracking-wider uppercase">How We Deliver</span>
+            <span className="text-sm font-bold text-blue-600 tracking-wider uppercase">Our Methodology</span>
           </motion.div>
 
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight"
+            className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight"
           >
-            The AutoScriptPro <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Methodology</span>
+            How We Build <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">The Future.</span>
           </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, delay: 0.1 }}
-            className="text-lg text-slate-500 max-w-2xl mx-auto font-medium"
-          >
-            Our proven engineering process ensures successful implementation, zero friction, and highly measurable outcomes.
-          </motion.p>
         </div>
 
-        {/* --- TIMELINE GRID --- */}
-        <div className="relative">
+        {/* --- THE TIMELINE --- */}
+        <div className="relative w-full max-w-5xl mx-auto">
           
-          {/* The background connecting line (Desktop only) */}
-          <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-1 bg-slate-200 rounded-full z-0" />
-          
-          {/* The animated "filling" line */}
-          <motion.div 
-            initial={{ width: "0%" }}
-            whileInView={{ width: "80%" }}
-            transition={{ duration: 1.5, ease: "easeInOut" }}
-            viewport={{ once: true }}
-            className="hidden lg:block absolute top-12 left-[10%] h-1 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full z-0 drop-shadow-[0_0_8px_rgba(59,130,246,0.6)]"
-          />
+          {/* THE FIX: The Continuous Vertical Line 
+            On mobile, it sits on the left (28px from edge). 
+            On desktop (md:), it snaps perfectly to the center (left-1/2).
+          */}
+          <div className="absolute top-0 bottom-0 left-[28px] md:left-1/2 w-1 bg-gradient-to-b from-blue-100 via-blue-400 to-transparent md:-translate-x-1/2 rounded-full z-0" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="relative group flex flex-col items-center text-center cursor-none"
-              >
+          {steps.map((step, index) => {
+            const isEven = index % 2 === 0;
+
+            return (
+              <div key={index} className="relative flex items-center justify-between w-full mb-12 md:mb-24 last:mb-0">
                 
-                {/* The Timeline Node / Icon Container */}
-                <div className="w-24 h-24 rounded-full bg-white border-4 border-slate-50 shadow-xl flex items-center justify-center mb-8 relative group-hover:-translate-y-2 transition-transform duration-500 z-10">
-                  
-                  {/* Glowing ring on hover */}
-                  <div className="absolute inset-[-4px] rounded-full border-2 border-transparent group-hover:border-blue-400 group-hover:scale-110 transition-all duration-500 opacity-0 group-hover:opacity-100" />
-                  
-                  <step.icon size={32} className="text-blue-600 group-hover:scale-110 transition-transform duration-300" />
-                  
-                  {/* The big step number positioned like a badge */}
-                  <div className="absolute -bottom-2 -right-2 bg-slate-900 text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shadow-lg border-2 border-white group-hover:bg-blue-600 transition-colors duration-300">
-                    {step.num}
+                {/* THE FIX: The Floating Icon 
+                  Matches the line's position perfectly on both mobile and desktop
+                */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ delay: 0.2, duration: 0.4 }}
+                  className="absolute left-[28px] md:left-1/2 w-14 h-14 bg-white border-4 border-blue-100 rounded-full flex items-center justify-center -translate-x-1/2 z-20 shadow-lg text-blue-600"
+                >
+                  <step.icon size={24} strokeWidth={2.5} />
+                </motion.div>
+
+                {/* THE FIX: The Content Card 
+                  On mobile: Uses pl-20 to push the text away from the left-aligned line.
+                  On desktop: Alternates left and right depending on if the row is even/odd.
+                */}
+                <motion.div 
+                  initial={{ opacity: 0, x: isEven ? -50 : 50, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className={`w-full md:w-[45%] pl-20 md:pl-0 ${isEven ? "md:mr-auto md:pr-12 md:text-right" : "md:ml-auto md:pl-12 md:text-left"}`}
+                >
+                  <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-200 transition-all duration-300 group cursor-none">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-slate-500 font-medium leading-relaxed">
+                      {step.desc}
+                    </p>
                   </div>
-                </div>
+                </motion.div>
 
-                {/* Content */}
-                <h3 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-                  {step.title}
-                </h3>
-                <p className="text-slate-500 font-medium leading-relaxed">
-                  {step.desc}
-                </p>
-
-              </motion.div>
-            ))}
-          </div>
-
+              </div>
+            );
+          })}
         </div>
 
       </div>
