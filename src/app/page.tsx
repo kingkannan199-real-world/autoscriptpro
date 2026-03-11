@@ -4,7 +4,7 @@ import Process from "../components/Process";
 import Impact from "../components/Impact";
 import WhyChooseUs from "../components/WhyChooseUs"; 
 import Team from "../components/Team"; 
-import FAQ from "../components/FAQ"; // Add this import
+import FAQ from "../components/FAQ"; 
 import Contact from "../components/Contact"; 
 import Footer from "../components/Footer"; 
 import AIChatWidget from "../components/AIChatWidget";
@@ -18,10 +18,7 @@ export default function Home() {
       <Impact /> 
       <WhyChooseUs /> 
       <Team /> 
-      
-      {/* The Objection Killer */}
       <FAQ /> 
-      
       <Contact /> 
       <Footer /> 
       <AIChatWidget />

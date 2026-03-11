@@ -45,8 +45,7 @@ const itemVariants = {
 
 export default function Services() {
   return (
-    // ---> Added id="services" right here for the Navbar <---
-    <section id="services" className="w-full py-28 bg-white relative z-10 border-t border-slate-100">
+    <section className="w-full py-28 bg-white relative z-10 border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         {/* --- PAIN POINTS SECTION --- */}
@@ -84,7 +83,7 @@ export default function Services() {
         </div>
 
         {/* --- SOLUTIONS SECTION --- */}
-        <div className="text-center pt-16 border-t border-slate-100">
+        <div id="services" className="text-center pt-16 border-t border-slate-100 scroll-mt-28">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -161,16 +160,28 @@ export default function Services() {
             ))}
           </motion.div>
           
+          {/* High-Contrast Button with Micro-copy */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mt-20"
+            className="mt-20 flex flex-col items-center justify-center"
           >
-            <button className="px-8 py-4 bg-slate-900 text-white font-bold rounded-full hover:bg-blue-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 cursor-none inline-flex items-center gap-2">
+            <a 
+              href="#contact" 
+              className="px-8 py-4 bg-slate-900 text-white font-bold rounded-full hover:bg-blue-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 cursor-none inline-flex items-center gap-2"
+            >
               Book Your Free Architecture Call
               <Workflow size={18} />
-            </button>
+            </a>
+            
+            {/* --- CONVERSION MICRO-COPY --- */}
+            <div className="mt-4 flex items-center gap-2 text-sm font-medium text-slate-500">
+              <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              No commitment. Just a 30-minute technical teardown.
+            </div>
           </motion.div>
         </div>
 

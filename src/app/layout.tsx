@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SmoothCursor from "../components/SmoothCursor";
-import Navbar from "../components/Navbar"; // Add this import
+import Navbar from "../components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
+// This is what shows up in Google Search and WhatsApp link previews!
 export const metadata: Metadata = {
-  title: "AutoScriptPro | Automation & AI Architecture",
-  description: "Engineered in Chennai. Built for the World.",
+  title: "AutoScriptPro | Premium AI & Automation Architecture",
+  description: "Engineered in Chennai. We build custom AI agents, scalable web apps, and data pipelines to eliminate manual work for growing startups.",
 };
 
 export default function RootLayout({
@@ -19,11 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth"> 
       {/* Added scroll-smooth so the navbar links glide to the sections */}
-      <body className={`${inter.className} cursor-none bg-slate-50`}>
+      {/* Removed hardcoded cursor-none so our CSS can handle mobile safely */}
+      <body className={`${inter.className} bg-slate-50`}>
         <SmoothCursor />
-        <Navbar /> {/* Drop the Navbar right here at the top */}
+        <Navbar /> 
         
-        {/* We add pt-20 (padding-top) to push the page content down so the fixed navbar doesn't cover it */}
+        {/* pt-20 pushes the page content down so the fixed navbar doesn't cover it */}
         <div className="pt-20"> 
           {children}
         </div>

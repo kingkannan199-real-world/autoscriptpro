@@ -1,8 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 export default function Navbar() {
+  const [isServicesHovered, setIsServicesHovered] = useState(false);
+
   return (
     <motion.header 
       initial={{ y: -100 }}
@@ -23,8 +27,50 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8">
-          {["Services", "Process", "Impact", "Team"].map((item) => (
+        <nav className="hidden md:flex items-center gap-8 relative">
+          
+          {/* --- NEW INTERACTIVE SERVICES DROPDOWN --- */}
+          <div 
+            className="relative py-8" // Padding bridges the gap so the menu doesn't close when moving the mouse down
+            onMouseEnter={() => setIsServicesHovered(true)}
+            onMouseLeave={() => setIsServicesHovered(false)}
+          >
+            <a 
+              href="#services" 
+              className="flex items-center gap-1 text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors cursor-none"
+            >
+              Services
+              <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesHovered ? "rotate-180 text-blue-600" : ""}`} />
+            </a>
+
+            <AnimatePresence>
+              {isServicesHovered && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 overflow-hidden cursor-none"
+                >
+                  <a href="#services" className="block px-4 py-3 hover:bg-slate-50 rounded-xl cursor-none group transition-colors">
+                    <span className="block text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Automation & AI Agents</span>
+                    <span className="block text-xs text-slate-500 mt-0.5">Custom LLMs & workflows</span>
+                  </a>
+                  <a href="#services" className="block px-4 py-3 hover:bg-slate-50 rounded-xl cursor-none group transition-colors">
+                    <span className="block text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Web & Custom Dev</span>
+                    <span className="block text-xs text-slate-500 mt-0.5">Next.js & Spring Boot</span>
+                  </a>
+                  <a href="#services" className="block px-4 py-3 hover:bg-slate-50 rounded-xl cursor-none group transition-colors">
+                    <span className="block text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Data Analysis</span>
+                    <span className="block text-xs text-slate-500 mt-0.5">Dashboards & pipelines</span>
+                  </a>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          {/* --------------------------------------- */}
+
+          {["Process", "Impact", "Team"].map((item) => (
             <a 
               key={item}
               href={`#${item.toLowerCase()}`} 
@@ -44,7 +90,7 @@ export default function Navbar() {
             Get Started
           </a>
           
-          {/* Mobile Menu Button (Hamburger icon) */}
+          {/* Mobile Menu Button */}
           <button className="md:hidden text-slate-900 cursor-none">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="3" y1="12" x2="21" y2="12"></line>

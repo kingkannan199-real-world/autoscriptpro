@@ -59,15 +59,30 @@ export default function Hero() {
           From immersive frontends to intelligent backend automations, we engineer digital experiences that capture leads and close deals 24/7.
         </motion.p>
 
-        {/* High-Contrast Button */}
+        {/* High-Contrast Button with Micro-copy */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex flex-col items-center justify-center"
         >
-          <button className="px-8 py-4 bg-slate-900 text-white font-semibold rounded-full hover:bg-blue-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 cursor-none">
-  Test Drive Our AI Agent
-</button>
+          <a 
+            href="#contact"
+            className="px-8 py-4 bg-slate-900 text-white font-semibold rounded-full hover:bg-blue-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 cursor-none inline-flex items-center gap-2"
+          >
+            Get Your Free Custom Architecture
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
+          
+          {/* --- CONVERSION MICRO-COPY --- */}
+          <div className="mt-4 flex items-center gap-2 text-sm font-medium text-slate-500">
+            <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            100% Free. No pushy sales.
+          </div>
         </motion.div>
       </div>
 
