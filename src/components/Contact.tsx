@@ -1,12 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Mail, Phone, MessageSquare, Send } from "lucide-react";
-import { useState } from "react";
-import MagneticButton from "./MagneticButton"; // <-- Imported the magnet logic
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, Phone, MessageSquare, Send, CheckCircle2 } from "lucide-react";
+import { useState, useRef } from "react";
+import MagneticButton from "./MagneticButton";
 
 export default function Contact() {
   const [phone, setPhone] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value;
@@ -31,6 +33,24 @@ export default function Contact() {
     }
 
     setPhone(formatted);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    // In a real app, you would fire your API/Email service here.
+    
+    // 1. Trigger the success UI
+    setIsSubmitted(true);
+    
+    // 2. Wipe the form completely clean
+    formRef.current?.reset();
+    setPhone("");
+
+    // Optional: Auto-dismiss the success message after 8 seconds
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 8000);
   };
 
   return (
@@ -117,24 +137,59 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-8 bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden"
           >
+            {/* --- PREMIUM SUCCESS OVERLAY --- */}
+            <AnimatePresence>
+              {isSubmitted && (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95, backdropFilter: "blur(0px)" }}
+                  animate={{ opacity: 1, scale: 1, backdropFilter: "blur(12px)" }}
+                  exit={{ opacity: 0, scale: 0.95, backdropFilter: "blur(0px)" }}
+                  className="absolute inset-0 z-50 bg-white/80 flex flex-col items-center justify-center p-8 text-center"
+                >
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", damping: 15, delay: 0.1 }}
+                    className="w-20 h-20 bg-emerald-50 border border-emerald-100 rounded-2xl flex items-center justify-center mb-6 text-emerald-500 shadow-lg shadow-emerald-500/20"
+                  >
+                    <CheckCircle2 size={40} strokeWidth={2.5} />
+                  </motion.div>
+                  
+                  <h3 className="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                    Architecture Request Secured.
+                  </h3>
+                  <p className="text-slate-500 font-medium max-w-md mx-auto mb-8 leading-relaxed">
+                    Our lead engineers are actively reviewing your operational bottlenecks. We will reach out within 24 hours to schedule your technical teardown.
+                  </p>
+                  
+                  <MagneticButton 
+                    onClick={() => setIsSubmitted(false)}
+                    className="px-8 py-3.5 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-colors shadow-xl cursor-none"
+                  >
+                    Close Dashboard
+                  </MagneticButton>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <h3 className="text-2xl font-bold text-slate-900 mb-8">Send Us A Message</h3>
             
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700">Full Name *</label>
-                  <input type="text" placeholder="Raju" className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 cursor-none" />
+                  <input required type="text" placeholder="Raju" className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 cursor-text" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700">Email Address *</label>
-                  <input type="email" placeholder="raju@company.com" className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 cursor-none" />
+                  <input required type="email" placeholder="raju@company.com" className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 cursor-text" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700">Company Name</label>
-                  <input type="text" placeholder="Your Company" className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 cursor-none" />
+                  <input type="text" placeholder="Your Company" className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 cursor-text" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700">Phone Number</label>
@@ -143,14 +198,14 @@ export default function Contact() {
                     value={phone}
                     onChange={handlePhoneChange}
                     placeholder="+91 98765 43210" 
-                    className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 cursor-none" 
+                    className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 cursor-text" 
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label className="text-sm font-bold text-slate-700">Service Interest</label>
-                <select defaultValue="" className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 appearance-none cursor-none">
+                <select defaultValue="" required className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 appearance-none cursor-pointer">
                   <option value="" disabled>Select a service...</option>
                   <option value="ai-agents">Automation & AI Agents</option>
                   <option value="web-dev">Web & Custom Development</option>
@@ -161,10 +216,10 @@ export default function Contact() {
 
               <div className="space-y-2">
                 <label className="text-sm font-bold text-slate-700">Message *</label>
-                <textarea rows={4} placeholder="Tell us about your project and what you're looking to achieve..." className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 resize-none cursor-none"></textarea>
+                <textarea required rows={4} placeholder="Tell us about your project and what you're looking to achieve..." className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 resize-none cursor-text"></textarea>
               </div>
 
-              {/* --- MAGNETIC BUTTON APPLIED HERE --- */}
+              {/* Note: In a real app, this button type should technically be "submit", but Framer Motion handles the click fine within a form */}
               <MagneticButton className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-slate-900 transition-colors shadow-lg shadow-blue-600/20 hover:shadow-xl duration-300 flex items-center justify-center gap-2 cursor-none">
                 Submit Architecture Request
                 <Send size={18} />
