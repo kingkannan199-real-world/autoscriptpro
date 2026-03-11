@@ -1,0 +1,95 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+const stats = [
+  { 
+    value: "60-80%", 
+    label: "Reduction in manual work",
+    desc: "Free up your engineering and sales teams to focus on actual growth."
+  },
+  { 
+    value: "10x", 
+    label: "Faster lead response",
+    desc: "AI agents engage and qualify prospects instantly, 24/7."
+  },
+  { 
+    value: "2-4x", 
+    label: "Higher campaign conversions",
+    desc: "Hyper-personalized messaging at scale across WhatsApp and Email."
+  },
+  { 
+    value: "Real-time", 
+    label: "Business visibility",
+    desc: "Live, actionable data dashboards tracking every metric."
+  }
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.8, y: 20 },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+};
+
+export default function Impact() {
+  return (
+    <section id="impact" className="w-full py-28 bg-slate-900 relative z-10 overflow-hidden cursor-none">
+      
+      {/* Background Glow Effects */}
+      <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        
+        <div className="text-center mb-20">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight"
+          >
+            Real Impact. <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Measurable Results.</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, delay: 0.1 }}
+            className="text-lg text-slate-400 max-w-2xl mx-auto font-medium"
+          >
+            We don't just build software. We build systems that directly impact your bottom line and scale your operations automatically.
+          </motion.p>
+        </div>
+
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
+          {stats.map((stat, index) => (
+            <motion.div 
+              key={index}
+              variants={itemVariants}
+              className="bg-slate-800/50 backdrop-blur-lg p-8 rounded-3xl border border-slate-700/50 hover:border-blue-500/50 hover:bg-slate-800 transition-all duration-300 group text-center cursor-none"
+            >
+              <h3 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-indigo-300 mb-4 group-hover:scale-110 transition-transform duration-500 drop-shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                {stat.value}
+              </h3>
+              <p className="text-xl font-bold text-white mb-3">{stat.label}</p>
+              <p className="text-sm text-slate-400 font-medium leading-relaxed">{stat.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}

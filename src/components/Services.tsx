@@ -34,7 +34,7 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 } // Slightly slower stagger for a more elegant reveal
+    transition: { staggerChildren: 0.15 }
   }
 };
 
@@ -45,7 +45,8 @@ const itemVariants = {
 
 export default function Services() {
   return (
-    <section className="w-full py-28 bg-white relative z-10 border-t border-slate-100">
+    // ---> Added id="services" right here for the Navbar <---
+    <section id="services" className="w-full py-28 bg-white relative z-10 border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         {/* --- PAIN POINTS SECTION --- */}
@@ -70,9 +71,9 @@ export default function Services() {
               <motion.div 
                 key={index} 
                 variants={itemVariants}
-                className="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-400 group cursor-none"
+                className="bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-2 transition-all duration-500 group cursor-none"
               >
-                <div className="w-14 h-14 bg-white shadow-sm text-red-500 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-500 group-hover:text-white transition-all duration-400 group-hover:scale-110">
+                <div className="w-14 h-14 bg-white shadow-sm text-red-500 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-red-500 group-hover:text-white transition-all duration-500 group-hover:scale-110">
                   <point.icon size={26} strokeWidth={2.5} />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-3 tracking-wide">{point.title}</h3>
@@ -88,9 +89,9 @@ export default function Services() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100"
+            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100 cursor-none"
           >
-            <span className="text-sm font-bold text-blue-600 tracking-wider uppercase">AutoScriptPro Solutions</span>
+            <span className="text-sm font-bold text-blue-600 tracking-wider uppercase cursor-none">AutoScriptPro Solutions</span>
           </motion.div>
 
           <motion.h2 
@@ -113,17 +114,48 @@ export default function Services() {
               <motion.div 
                 key={index} 
                 variants={itemVariants}
-                className="bg-white text-left p-10 rounded-3xl border border-slate-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(59,130,246,0.15)] hover:-translate-y-2 transition-all duration-400 relative overflow-hidden group cursor-none"
+                className="bg-white text-left p-10 rounded-3xl border border-slate-200 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(59,130,246,0.15)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group cursor-none"
               >
                 {/* Advanced hover glow */}
-                <div className="absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-blue-100/50 to-indigo-100/50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                 
                 <div className="relative z-10">
-                  <div className="w-16 h-16 bg-slate-50 border border-slate-100 shadow-sm text-blue-600 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-blue-600 group-hover:text-white transition-all duration-400 group-hover:scale-110">
-                    <sol.icon size={30} strokeWidth={2} />
+                  
+                  {/* --- THE "WOW" HOLOGRAPHIC TECH CORE --- */}
+                  <div className="relative w-16 h-16 mb-8 group-hover:-translate-y-2 transition-transform duration-500">
+                    
+                    {/* Outer ambient glow that pulses on hover */}
+                    <div className="absolute inset-0 bg-blue-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-all duration-500" />
+                    
+                    {/* The Dark Container Shell */}
+                    <div className="relative flex items-center justify-center w-full h-full bg-slate-900 rounded-2xl overflow-hidden shadow-lg border border-slate-700/50 group-hover:border-transparent transition-colors duration-500">
+                      
+                      {/* 1. The Spinning Conic Light Beam */}
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                        className="absolute w-[200%] h-[200%] bg-[conic-gradient(from_0deg,transparent_70%,#3b82f6_80%,#8b5cf6_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      />
+                      
+                      {/* 2. The Inner Dark Core (Hides the center of the spinning beam) */}
+                      <div className="absolute inset-[2px] bg-slate-900 rounded-[14px] flex items-center justify-center overflow-hidden">
+                        
+                        {/* 3. Subtle internal grid pattern */}
+                        <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#4f46e5_1px,transparent_1px),linear-gradient(to_bottom,#4f46e5_1px,transparent_1px)] bg-[size:4px_4px]" />
+                        
+                        {/* 4. The Holographic Icon */}
+                        <sol.icon 
+                          size={28} 
+                          strokeWidth={1.5} 
+                          className="text-blue-400 drop-shadow-[0_0_8px_rgba(59,130,246,0.5)] group-hover:text-white group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] transition-all duration-300 relative z-10 group-hover:scale-110" 
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight">{sol.title}</h3>
-                  <p className="text-slate-500 text-base leading-relaxed font-medium">{sol.desc}</p>
+                  {/* ------------------------------------------- */}
+
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4 tracking-tight group-hover:text-blue-700 transition-colors duration-300">{sol.title}</h3>
+                  <p className="text-slate-500 text-base leading-relaxed font-medium mb-2">{sol.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -136,7 +168,7 @@ export default function Services() {
             className="mt-20"
           >
             <button className="px-8 py-4 bg-slate-900 text-white font-bold rounded-full hover:bg-blue-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 cursor-none inline-flex items-center gap-2">
-              View All Architecture Solutions
+              Book Your Free Architecture Call
               <Workflow size={18} />
             </button>
           </motion.div>
