@@ -24,3 +24,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+input, textarea { cursor: text !important; }
+
+/* Force the custom cursor on every element */
+* {
+  cursor: none !important;
+}
+
+/* Keep the normal text cursor ONLY for typing in the chat widget */
+input, textarea, select {
+  cursor: text !important;
+}
