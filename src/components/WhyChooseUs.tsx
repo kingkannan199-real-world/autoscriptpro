@@ -15,7 +15,7 @@ export default function WhyChooseUs() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight"
           >
-            Why Startups Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">AutoScriptPro</span>
+            Why Businesses Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">AutoScriptPro</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

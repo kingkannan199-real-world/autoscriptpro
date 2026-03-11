@@ -104,6 +104,7 @@ export default function Team() {
             <motion.div 
               key={index}
               variants={itemVariants}
+              whileHover={{ y: -10, scale: 1.02 }} // <-- ADD THIS LINE
               className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-[400px] bg-white rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-500 group overflow-hidden cursor-none flex flex-col"
             >
               <div className="w-full h-64 bg-slate-100 relative overflow-hidden">

@@ -9,10 +9,10 @@ export default function Navbar() {
 
   return (
     <motion.header 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={{ y: -100, x: "-50%" }}
+      animate={{ y: 0, x: "-50%" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-[100] bg-white/80 backdrop-blur-md border-b border-slate-200/50"
+      className="fixed top-6 left-1/2 z-[100] w-[95%] max-w-6xl bg-white/80 backdrop-blur-xl border border-slate-200 shadow-lg rounded-full px-4"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
         

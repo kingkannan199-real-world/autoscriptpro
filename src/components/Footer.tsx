@@ -16,9 +16,7 @@ export default function Footer() {
         </div>
 
         {/* Tagline - Building that local startup trust! */}
-        <p className="text-sm font-medium text-slate-500 tracking-wide">
-          Engineered in Chennai. Built for scale.
-        </p>
+        <p className="text-sm font-medium text-slate-500 tracking-wide">Engineered in Chennai. Built for the World.</p>
 
         {/* Divider */}
         <div className="w-full max-w-md h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent my-4" />
