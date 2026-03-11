@@ -2,17 +2,14 @@
 
 import { motion } from "framer-motion";
 import { Mail, Phone, MessageSquare, Send } from "lucide-react";
-import { useState } from "react"; // Added React State
+import { useState } from "react";
+import MagneticButton from "./MagneticButton"; // <-- Imported the magnet logic
 
 export default function Contact() {
-  // State to hold the dynamically formatted phone number
   const [phone, setPhone] = useState("");
 
-  // The Formatter Logic
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value;
-
-    // Isolate the user's raw input by stripping the country code if it's there
     let rawInput = val;
     if (rawInput.startsWith("+91 ")) {
       rawInput = rawInput.substring(4);
@@ -20,18 +17,13 @@ export default function Contact() {
       rawInput = rawInput.substring(3);
     }
 
-    // Strip out absolutely everything that isn't a number
     let digits = rawInput.replace(/\D/g, "");
-
-    // Hard-stop at 10 digits
     digits = digits.substring(0, 10);
 
-    // Build the formatted string
     let formatted = "";
     if (digits.length > 0) {
       formatted = "+91 ";
       if (digits.length > 5) {
-        // Add the space after the 5th digit
         formatted += digits.substring(0, 5) + " " + digits.substring(5);
       } else {
         formatted += digits;
@@ -44,12 +36,10 @@ export default function Contact() {
   return (
     <section id="contact" className="w-full py-28 bg-white relative z-10 border-t border-slate-100 overflow-hidden cursor-none">
       
-      {/* Subtle, Monolithic Brand Glow */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[120px] opacity-60 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
         
-        {/* Header */}
         <div className="text-center mb-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -80,7 +70,6 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          {/* LEFT COLUMN: Contact Info */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -106,7 +95,6 @@ export default function Contact() {
               <p className="text-xs text-slate-400 font-medium">Mon-Fri, 9am-6pm IST</p>
             </div>
 
-            {/* Solid Slate-900 Card to match primary CTA buttons */}
             <div className="bg-slate-900 p-8 rounded-3xl border border-slate-800 shadow-xl text-white group cursor-none relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20 pointer-events-none group-hover:opacity-40 transition-opacity duration-500" />
               <div className="relative z-10">
@@ -122,7 +110,6 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* RIGHT COLUMN: The Intake Form */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -151,7 +138,6 @@ export default function Contact() {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-bold text-slate-700">Phone Number</label>
-                  {/* Controlled input wired up to the custom handler */}
                   <input 
                     type="tel" 
                     value={phone}
@@ -178,10 +164,11 @@ export default function Contact() {
                 <textarea rows={4} placeholder="Tell us about your project and what you're looking to achieve..." className="w-full px-5 py-4 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all font-medium text-slate-900 placeholder:text-slate-400 resize-none cursor-none"></textarea>
               </div>
 
-              <button className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-slate-900 transition-colors shadow-lg shadow-blue-600/20 hover:shadow-xl hover:-translate-y-0.5 duration-300 flex items-center justify-center gap-2 cursor-none">
+              {/* --- MAGNETIC BUTTON APPLIED HERE --- */}
+              <MagneticButton className="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-slate-900 transition-colors shadow-lg shadow-blue-600/20 hover:shadow-xl duration-300 flex items-center justify-center gap-2 cursor-none">
                 Submit Architecture Request
                 <Send size={18} />
-              </button>
+              </MagneticButton>
 
               <div className="flex items-center justify-center gap-2 mt-4 text-xs font-medium text-slate-500">
                 <svg className="w-3.5 h-3.5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

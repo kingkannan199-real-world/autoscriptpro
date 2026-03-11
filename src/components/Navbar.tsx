@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
+import MagneticButton from "./MagneticButton"; // <-- Imported the magnet logic
 
 export default function Navbar() {
   const [isServicesHovered, setIsServicesHovered] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  // NEW: State to track which link the pill is currently hovering behind
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   return (
@@ -28,7 +28,7 @@ export default function Navbar() {
         {/* --- DRIBBBLE MICRO-INTERACTION NAV --- */}
         <nav 
           className="hidden md:flex items-center gap-2 relative"
-          onMouseLeave={() => setHoveredLink(null)} // Reset the pill when leaving the nav area
+          onMouseLeave={() => setHoveredLink(null)} 
         >
           {/* Services Dropdown */}
           <div 
@@ -42,9 +42,9 @@ export default function Navbar() {
             {hoveredLink === "Services" && (
               <motion.div layoutId="nav-pill" className="absolute inset-0 bg-slate-100/80 rounded-full -z-10" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
             )}
-            <a href="#services" className="flex items-center gap-1 text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors cursor-none z-10 relative">
+            <div className="flex items-center gap-1 text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors cursor-none z-10 relative">
               Services <ChevronDown size={14} className={`transition-transform ${isServicesHovered ? "rotate-180" : ""}`} />
-            </a>
+            </div>
 
             <AnimatePresence>
               {isServicesHovered && (
@@ -76,16 +76,23 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Action Button & Mobile Toggle (Remains the same) */}
+        {/* Action Button & Mobile Toggle */}
         <div className="flex items-center gap-3">
-          <a href="#contact" className="hidden md:flex px-6 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-full hover:bg-blue-600 transition-all cursor-none">Get Started</a>
+          {/* --- MAGNETIC BUTTON APPLIED HERE --- */}
+          <MagneticButton 
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="hidden md:flex px-6 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-full hover:bg-blue-600 transition-colors shadow-md hover:shadow-lg duration-300 items-center justify-center cursor-none"
+          >
+            Get Started
+          </MagneticButton>
+
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden p-2 text-slate-900 hover:bg-slate-100 rounded-full transition-colors cursor-none">
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown (Keep your existing Mobile Menu code here) */}
+      {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 

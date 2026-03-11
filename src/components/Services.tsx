@@ -5,6 +5,7 @@ import {
   Clock, Target, TrendingDown, Unplug, 
   Bot, MessageSquare, Code2, BarChart3, Database, Workflow 
 } from "lucide-react";
+import MagneticButton from "./MagneticButton"; // <-- Imported the magnet logic
 
 const painPoints = [
   { icon: Clock, title: "Time Drain", desc: "Repetitive tasks & manual processes eating up valuable hours." },
@@ -61,7 +62,6 @@ export default function Services() {
                 variants={itemVariants}
                 className="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 hover:-translate-y-2 transition-all duration-500 group cursor-none"
               >
-                {/* Clean Slate Icons instead of aggressive Red */}
                 <div className="w-14 h-14 bg-white shadow-sm text-slate-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-slate-900 group-hover:text-white transition-all duration-500 group-hover:scale-110">
                   <point.icon size={26} strokeWidth={2.5} />
                 </div>
@@ -105,7 +105,6 @@ export default function Services() {
                 variants={itemVariants}
                 className="bg-white text-left p-6 md:p-10 rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-200 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group cursor-none"
               >
-                {/* Unified Blue Hover Glow */}
                 <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-blue-50 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                 
                 <div className="relative z-10">
@@ -113,7 +112,6 @@ export default function Services() {
                     <div className="absolute inset-0 bg-blue-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-all duration-500" />
                     <div className="relative flex items-center justify-center w-full h-full bg-slate-900 rounded-2xl overflow-hidden shadow-lg border border-slate-700/50 group-hover:border-blue-500/50 transition-colors duration-500">
                       
-                      {/* Monochromatic Blue Spinning Beam */}
                       <motion.div
                         animate={{ rotate: 360 }}
                         transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
@@ -144,13 +142,15 @@ export default function Services() {
             viewport={{ once: true }}
             className="mt-20 flex flex-col items-center justify-center"
           >
-            <a 
-              href="#contact" 
-              className="px-8 py-4 bg-slate-900 text-white font-bold rounded-full hover:bg-blue-600 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 cursor-none inline-flex items-center gap-2"
+            {/* --- MAGNETIC BUTTON APPLIED HERE --- */}
+            <MagneticButton 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-4 bg-slate-900 text-white font-bold rounded-full hover:bg-blue-600 transition-colors shadow-xl hover:shadow-blue-600/20 duration-300 flex items-center gap-2 cursor-none text-lg"
             >
               Book Your Free Architecture Call
               <Workflow size={18} />
-            </a>
+            </MagneticButton>
+            
             <div className="mt-4 flex items-center gap-2 text-sm font-medium text-slate-500">
               <svg className="w-4 h-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
