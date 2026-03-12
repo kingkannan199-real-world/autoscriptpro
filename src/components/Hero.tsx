@@ -1,10 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import MagneticButton from "./MagneticButton"; 
+import NeuralGrid from "./NeuralGrid"; // Injecting the Anime.js Component
 
-// FIX: Strictly typing this as a 4-number tuple for Framer Motion
 const customEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const containerVariants: Variants = {
@@ -17,30 +18,62 @@ const containerVariants: Variants = {
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1, ease: customEase } },
-};
+visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1, ease: customEase } },};
 
 export default function Hero() {
-// ... the rest of the file stays exactly the same
+  // --- ANTIGRAVITY PHYSICS STATE ---
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e;
+    // Calculate distance from center of screen
+    const moveX = clientX - window.innerWidth / 2;
+    const moveY = clientY - window.innerHeight / 2;
+    setMousePosition({ x: moveX, y: moveY });
+  };
+
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    // FIX 1: Bumped pt-20 to pt-36 on mobile, kept md:pt-20 for desktop
-    <section className="relative w-full min-h-[90vh] flex items-center justify-center bg-white overflow-hidden pt-36 md:pt-20 cursor-none">
+    <section 
+      onMouseMove={handleMouseMove}
+      className="relative w-full min-h-[95vh] flex flex-col items-center justify-center bg-white overflow-hidden pt-36 md:pt-20 cursor-none"
+    >
       
-      <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-blue-100/50 rounded-full blur-[120px] opacity-80 pointer-events-none" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-60" />
+      {/* --- ANTIGRAVITY FLOATING ORBS --- */}
+      {/* Top Left Orb */}
+      <motion.div 
+        animate={{ 
+          x: mousePosition.x * -0.05, 
+          y: mousePosition.y * -0.05 
+        }}
+        transition={{ type: "spring", stiffness: 40, damping: 30 }}
+        className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-blue-100/50 rounded-full blur-[120px] opacity-80 pointer-events-none" 
+      />
+      {/* Bottom Right Orb */}
+      <motion.div 
+        animate={{ 
+          x: mousePosition.x * 0.02, 
+          y: mousePosition.y * 0.02 
+        }}
+        transition={{ type: "spring", stiffness: 40, damping: 30 }}
+        className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-indigo-50/60 rounded-full blur-[100px] opacity-60 pointer-events-none" 
+      />
 
+      {/* --- THE INTERACTIVE NEURAL GRID --- */}
+      <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none">
+        <NeuralGrid />
+      </div>
+
+      {/* --- MAIN HERO CONTENT --- */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10 flex flex-col items-center text-center"
+        className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10 flex flex-col items-center text-center mt-10 md:mt-0"
       >
-        
-        {/* FIX 2: Responsive text sizing (text-[10px] on mobile to text-sm on desktop) and added max-w to prevent edge-touching */}
         <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-slate-50 border border-slate-200 text-[10px] sm:text-xs md:text-sm font-bold text-slate-600 mb-6 md:mb-8 shadow-sm cursor-none max-w-[85vw] mx-auto text-center leading-tight">
           <span className="relative flex h-2 w-2 md:h-2.5 md:w-2.5 shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -49,9 +82,8 @@ export default function Hero() {
           <span className="truncate whitespace-normal">Engineered in Chennai. Built for the World.</span>
         </motion.div>
 
-        {/* FIX 3: Tighter tracking and leading on mobile for the giant H1 */}
         <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tighter md:tracking-tight mb-6 md:mb-8 leading-[1.05] md:leading-[1.1] max-w-4xl">
-          Scale Your Startup With <br />
+          Scale Your Business With <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
             Autonomous Systems.
           </span>
@@ -69,6 +101,21 @@ export default function Hero() {
             Get Your Free Custom Architecture
             <ArrowRight className="group-hover:translate-x-1 transition-transform shrink-0" size={18} />
           </MagneticButton>
+        </motion.div>
+
+        {/* --- TRUST BADGES --- */}
+        <motion.div variants={itemVariants} className="mt-20 md:mt-28 flex flex-col items-center gap-5">
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Powered By Infrastructure From</p>
+          <div className="flex items-center justify-center gap-10 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
+            {/* Google Logo Text Replacement */}
+            <span className="text-2xl md:text-3xl font-bold tracking-tighter text-[#4285F4]">
+              Google
+            </span>
+            {/* Meta Logo Text Replacement */}
+            <span className="text-2xl md:text-3xl font-bold tracking-tighter text-[#0668E1]">
+              Meta
+            </span>
+          </div>
         </motion.div>
 
       </motion.div>

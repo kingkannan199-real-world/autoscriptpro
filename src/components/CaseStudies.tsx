@@ -4,7 +4,6 @@ import { motion, Variants } from "framer-motion";
 import { ArrowRight, Activity, Database, GitMerge } from "lucide-react";
 
 const caseStudies = [
-  // ... (Keep your existing caseStudies array data exactly the same)
   {
     icon: Database,
     client: "Healthcare Supply Chain",
@@ -49,8 +48,8 @@ const itemVariants: Variants = {
 
 export default function CaseStudies() {
   return (
-    // Reduced py-28 to py-16 on mobile
-    <section id="impact" className="w-full py-16 md:py-28 bg-white relative z-10 border-t border-slate-100 cursor-none scroll-mt-20">
+    // FIX: Changed id="impact" to id="case-studies"
+    <section id="case-studies" className="w-full py-16 md:py-28 bg-white relative z-10 border-t border-slate-100 cursor-none scroll-mt-20">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         
         <div className="text-center mb-12 md:mb-20">
@@ -78,19 +77,16 @@ export default function CaseStudies() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          // Tightened gap-8 to gap-5 on mobile
           className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8"
         >
           {caseStudies.map((study, index) => (
             <motion.div 
               key={index}
               variants={itemVariants}
-              // Tightened p-8 to p-6 on mobile
               className="bg-slate-50 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm relative overflow-hidden flex flex-col justify-between"
             >
               <div className="relative z-10 mb-6 md:mb-8">
                 <div className="flex items-center justify-between mb-5 md:mb-8">
-                  {/* Smaller icons */}
                   <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-lg md:rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-blue-600">
                     <study.icon size={20} strokeWidth={2} />
                   </div>

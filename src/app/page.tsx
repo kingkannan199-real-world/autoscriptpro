@@ -4,7 +4,7 @@ import Process from "../components/Process";
 import Impact from "../components/Impact";
 import WhyChooseUs from "../components/WhyChooseUs"; 
 import WhatDrivesUs from "../components/WhatDrivesUs"; // Add this!
-import Team from "../components/Team"; 
+// import Team from "../components/Team"; 
 import FAQ from "../components/FAQ"; 
 import Contact from "../components/Contact"; 
 import Footer from "../components/Footer"; 
@@ -25,7 +25,7 @@ export default function Home() {
       <WhyChooseUs /> 
       <CaseStudies /> {/* <-- Drop it here */}
       <WhatDrivesUs /> {/* Dropped in perfectly before the Team section */}
-      <Team /> 
+      {/* <Team />  */}
       <FAQ /> 
       <Contact /> 
       <SocialProofToast />

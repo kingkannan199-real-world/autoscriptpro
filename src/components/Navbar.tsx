@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
-import MagneticButton from "./MagneticButton"; // <-- Imported the magnet logic
+import MagneticButton from "./MagneticButton"; 
 
 export default function Navbar() {
   const [isServicesHovered, setIsServicesHovered] = useState(false);
@@ -32,7 +32,7 @@ export default function Navbar() {
         >
           {/* Services Dropdown */}
           <div 
-            className="relative px-4 py-2 cursor-none"
+            className="relative px-4 py-2 cursor-none flex items-center"
             onMouseEnter={() => {
               setIsServicesHovered(true);
               setHoveredLink("Services");
@@ -59,8 +59,8 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          {/* Regular Links */}
-          {["Process", "Impact", "Team"].map((item) => (
+          {/* Regular Links (Updated to Case Studies) */}
+          {["Process", "Impact", "Case Studies"].map((item) => (
             <div 
               key={item} 
               className="relative px-4 py-2 cursor-none"
@@ -69,7 +69,7 @@ export default function Navbar() {
               {hoveredLink === item && (
                 <motion.div layoutId="nav-pill" className="absolute inset-0 bg-slate-100/80 rounded-full -z-10" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
               )}
-              <a href={`#${item.toLowerCase()}`} className="text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors relative z-10 cursor-none">
+              <a href={`#${item.toLowerCase().replace(' ', '-')}`} className="text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors relative z-10 cursor-none">
                 {item}
               </a>
             </div>
@@ -92,7 +92,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Dropdown (Updated to Case Studies) */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
@@ -100,8 +100,8 @@ export default function Navbar() {
             className="absolute top-[115%] left-0 w-full bg-white/95 backdrop-blur-3xl border border-slate-200 shadow-2xl rounded-3xl overflow-hidden md:hidden"
           >
             <div className="flex flex-col p-4 gap-2">
-              {["Services", "Process", "Impact", "Team"].map((item) => (
-                <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-bold text-slate-900 hover:bg-slate-50 px-4 py-3 rounded-xl transition-colors">{item}</a>
+              {["Services", "Process", "Impact", "Case Studies"].map((item) => (
+                <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`} onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-bold text-slate-900 hover:bg-slate-50 px-4 py-3 rounded-xl transition-colors">{item}</a>
               ))}
               <div className="pt-2 mt-2 border-t border-slate-100">
                 <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="block w-full text-center py-4 bg-blue-600 text-white font-bold rounded-2xl shadow-md">Get Started</a>
