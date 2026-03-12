@@ -2,13 +2,48 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SmoothCursor from "../components/SmoothCursor";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Navbar"; // Brought this back!
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AutoScriptPro | Premium AI & Automation Architecture",
-  description: "Engineered in Chennai. We build custom AI agents, scalable web apps, and data pipelines to eliminate manual work for growing startups.",
+  title: "AutoScriptPro | Scale With Autonomous Systems",
+  description: "We engineer bespoke AI agents, custom backends, and automation workflows that eliminate manual work and accelerate your growth. Engineered in Chennai. Built for the world.",
+  keywords: [
+    "AI Automation", 
+    "Custom Software Architecture", 
+    "AI Agents", 
+    "Next.js Development", 
+    "Spring Boot", 
+    "Chennai Tech Agency", 
+    "Workflow Automation"
+  ],
+  authors: [{ name: "AutoScriptPro Engineering" }],
+  creator: "AutoScriptPro",
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    // url: "https://autoscriptpro.com", <-- Keep this commented out until you buy your domain!
+    title: "AutoScriptPro | Elite Automation & AI Architecture",
+    description: "Stop burning capital on manual work. We build autonomous systems that recover hours and scale your bottom line.",
+    siteName: "AutoScriptPro",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AutoScriptPro | Autonomous Systems Architecture",
+    description: "Stop burning capital on manual work. We build autonomous systems that recover hours and scale your bottom line.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -17,17 +52,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth"> 
-      <body className={`${inter.className} bg-white antialiased`}>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.className} antialiased bg-white text-slate-900`}>
         <SmoothCursor />
+        {/* Navbar sits globally above all page content */}
         <Navbar /> 
-        
-        {/* --- THE FIX --- */}
-        {/* Removed the pt-20 wrapper so the Hero gradient touches the top of the screen */}
-        <main className="relative flex min-h-screen flex-col w-full">
-          {children}
-        </main>
-        
+        {children}
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const stats = [
   { value: "60-80%", label: "Reduction in manual work", desc: "Free up your engineering and sales teams to focus on actual growth." },
@@ -9,12 +9,12 @@ const stats = [
   { value: "Real-time", label: "Business visibility", desc: "Live, actionable data dashboards tracking every metric." }
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, scale: 0.8, y: 20 },
   visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
 };
@@ -37,7 +37,7 @@ export default function Impact() {
             Real Impact. <br className="md:hidden" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Measurable Results.</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, delay: 0.1 }}
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
             className="text-base md:text-lg text-slate-500 max-w-2xl mx-auto font-medium"
           >
             We don't just build software. We build systems that directly impact your bottom line and scale your operations automatically.

@@ -79,11 +79,12 @@ export default function Contact() {
             Let's Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Automation Journey</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, delay: 0.1 }}
-            className="text-lg text-slate-500 max-w-2xl mx-auto font-medium"
-          >
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ delay: 0.1 }}
+  className="text-lg text-slate-500 max-w-2xl mx-auto font-medium"
+>
             Schedule a free consultation to discuss your specific bottlenecks and map out a custom automation architecture.
           </motion.p>
         </div>

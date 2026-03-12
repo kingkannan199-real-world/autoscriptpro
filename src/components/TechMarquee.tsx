@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-
+import { motion, Variants } from "framer-motion";
 // The exact enterprise & AI stack your agency deploys
 const technologies = [
   "Next.js", 

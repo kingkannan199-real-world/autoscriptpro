@@ -1,12 +1,13 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import MagneticButton from "./MagneticButton"; 
 
-const customEase = [0.16, 1, 0.3, 1];
+// FIX: Strictly typing this as a 4-number tuple for Framer Motion
+const customEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -14,12 +15,13 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
   visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1, ease: customEase } },
 };
 
 export default function Hero() {
+// ... the rest of the file stays exactly the same
   const scrollToContact = () => {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };

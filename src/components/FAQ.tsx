@@ -61,7 +61,7 @@ export default function FAQ() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, delay: 0.1 }}
+            viewport={{ once: true }} transition={{ delay: 0.1 }}
             className="text-lg text-slate-500 max-w-2xl mx-auto font-medium"
           >
             Everything you need to know about partnering with AutoScriptPro to scale your operations.
