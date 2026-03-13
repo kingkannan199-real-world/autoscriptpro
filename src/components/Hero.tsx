@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import MagneticButton from "./MagneticButton"; 
-import NeuralGrid from "./NeuralGrid"; // Injecting the Anime.js Component
+import NeuralGrid from "./NeuralGrid"; 
 
 const customEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -18,7 +18,8 @@ const containerVariants: Variants = {
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 40, filter: "blur(8px)" },
-visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1, ease: customEase } },};
+  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1, ease: customEase } },
+};
 
 export default function Hero() {
   // --- ANTIGRAVITY PHYSICS STATE ---
@@ -103,19 +104,14 @@ export default function Hero() {
           </MagneticButton>
         </motion.div>
 
-        {/* --- TRUST BADGES --- */}
-        <motion.div variants={itemVariants} className="mt-20 md:mt-28 flex flex-col items-center gap-5">
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Powered By Infrastructure From</p>
-          <div className="flex items-center justify-center gap-10 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
-            {/* Google Logo Text Replacement */}
-            <span className="text-2xl md:text-3xl font-bold tracking-tighter text-[#4285F4]">
-              Google
-            </span>
-            {/* Meta Logo Text Replacement */}
-            <span className="text-2xl md:text-3xl font-bold tracking-tighter text-[#0668E1]">
-              Meta
-            </span>
-          </div>
+        {/* --- CORE AGENCY MANTRA --- */}
+        <motion.div 
+          variants={itemVariants} 
+          className="mt-20 md:mt-28 flex items-center justify-center w-full opacity-70 cursor-none pointer-events-none"
+        >
+          <p className="text-xs md:text-sm font-extrabold text-slate-400 uppercase tracking-[0.3em] md:tracking-[0.4em]">
+            Build. Automate. Accelerate.
+          </p>
         </motion.div>
 
       </motion.div>
