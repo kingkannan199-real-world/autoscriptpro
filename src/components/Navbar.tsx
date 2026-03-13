@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import MagneticButton from "./MagneticButton"; 
 
 export default function Navbar() {
-  const [isServicesHovered, setIsServicesHovered] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
@@ -30,37 +29,8 @@ export default function Navbar() {
           className="hidden md:flex items-center gap-2 relative"
           onMouseLeave={() => setHoveredLink(null)} 
         >
-          {/* Services Dropdown */}
-          <div 
-            className="relative px-4 py-2 cursor-none flex items-center"
-            onMouseEnter={() => {
-              setIsServicesHovered(true);
-              setHoveredLink("Services");
-            }}
-            onMouseLeave={() => setIsServicesHovered(false)}
-          >
-            {hoveredLink === "Services" && (
-              <motion.div layoutId="nav-pill" className="absolute inset-0 bg-slate-100/80 rounded-full -z-10" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
-            )}
-            <div className="flex items-center gap-1 text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors cursor-none z-10 relative">
-              Services <ChevronDown size={14} className={`transition-transform ${isServicesHovered ? "rotate-180" : ""}`} />
-            </div>
-
-            <AnimatePresence>
-              {isServicesHovered && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 5 }}
-                  className="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 mt-2"
-                >
-                  <a href="#services" className="block px-4 py-3 hover:bg-slate-50 rounded-xl text-sm font-bold text-slate-900">Automation & AI</a>
-                  <a href="#services" className="block px-4 py-3 hover:bg-slate-50 rounded-xl text-sm font-bold text-slate-900">Web Development</a>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          {/* Regular Links (Updated to Case Studies) */}
-          {["Process", "Impact", "Case Studies"].map((item) => (
+          {/* Flattened Links Array including Services */}
+          {["Services", "Process", "Impact", "Case Studies"].map((item) => (
             <div 
               key={item} 
               className="relative px-4 py-2 cursor-none"
@@ -78,7 +48,6 @@ export default function Navbar() {
 
         {/* Action Button & Mobile Toggle */}
         <div className="flex items-center gap-3">
-          {/* --- MAGNETIC BUTTON APPLIED HERE --- */}
           <MagneticButton 
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="hidden md:flex px-6 py-2.5 bg-slate-900 text-white text-sm font-bold rounded-full hover:bg-blue-600 transition-colors shadow-md hover:shadow-lg duration-300 items-center justify-center cursor-none"
@@ -92,7 +61,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown (Updated to Case Studies) */}
+      {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
