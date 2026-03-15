@@ -2,6 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Activity, Database, GitMerge } from "lucide-react";
+import SpotlightCard from "./SpotlightCard"; // <-- Imported Physics Engine
 
 const caseStudies = [
   {
@@ -48,7 +49,6 @@ const itemVariants: Variants = {
 
 export default function CaseStudies() {
   return (
-    // FIX: Changed id="impact" to id="case-studies"
     <section id="case-studies" className="w-full py-16 md:py-28 bg-white relative z-10 border-t border-slate-100 cursor-none scroll-mt-20">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         
@@ -83,38 +83,48 @@ export default function CaseStudies() {
             <motion.div 
               key={index}
               variants={itemVariants}
-              className="bg-slate-50 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-slate-200 shadow-sm relative overflow-hidden flex flex-col justify-between"
+              className="h-full"
             >
-              <div className="relative z-10 mb-6 md:mb-8">
-                <div className="flex items-center justify-between mb-5 md:mb-8">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-lg md:rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-blue-600">
-                    <study.icon size={20} strokeWidth={2} />
+              {/* Added SpotlightCard Wrapper with hover lift */}
+              <SpotlightCard className="h-full group cursor-none hover:-translate-y-1 transition-transform duration-500">
+                
+                {/* Perfectly nested inner card replacing static borders */}
+                <div className="relative h-full w-full bg-slate-50 p-6 md:p-8 rounded-[23px] flex flex-col justify-between z-10">
+                  
+                  <div className="relative z-10 mb-6 md:mb-8">
+                    <div className="flex items-center justify-between mb-5 md:mb-8">
+                      <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-lg md:rounded-xl shadow-sm border border-slate-100 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-500">
+                        <study.icon size={20} strokeWidth={2} />
+                      </div>
+                      <div className="text-right">
+                        <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">{study.client}</p>
+                        <p className="text-[10px] md:text-xs font-medium text-slate-500">{study.location}</p>
+                      </div>
+                    </div>
+
+                    <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-2 md:mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                      {study.title}
+                    </h3>
+                    <p className="text-sm font-medium text-slate-500 leading-relaxed mb-4 md:mb-6">
+                      {study.desc}
+                    </p>
+                    <div className="inline-block px-2 py-1 md:px-3 md:py-1 bg-white border border-slate-200 rounded-md text-[10px] md:text-xs font-bold text-slate-500">
+                      {study.tech}
+                    </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-wider">{study.client}</p>
-                    <p className="text-[10px] md:text-xs font-medium text-slate-500">{study.location}</p>
+
+                  <div className="relative z-10 pt-4 md:pt-6 border-t border-slate-200">
+                    <div className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-1">
+                      {study.metric}
+                    </div>
+                    <div className="text-xs md:text-sm font-bold text-blue-600">
+                      {study.metricLabel}
+                    </div>
                   </div>
+                  
                 </div>
 
-                <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-2 md:mb-3">
-                  {study.title}
-                </h3>
-                <p className="text-sm font-medium text-slate-500 leading-relaxed mb-4 md:mb-6">
-                  {study.desc}
-                </p>
-                <div className="inline-block px-2 py-1 md:px-3 md:py-1 bg-white border border-slate-200 rounded-md text-[10px] md:text-xs font-bold text-slate-500">
-                  {study.tech}
-                </div>
-              </div>
-
-              <div className="relative z-10 pt-4 md:pt-6 border-t border-slate-200">
-                <div className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-1">
-                  {study.metric}
-                </div>
-                <div className="text-xs md:text-sm font-bold text-blue-600">
-                  {study.metricLabel}
-                </div>
-              </div>
+              </SpotlightCard>
             </motion.div>
           ))}
         </motion.div>

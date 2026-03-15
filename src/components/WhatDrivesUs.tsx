@@ -2,6 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { Sparkles, Target, ShieldCheck, Award, RefreshCw, Users } from "lucide-react";
+import SpotlightCard from "./SpotlightCard"; // <-- Imported Physics Engine
 
 const values = [
   { 
@@ -58,7 +59,7 @@ const itemVariants: Variants = {
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.5, ease: "easeOut" as const } // <-- The magical 'as const' padlock
+    transition: { duration: 0.5, ease: "easeOut" as const }
   }
 };
 
@@ -95,13 +96,11 @@ export default function WhatDrivesUs() {
           </motion.p>
         </div>
 
-        {/* --- THE UNIFORM GRID --- */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          // Clean, symmetrical grid layout for all screen sizes
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {values.map((value, index) => (
@@ -109,24 +108,32 @@ export default function WhatDrivesUs() {
               key={index}
               variants={itemVariants}
               whileHover={{ scale: 0.98 }} 
-              className="relative bg-white rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-xl hover:border-slate-300 transition-all duration-300 group overflow-hidden flex flex-col p-6 md:p-10 cursor-none h-full"
+              className="h-full"
             >
-              <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-br ${value.bgGlow} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
-
-              <div className="relative z-10 flex flex-col h-full">
-                <div className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 border border-slate-100 group-hover:bg-white group-hover:shadow-md transition-all duration-300 ${value.color}`}>
-                  <value.icon className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2} />
-                </div>
+              {/* Added SpotlightCard Wrapper */}
+              <SpotlightCard className="h-full group cursor-none">
                 
-                <div className="flex-grow">
-                  <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-300">
-                    {value.title}
-                  </h3>
-                  <p className="text-slate-500 text-sm md:text-base leading-relaxed font-medium">
-                    {value.desc}
-                  </p>
+                {/* Replaced standard border with perfectly nested rounded-[23px] inner card */}
+                <div className="relative h-full w-full bg-white flex flex-col p-6 md:p-10 rounded-[23px] overflow-hidden z-10">
+                  <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-br ${value.bgGlow} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 border border-slate-100 group-hover:bg-white group-hover:shadow-md transition-all duration-300 ${value.color}`}>
+                      <value.icon className="w-6 h-6 md:w-7 md:h-7" strokeWidth={2} />
+                    </div>
+                    
+                    <div className="flex-grow">
+                      <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight group-hover:translate-x-1 transition-transform duration-300">
+                        {value.title}
+                      </h3>
+                      <p className="text-slate-500 text-sm md:text-base leading-relaxed font-medium">
+                        {value.desc}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+
+              </SpotlightCard>
             </motion.div>
           ))}
         </motion.div>

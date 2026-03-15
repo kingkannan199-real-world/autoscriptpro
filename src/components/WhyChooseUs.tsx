@@ -2,6 +2,7 @@
 
 import { motion, Variants } from "framer-motion";
 import { Settings, Zap, TrendingUp, ShieldCheck } from "lucide-react";
+import SpotlightCard from "./SpotlightCard"; // <-- Imported Physics Engine
 
 const features = [
   {
@@ -38,11 +39,9 @@ const itemVariants: Variants = {
 
 export default function WhyChooseUs() {
   return (
-    // FIX: Alternating bg-white and responsive vertical padding
     <section className="w-full py-20 md:py-32 bg-white relative z-10 border-t border-slate-100 cursor-none">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         
-        {/* Header */}
         <div className="text-center mb-16 md:mb-20">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -62,36 +61,38 @@ export default function WhyChooseUs() {
           </motion.p>
         </div>
 
-        {/* The Premium Grid */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          // FIX: Reduced gap on mobile
           className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8"
         >
           {features.map((feature, index) => (
-            <motion.div 
-              key={index}
-              variants={itemVariants}
-              // FIX: Tightened padding on mobile
-              className="bg-white p-6 md:p-10 rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:border-blue-200 hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden cursor-none"
-            >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+            <motion.div key={index} variants={itemVariants} className="h-full">
               
-              <div className="relative z-10">
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-slate-50 flex items-center justify-center mb-5 md:mb-6 border border-slate-100 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors duration-500">
-                  <feature.icon className="w-6 h-6 md:w-7 md:h-7 text-slate-600 group-hover:text-white transition-colors duration-500" strokeWidth={2} />
-                </div>
+              {/* Added SpotlightCard with the smooth hover float effect */}
+              <SpotlightCard className="h-full group cursor-none hover:-translate-y-1 transition-transform duration-500">
                 
-                <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight group-hover:text-blue-600 transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-sm md:text-base text-slate-500 leading-relaxed font-medium">
-                  {feature.desc}
-                </p>
-              </div>
+                {/* Replaced standard border with perfectly nested rounded-[23px] inner card */}
+                <div className="relative h-full w-full bg-white p-6 md:p-10 rounded-[23px] overflow-hidden z-10">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                  
+                  <div className="relative z-10">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-slate-50 flex items-center justify-center mb-5 md:mb-6 border border-slate-100 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors duration-500">
+                      <feature.icon className="w-6 h-6 md:w-7 md:h-7 text-slate-600 group-hover:text-white transition-colors duration-500" strokeWidth={2} />
+                    </div>
+                    
+                    <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2 md:mb-3 tracking-tight group-hover:text-blue-600 transition-colors duration-300">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-slate-500 leading-relaxed font-medium">
+                      {feature.desc}
+                    </p>
+                  </div>
+                </div>
+
+              </SpotlightCard>
             </motion.div>
           ))}
         </motion.div>
