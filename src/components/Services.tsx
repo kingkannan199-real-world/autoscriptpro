@@ -46,7 +46,8 @@ export default function Services() {
             viewport={{ once: true, margin: "-50px" }}
             className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-10 md:mb-16 tracking-tight"
           >
-            Is Your Business Slowed Down <br className="hidden md:block"/> by <span className="text-slate-400">Manual Work?</span>
+            {/* GRADIENT APPLIED TO MANUAL WORK */}
+            Is Your Business Slowed Down <br className="hidden md:block"/> by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Manual Work?</span>
           </motion.h2>
 
           <motion.div 
@@ -58,12 +59,7 @@ export default function Services() {
           >
             {painPoints.map((point, index) => (
               <motion.div key={index} variants={itemVariants} className="h-full">
-                
-                {/* 1. The SpotlightCard acts as the outer glowing frame.
-                     The implicit curvy radius and thin frame logic is now handled in the component. */}
                 <SpotlightCard className="h-full">
-                  
-                  {/* 2. Interior content wrapper. I have removed the old 'border border-slate-200'. */}
                   <div className="h-full w-full bg-slate-50 p-5 md:p-8 rounded-2xl md:rounded-3xl group cursor-none text-left md:text-center flex items-start md:items-center md:flex-col gap-4 md:gap-0 z-10 relative">
                     <div className="w-12 h-12 md:w-14 md:h-14 shrink-0 bg-white shadow-sm text-slate-600 rounded-xl md:rounded-2xl flex items-center justify-center md:mb-6 group-hover:bg-slate-900 group-hover:text-white transition-all z-10 relative">
                       <point.icon size={22} strokeWidth={2.5} />
@@ -73,9 +69,7 @@ export default function Services() {
                       <p className="text-slate-500 text-sm md:leading-relaxed font-medium">{point.desc}</p>
                     </div>
                   </div>
-
                 </SpotlightCard>
-
               </motion.div>
             ))}
           </motion.div>
@@ -109,12 +103,7 @@ export default function Services() {
           >
             {solutions.map((sol, index) => (
               <motion.div key={index} variants={itemVariants} className="h-full">
-                
-                {/* 1. The SpotlightCard acts as the outer glowing frame.
-                     Implicit curvy radius and thin frame logic is handled internally. */}
                 <SpotlightCard className="h-full">
-                  
-                  {/* 2. Interior content wrapper. I have removed the old 'border border-slate-200'. */}
                   <div className="h-full w-full bg-white text-left p-6 md:p-10 rounded-2xl md:rounded-3xl group cursor-none relative z-10">
                     <div className="relative z-10">
                       <div className="relative w-12 h-12 md:w-16 md:h-16 mb-5 md:mb-8">
@@ -130,14 +119,11 @@ export default function Services() {
                           </div>
                         </div>
                       </div>
-
                       <h3 className="text-lg md:text-2xl font-bold text-slate-900 mb-2 md:mb-3">{sol.title}</h3>
                       <p className="text-slate-500 text-sm md:text-base leading-relaxed font-medium">{sol.desc}</p>
                     </div>
                   </div>
-
                 </SpotlightCard>
-
               </motion.div>
             ))}
           </motion.div>

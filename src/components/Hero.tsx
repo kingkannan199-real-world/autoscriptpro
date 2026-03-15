@@ -22,12 +22,10 @@ const itemVariants: Variants = {
 };
 
 export default function Hero() {
-  // --- ANTIGRAVITY PHYSICS STATE ---
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
-    // Calculate distance from center of screen
     const moveX = clientX - window.innerWidth / 2;
     const moveY = clientY - window.innerHeight / 2;
     setMousePosition({ x: moveX, y: moveY });
@@ -43,7 +41,6 @@ export default function Hero() {
       className="relative w-full min-h-[95vh] flex flex-col items-center justify-center bg-white overflow-hidden pt-36 md:pt-20 cursor-none"
     >
       
-      {/* --- ANTIGRAVITY FLOATING ORBS --- */}
       {/* Top Left Orb */}
       <motion.div 
         animate={{ 
@@ -63,24 +60,23 @@ export default function Hero() {
         className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-indigo-50/60 rounded-full blur-[100px] opacity-60 pointer-events-none" 
       />
 
-      {/* --- THE INTERACTIVE NEURAL GRID --- */}
       <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none">
         <NeuralGrid />
       </div>
 
-      {/* --- MAIN HERO CONTENT --- */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10 flex flex-col items-center text-center mt-10 md:mt-0"
       >
-        <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-slate-50 border border-slate-200 text-[10px] sm:text-xs md:text-sm font-bold text-slate-600 mb-6 md:mb-8 shadow-sm cursor-none max-w-[85vw] mx-auto text-center leading-tight">
-          <span className="relative flex h-2 w-2 md:h-2.5 md:w-2.5 shrink-0">
+        {/* MOBILE RESPONSIVE BADGE FIX APPLIED HERE */}
+        <motion.div variants={itemVariants} className="inline-flex items-center justify-center flex-wrap gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 text-[11px] sm:text-xs md:text-sm font-bold text-slate-600 mb-6 md:mb-8 shadow-sm cursor-none max-w-[90vw] mx-auto text-center leading-normal">
+          <span className="relative flex h-2.5 w-2.5 shrink-0 mt-[1px]">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 md:h-2.5 md:w-2.5 bg-blue-600"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-600"></span>
           </span>
-          <span className="truncate whitespace-normal">Engineered in Chennai. Built for the World.</span>
+          <span>Engineered in Chennai. Built for the World.</span>
         </motion.div>
 
         <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tighter md:tracking-tight mb-6 md:mb-8 leading-[1.05] md:leading-[1.1] max-w-4xl">
@@ -95,16 +91,16 @@ export default function Hero() {
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-col items-center gap-4 w-full md:w-auto">
+          {/* BUTTON TEXT UPDATED TO PREVENT REPETITION */}
           <MagneticButton 
             onClick={scrollToContact}
             className="group w-full md:w-auto px-8 py-4 bg-slate-900 text-white font-bold rounded-xl md:rounded-full hover:bg-blue-600 transition-colors shadow-xl hover:shadow-blue-600/20 duration-300 flex items-center justify-center gap-3 cursor-none text-base md:text-lg"
           >
-            Get Your Free Custom Architecture
+            Get Your Custom System Blueprint
             <ArrowRight className="group-hover:translate-x-1 transition-transform shrink-0" size={18} />
           </MagneticButton>
         </motion.div>
 
-        {/* --- CORE AGENCY MANTRA --- */}
         <motion.div 
           variants={itemVariants} 
           className="mt-20 md:mt-28 flex items-center justify-center w-full opacity-70 cursor-none pointer-events-none"
