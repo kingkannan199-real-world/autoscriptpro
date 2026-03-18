@@ -8,7 +8,7 @@ import WhatDrivesUs from "../components/WhatDrivesUs"; // Add this!
 import FAQ from "../components/FAQ"; 
 import Contact from "../components/Contact"; 
 import Footer from "../components/Footer"; 
-import SocialProofToast from "../components/SocialProofToast";
+// import SocialProofToast from "../components/SocialProofToast";
 import CaseStudies from "../components/CaseStudies"; // <-- Import it here
 import ScrollProgress from "../components/ScrollProgress"; // <-- Import here
 // AIChatWidget IMPORT REMOVED
@@ -28,7 +28,7 @@ export default function Home() {
       {/* <Team />  */}
       <FAQ /> 
       <Contact /> 
-      <SocialProofToast />
+      {/* <SocialProofToast /> */}
       <Footer /> 
       {/* AIChatWidget COMPONENT REMOVED */}
     </main>

@@ -6,8 +6,7 @@ export default function Footer() {
   return (
     <footer className="w-full bg-slate-950 text-slate-400 py-12 border-t border-slate-900 cursor-none relative z-10 overflow-hidden">
       
-      {/* Subtle blue accent at the very bottom edge */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 to-blue-400 opacity-50" />
+      {/* FIX 8: Removed the unnecessary blue line at the bottom */}
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
         

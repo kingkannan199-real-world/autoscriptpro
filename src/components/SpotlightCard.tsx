@@ -20,7 +20,6 @@ export default function SpotlightCard({
       const cardX = rect.left + rect.width / 2;
       const cardY = rect.top + rect.height / 2;
       
-      // Proximity trigger: Active when mouse is within 250px
       const isNear = Math.abs(e.clientX - cardX) < rect.width / 2 + 250 &&
                      Math.abs(e.clientY - cardY) < rect.height / 2 + 250;
       
@@ -35,24 +34,24 @@ export default function SpotlightCard({
   return (
     <div
       ref={divRef}
-      // THE FIX: p-[1px] creates the razor-thin 1mm border. rounded-3xl gives the high curves.
-      className={`relative h-full w-full overflow-hidden rounded-3xl p-[1px] bg-slate-100 transition-shadow hover:shadow-md ${className}`}
+      className={`relative rounded-[24px] overflow-hidden bg-slate-200/50 ${className}`}
+      style={{ padding: '1px' }} // Hard-locks the border to exactly 1px
     >
-      {/* THE RAINBOW BLUE LASER */}
+      {/* THE 1PX LASER MASK */}
       <div
         className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
         style={{
           opacity: isVisible ? 1 : 0,
-          // Fancy rainbow in shades of blue/purple
           background: `conic-gradient(from 90deg at 50% 50%, #0284c7, #3b82f6, #6366f1, #8b5cf6, #38bdf8, #0284c7)`,
-          // Mask makes it only appear near the mouse
-          maskImage: `radial-gradient(250px circle at ${position.x}px ${position.y}px, black, transparent 70%)`,
-          WebkitMaskImage: `radial-gradient(250px circle at ${position.x}px ${position.y}px, black, transparent 70%)`,
+          maskImage: `radial-gradient(250px circle at ${position.x}px ${position.y}px, black, transparent 60%)`,
+          WebkitMaskImage: `radial-gradient(250px circle at ${position.x}px ${position.y}px, black, transparent 60%)`,
         }}
       />
       
-      {/* CARD CONTENT INJECTED HERE */}
-      {children}
+      {/* WRAPPER TO PROTECT CONTENT */}
+      <div className="relative z-10 w-full h-full rounded-[23px] bg-white overflow-hidden">
+        {children}
+      </div>
     </div>
   );
 }

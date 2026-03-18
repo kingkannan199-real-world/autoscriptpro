@@ -7,7 +7,7 @@ import { Plus, Minus } from "lucide-react";
 const faqs = [
   {
     question: "How long does a typical architecture deployment take?",
-    answer: "It depends on the complexity of your operational bottlenecks. Standard automation workflows and single-agent setups can be deployed in 2 to 3 weeks. Full-scale custom architectures with custom database integrations typically take 6 to 8 weeks."
+    answer: "It depends on the complexity of your operational bottlenecks. Standard automation workflows and single-agent setups can be deployed as soon as possible. Full-scale custom architectures with custom database integrations typically take 4 to 6 weeks."
   },
   {
     question: "Do you integrate with our existing tech stack?",
@@ -28,88 +28,65 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  // Set the first FAQ to be open by default to invite interaction
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const toggleFAQ = (index: number) => setOpenIndex(openIndex === index ? null : index);
 
   return (
-    <section className="w-full py-28 bg-white relative z-10 border-t border-slate-100 cursor-none scroll-mt-20">
-      <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center mb-16 md:mb-20">
+    <section className="w-full py-20 md:py-28 bg-white relative z-10 cursor-none scroll-mt-20">
+      
+      {/* NEURAL DIVIDER (Point 10) */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]" />
+      </div>
+
+      <div className="max-w-4xl mx-auto px-6 lg:px-8 mt-10 md:mt-0">
+        <div className="text-center mb-12 md:mb-20">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
             className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100 cursor-none"
           >
             <span className="text-sm font-bold text-blue-600 tracking-wider uppercase">F.A.Q</span>
           </motion.div>
 
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight"
           >
             Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Questions</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }} transition={{ delay: 0.1 }}
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
             className="text-lg text-slate-500 max-w-2xl mx-auto font-medium"
           >
             Everything you need to know about partnering with AutoScriptPro to scale your operations.
           </motion.p>
         </div>
 
-        {/* The Accordion */}
         <div className="space-y-4">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
-
             return (
               <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`border rounded-2xl transition-colors duration-300 ${
-                  isOpen ? "bg-slate-50 border-blue-200" : "bg-white border-slate-200 hover:border-slate-300"
-                }`}
+                key={index} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.1 }}
+                className={`border rounded-2xl transition-colors duration-300 ${isOpen ? "bg-slate-50 border-blue-200" : "bg-white border-slate-200 hover:border-slate-300"}`}
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full flex items-center justify-between p-6 md:p-8 text-left cursor-none focus:outline-none group"
+                  className="w-full flex items-center justify-between p-5 md:p-8 text-left cursor-none focus:outline-none group"
                 >
-                  <span className={`text-lg md:text-xl font-bold transition-colors duration-300 pr-8 ${
-                    isOpen ? "text-blue-600" : "text-slate-900 group-hover:text-blue-600"
-                  }`}>
+                  <span className={`text-base md:text-xl font-bold transition-colors duration-300 pr-4 md:pr-8 ${isOpen ? "text-blue-600" : "text-slate-900 group-hover:text-blue-600"}`}>
                     {faq.question}
                   </span>
-                  <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-                    isOpen ? "bg-blue-600 text-white rotate-180" : "bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600"
-                  }`}>
-                    {isOpen ? <Minus size={20} strokeWidth={2.5} /> : <Plus size={20} strokeWidth={2.5} />}
+                  <div className={`flex-shrink-0 w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-blue-600 text-white rotate-180" : "bg-slate-100 text-slate-500 group-hover:bg-blue-50 group-hover:text-blue-600"}`}>
+                    {isOpen ? <Minus size={18} strokeWidth={2.5} /> : <Plus size={18} strokeWidth={2.5} />}
                   </div>
                 </button>
-
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
+                      initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3, ease: "easeInOut" }} className="overflow-hidden"
                     >
-                      <div className="px-6 md:px-8 pb-6 md:pb-8 text-slate-500 font-medium leading-relaxed">
+                      <div className="px-5 md:px-8 pb-5 md:pb-8 text-sm md:text-base text-slate-500 font-medium leading-relaxed">
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -119,7 +96,6 @@ export default function FAQ() {
             );
           })}
         </div>
-
       </div>
     </section>
   );
