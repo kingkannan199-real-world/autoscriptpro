@@ -66,14 +66,14 @@ export default function WhyChooseUs() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8"
+          // Changed grid to flex on mobile, added snap scrolling and scrollbar hiding
+          className="flex md:grid md:grid-cols-2 gap-5 md:gap-8 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide"
         >
           {features.map((feature, index) => (
-            <motion.div key={index} variants={itemVariants} className="h-full">
+            // Added min-width and snap-center for mobile cards
+            <motion.div key={index} variants={itemVariants} className="h-full min-w-[85vw] md:min-w-0 snap-center">
+               <SpotlightCard className="h-full group cursor-none hover:-translate-y-1 transition-transform duration-500">
               
-              {/* Added SpotlightCard with the smooth hover float effect */}
-              <SpotlightCard className="h-full group cursor-none hover:-translate-y-1 transition-transform duration-500">
-                
                 {/* Replaced standard border with perfectly nested rounded-[23px] inner card */}
                 <div className="relative h-full w-full bg-white p-6 md:p-10 rounded-[23px] overflow-hidden z-10">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />

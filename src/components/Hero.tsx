@@ -4,7 +4,8 @@ import { useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import MagneticButton from "./MagneticButton"; 
-import NeuralGrid from "./NeuralGrid"; 
+import AutomationBackground from "./AutomationBackground";
+import GradientText from "./GradientText";
 
 const customEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -31,13 +32,7 @@ export default function Hero() {
       onMouseMove={handleMouseMove}
       className="relative w-full min-h-[95vh] flex flex-col items-center justify-center bg-white overflow-hidden pt-36 md:pt-20 cursor-none"
     >
-      <motion.div animate={{ x: mousePosition.x * -0.05, y: mousePosition.y * -0.05 }} transition={{ type: "spring", stiffness: 40, damping: 30 }} className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-blue-100/50 rounded-full blur-[120px] opacity-80 pointer-events-none" />
-      <motion.div animate={{ x: mousePosition.x * 0.02, y: mousePosition.y * 0.02 }} transition={{ type: "spring", stiffness: 40, damping: 30 }} className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-indigo-50/60 rounded-full blur-[100px] opacity-60 pointer-events-none" />
-
-      {/* THE FIX: Linear gradient mask for mobile (side-to-side fill), Radial for desktop */}
-      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,#000_50%,transparent_100%)] md:[mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none opacity-50 md:opacity-100">
-        <NeuralGrid />
-      </div>
+      <AutomationBackground mousePosition={mousePosition} />
 
       <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10 flex flex-col items-center text-center mt-10 md:mt-0">
         
@@ -51,7 +46,7 @@ export default function Hero() {
 
         <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tighter md:tracking-tight mb-6 md:mb-8 leading-[1.05] md:leading-[1.1] max-w-4xl">
           Scale Your Business With <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Autonomous Systems.</span>
+          <GradientText>Autonomous Systems.</GradientText>
         </motion.h1>
 
         <motion.p variants={itemVariants} className="text-base md:text-xl text-slate-500 max-w-2xl font-medium mb-10 leading-relaxed px-2">
@@ -71,7 +66,6 @@ export default function Hero() {
             Build. Automate. Accelerate.
           </p>
         </motion.div>
-
       </motion.div>
     </section>
   );

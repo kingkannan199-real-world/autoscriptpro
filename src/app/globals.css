@@ -8,7 +8,6 @@
   --foreground: #171717;
 }
 
-/* Force the body to be white and have NO margin/gap at the top */
 html, body {
   background-color: #ffffff !important;
   margin: 0 !important;
@@ -17,23 +16,16 @@ html, body {
   overflow-x: hidden;
 }
 
-/* This fixes the scroll jumping too far */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 120px;
 }
 
-/* --- CUSTOM CURSOR LOGIC --- */
 @media (hover: hover) and (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
-  input, textarea, select, button, a {
-    cursor: none !important; /* Keep it consistent for the smooth dot */
-  }
+  * { cursor: none !important; }
+  input, textarea, select, button, a { cursor: none !important; }
 }
 
-/* Hide Vercel Development/Feedback Toolbar */
 .vercel-toolbar, 
 #vercel-live-feedback-widget,
 [data-vercel-toolbar] {
@@ -41,29 +33,34 @@ html {
 }
 
 @layer base {
-  body {
-    /* Turns on high-end font smoothing and sets the global text color */
-    @apply antialiased bg-white text-slate-500;
-  }
-  
-  /* Forces all headings to be perfectly tight and dark */
-  h1, h2, h3, h4, h5, h6 {
-    @apply text-slate-900 tracking-tight;
-  }
-  
-  /* Forces all paragraphs to breathe with extra line-height and weight */
-  p {
-    @apply leading-relaxed font-medium;
-  }
-
-  /* The Premium Touch: Changes the text highlight color from default blue to your brand blue */
-  ::selection {
-    @apply bg-blue-100 text-blue-900;
-  }
+  body { @apply antialiased bg-white text-slate-500; }
+  h1, h2, h3, h4, h5, h6 { @apply text-slate-900 tracking-tight; }
+  p { @apply leading-relaxed font-medium; }
+  ::selection { @apply bg-blue-100 text-blue-900; }
 }
-/* Nuke Next.js / Vercel Floating Badges */
+
 nextjs-portal, 
 [data-nextjs-toast], 
 .vercel-toolbar {
   display: none !important;
+}
+
+/* --- MOBILE HORIZONTAL SCROLL HIDE --- */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* --- GRADIENT TEXT ANIMATION --- */
+@keyframes text-gradient {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.animate-text-gradient {
+  animation: text-gradient 4s linear infinite;
 }

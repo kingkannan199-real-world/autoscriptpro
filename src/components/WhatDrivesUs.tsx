@@ -101,18 +101,19 @@ export default function WhatDrivesUs() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          // Changed grid to flex on mobile, added snap scrolling
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide"
         >
           {values.map((value, index) => (
+            // Added min-width and snap-center for mobile cards
             <motion.div 
               key={index}
               variants={itemVariants}
               whileHover={{ scale: 0.98 }} 
-              className="h-full"
+              className="h-full min-w-[85vw] md:min-w-0 snap-center"
             >
-              {/* Added SpotlightCard Wrapper */}
               <SpotlightCard className="h-full group cursor-none">
-                
+
                 {/* Replaced standard border with perfectly nested rounded-[23px] inner card */}
                 <div className="relative h-full w-full bg-white flex flex-col p-6 md:p-10 rounded-[23px] overflow-hidden z-10">
                   <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-br ${value.bgGlow} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
