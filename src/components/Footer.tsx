@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -24,8 +24,6 @@ export default function Footer() {
         {/* Socials & Legal */}
         <div className="flex flex-col items-center md:items-end gap-4">
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-white hover:-translate-y-1 transition-all cursor-none"><Github size={20} /></a>
-            <a href="#" className="hover:text-blue-400 hover:-translate-y-1 transition-all cursor-none"><Linkedin size={20} /></a>
             <a href="mailto:autoscriptpro@gmail.com" className="hover:text-red-400 hover:-translate-y-1 transition-all cursor-none"><Mail size={20} /></a>
           </div>
           <p className="text-xs text-slate-600 font-medium">

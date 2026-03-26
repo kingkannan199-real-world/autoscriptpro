@@ -2,7 +2,9 @@
 
 import { useEffect, useRef } from "react";
 
-export default function AutomationBackground() {
+// We accept the mousePosition prop here so Hero.tsx doesn't crash, 
+// even though this specific canvas animation doesn't use it.
+export default function AutomationBackground({ mousePosition }: { mousePosition?: { x: number, y: number } }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

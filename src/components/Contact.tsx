@@ -1,13 +1,26 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Mail, Phone, MessageSquare, Send } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, Phone, MessageSquare, Send, Loader2, CheckCircle } from "lucide-react";
 import { useState, useRef } from "react";
 import MagneticButton from "./MagneticButton";
 
 export default function Contact() {
-  const [phone, setPhone] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
+  
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    service: "",
+    message: ""
+  });
+  const [phone, setPhone] = useState("");
+  const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let rawInput = e.target.value;
@@ -18,11 +31,37 @@ export default function Contact() {
     setPhone(digits.length > 0 ? `+91 ${digits.length > 5 ? digits.substring(0, 5) + " " + digits.substring(5) : digits}` : "");
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Request Secured! Our engineers will contact you within 24 hours.");
-    formRef.current?.reset();
-    setPhone("");
+    setSubmitState("loading");
+
+    try {
+      await fetch("https://script.google.com/macros/s/AKfycbwDlOss2vGe8Vwl0ml5-eiQquOxWM19gc0WUMHb7aM9LWVxShhXmE1DJgCtrcTQYdh8Wg/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: phone,
+          service: formData.service,
+          message: formData.message
+        }),
+      });
+
+      setSubmitState("success");
+      setFormData({ name: "", email: "", company: "", service: "", message: "" }); 
+      setPhone("");
+      
+      setTimeout(() => setSubmitState("idle"), 3000);
+
+    } catch (error) {
+      setSubmitState("error");
+      setTimeout(() => setSubmitState("idle"), 3000);
+    }
   };
 
   return (
@@ -46,7 +85,6 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
           
-          {/* LEFT COLUMN: CONTACT CARDS */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="lg:col-span-4 flex flex-col gap-4 md:gap-6">
             
             <div className="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm flex items-center md:items-start md:flex-col gap-4 md:gap-0 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group cursor-none">
@@ -69,8 +107,13 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* RESTORED LIVE CHAT CARD */}
-            <div className="bg-slate-900 p-5 md:p-8 rounded-2xl md:rounded-3xl border border-slate-800 shadow-xl text-white group cursor-none relative overflow-hidden flex items-center md:items-start md:flex-col gap-4 md:gap-0">
+            {/* WHATSAPP DIRECT LINK CARD */}
+            <a 
+              href="https://wa.me/917200696059?text=Hi%20AutoScriptPro,%20I'm%20interested%20in%20scaling%20my%20business%20with%20AI%20and%20Automation." 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="bg-slate-900 p-5 md:p-8 rounded-2xl md:rounded-3xl border border-slate-800 shadow-xl text-white group cursor-none relative overflow-hidden flex items-center md:items-start md:flex-col gap-4 md:gap-0 block hover:shadow-2xl hover:border-blue-500/50 transition-all duration-300 pointer-events-auto"
+            >
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20 pointer-events-none group-hover:opacity-40 transition-opacity duration-500" />
               <div className="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-xl flex items-center justify-center md:mb-5 text-blue-400 group-hover:scale-110 transition-transform duration-300 shrink-0 relative z-10">
                 <MessageSquare size={18} className="md:w-5 md:h-5" />
@@ -78,32 +121,31 @@ export default function Contact() {
               <div className="relative z-10">
                 <h3 className="text-base md:text-lg font-bold mb-1">Live Chat</h3>
                 <p className="text-xs md:text-sm text-slate-400 font-medium mb-0 md:mb-4 hidden md:block">Chat with our AI Architect right now.</p>
-                <button className="text-xs md:text-sm font-bold text-blue-400 hover:text-white transition-colors flex items-center gap-2 cursor-none mt-1 md:mt-0">
-                  Start Chat →
-                </button>
+                <span className="text-xs md:text-sm font-bold text-blue-400 group-hover:text-white transition-colors flex items-center gap-2 mt-1 md:mt-0">
+                  Open WhatsApp →
+                </span>
               </div>
-            </div>
+            </a>
 
           </motion.div>
 
-          {/* RIGHT COLUMN: FORM */}
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }} className="lg:col-span-8 bg-white p-6 md:p-12 rounded-[2rem] md:rounded-[2.5rem] border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden">
             <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-6 md:mb-8">Send Us A Message</h3>
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div className="space-y-1.5 md:space-y-2">
                   <label className="text-xs md:text-sm font-bold text-slate-700">Full Name *</label>
-                  <input required type="text" placeholder="Raju" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
+                  <input required name="name" value={formData.name} onChange={handleChange} type="text" placeholder="Raju" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
                 </div>
                 <div className="space-y-1.5 md:space-y-2">
                   <label className="text-xs md:text-sm font-bold text-slate-700">Email Address *</label>
-                  <input required type="email" placeholder="raju@company.com" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
+                  <input required name="email" value={formData.email} onChange={handleChange} type="email" placeholder="raju@company.com" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div className="space-y-1.5 md:space-y-2">
                   <label className="text-xs md:text-sm font-bold text-slate-700">Company Name</label>
-                  <input type="text" placeholder="Your Company" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
+                  <input name="company" value={formData.company} onChange={handleChange} type="text" placeholder="Your Company" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
                 </div>
                 <div className="space-y-1.5 md:space-y-2">
                   <label className="text-xs md:text-sm font-bold text-slate-700">Phone Number</label>
@@ -112,7 +154,7 @@ export default function Contact() {
               </div>
               <div className="space-y-1.5 md:space-y-2">
                 <label className="text-xs md:text-sm font-bold text-slate-700">Service Interest</label>
-                <select defaultValue="" required className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base appearance-none bg-white">
+                <select name="service" value={formData.service} onChange={handleChange} required className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base appearance-none bg-white">
                   <option value="" disabled>Select a service...</option>
                   <option value="ai-agents">Automation & AI Agents</option>
                   <option value="web-dev">Web & Custom Development</option>
@@ -121,12 +163,68 @@ export default function Contact() {
               </div>
               <div className="space-y-1.5 md:space-y-2">
                 <label className="text-xs md:text-sm font-bold text-slate-700">Message *</label>
-                <textarea required rows={3} placeholder="Project details..." className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base resize-none"></textarea>
+                <textarea name="message" value={formData.message} onChange={handleChange} required rows={3} placeholder="Project details..." className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base resize-none"></textarea>
               </div>
-              <MagneticButton className="w-full py-3 md:py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-slate-900 transition-colors shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2 cursor-none mt-2">
-                Submit Architecture Request
-                <Send size={16} />
-              </MagneticButton>
+              
+              {/* THE ANIMATED SUBMIT BUTTON */}
+              <button 
+                type="submit"
+                disabled={submitState === "loading" || submitState === "success"}
+                className={`w-full py-3 md:py-4 font-bold rounded-xl transition-all duration-500 flex items-center justify-center cursor-none mt-2 relative overflow-hidden ${
+                  submitState === "success" 
+                    ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30" 
+                    : submitState === "error"
+                    ? "bg-red-500 text-white shadow-lg shadow-red-500/30"
+                    : "bg-blue-600 text-white shadow-lg shadow-blue-600/20 hover:bg-slate-900 hover:shadow-xl"
+                }`}
+              >
+                <AnimatePresence mode="wait">
+                  {submitState === "loading" ? (
+                    <motion.div
+                      key="loading"
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      className="flex items-center gap-2"
+                    >
+                      Sending...
+                      <Loader2 size={18} className="animate-spin" />
+                    </motion.div>
+                  ) : submitState === "success" ? (
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      className="flex items-center gap-2"
+                    >
+                      Request Received
+                      <CheckCircle size={18} />
+                    </motion.div>
+                  ) : submitState === "error" ? (
+                    <motion.div
+                      key="error"
+                      initial={{ opacity: 0, x: [0, -10, 10, -10, 10, 0] }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="flex items-center gap-2"
+                    >
+                      Error. Please try again.
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="idle"
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -15 }}
+                      className="flex items-center gap-2"
+                    >
+                      Submit Architecture Request
+                      <Send size={18} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
             </form>
           </motion.div>
 

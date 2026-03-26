@@ -64,3 +64,12 @@ nextjs-portal,
 .animate-text-gradient {
   animation: text-gradient 4s linear infinite;
 }
+
+/* --- INFINITE GRID PAN --- */
+@keyframes grid-pan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4rem); }
+}
+.animate-grid-pan {
+  animation: grid-pan 20s linear infinite;
+}
