@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Search, GitMerge, Cpu, Rocket } from "lucide-react";
 
 const steps = [
@@ -11,12 +12,17 @@ const steps = [
 ];
 
 export default function Process() {
+  const timelineRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 85%", "end 60%"],
+  });
+  const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
   return (
     <section id="process" className="w-full py-20 md:py-32 bg-slate-50 relative z-10 cursor-none scroll-mt-20">
       
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]" />
-      </div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-5 lg:px-8 relative mt-10 md:mt-0">
         
@@ -36,9 +42,14 @@ export default function Process() {
           </motion.h2>
         </div>
 
-        <div className="relative w-full max-w-5xl mx-auto">
-          {/* Timeline Line - Tightened left alignment for mobile */}
-          <div className="absolute top-0 bottom-0 left-4 md:left-1/2 w-1 bg-gradient-to-b from-blue-200 via-blue-400 to-transparent md:-translate-x-1/2 rounded-full z-0" />
+        <div ref={timelineRef} className="relative w-full max-w-5xl mx-auto">
+          {/* Scroll-draw timeline line */}
+          <div className="absolute top-0 bottom-0 left-4 md:left-1/2 w-2 bg-slate-100 md:-translate-x-1/2 rounded-full z-0 overflow-hidden">
+            <motion.div
+              style={{ scaleY: lineScaleY, originY: 0 }}
+              className="absolute inset-0 bg-gradient-to-b from-blue-400 via-blue-500 to-indigo-600 rounded-full"
+            />
+          </div>
 
           {steps.map((step, index) => {
             const isEven = index % 2 === 0;
@@ -47,14 +58,24 @@ export default function Process() {
               <div key={index} className="relative flex items-center justify-between w-full mb-12 md:mb-24 last:mb-0">
                 
                 {/* THE FIX: Removed margin="-100px" so icons animate immediately. Tightened left-4 alignment */}
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.5 }} 
-                  whileInView={{ opacity: 1, scale: 1 }} 
-                  viewport={{ once: true }} 
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
                   transition={{ delay: 0.2, duration: 0.4 }}
-                  className="absolute left-4 md:left-1/2 w-10 h-10 md:w-14 md:h-14 bg-white border-4 border-blue-100 rounded-full flex items-center justify-center -translate-x-1/2 z-[40] shadow-lg text-blue-600"
+                  className="absolute left-4 md:left-1/2 w-10 h-10 md:w-14 md:h-14 -translate-x-1/2 z-[40]"
                 >
-                  <step.icon size={18} strokeWidth={2.5} className="md:w-6 md:h-6" />
+                  {/* Pulse ring */}
+                  <motion.div
+                    initial={{ scale: 1, opacity: 0.6 }}
+                    whileInView={{ scale: 2.2, opacity: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+                    className="absolute inset-0 rounded-full bg-blue-400/40"
+                  />
+                  <div className="w-full h-full bg-white border-4 border-blue-100 rounded-full flex items-center justify-center shadow-lg text-blue-600">
+                    <step.icon size={18} strokeWidth={2.5} className="md:w-6 md:h-6" />
+                  </div>
                 </motion.div>
 
                 {/* THE FIX: Tightened mobile padding (pl-12) to match the new line position */}

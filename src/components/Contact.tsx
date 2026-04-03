@@ -67,9 +67,7 @@ export default function Contact() {
   return (
     <section id="contact" className="w-full py-20 md:py-28 bg-white relative z-10 overflow-hidden cursor-none">
       
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]" />
-      </div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[120px] opacity-60 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10 mt-8 md:mt-0">

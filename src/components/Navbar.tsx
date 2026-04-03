@@ -9,14 +9,15 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
+
   return (
     <motion.header 
       initial={{ y: -100, x: "-50%" }}
       animate={{ y: 0, x: "-50%" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-8 left-1/2 z-[100] w-[90%] max-w-5xl bg-white/80 backdrop-blur-xl border border-slate-200 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-full px-4 md:px-6 py-2"
+      className="fixed top-8 left-1/2 z-[100] w-[90%] max-w-5xl bg-white/80 backdrop-blur-xl border border-slate-200 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-full px-4 md:px-6 py-2 navbar-border-anim"
     >
-      <div className="flex items-center justify-between h-12 md:h-14">
+      <div className="flex items-center justify-between h-12 md:h-14 relative" style={{ zIndex: 3 }}>
         
         {/* Brand Logo - Added pointer-events-auto so clicking works even with custom cursor */}
         <div 

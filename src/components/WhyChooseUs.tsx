@@ -39,7 +39,7 @@ const itemVariants: Variants = {
 
 export default function WhyChooseUs() {
   return (
-    <section className="w-full py-20 md:py-32 bg-white relative z-10 border-t border-slate-100 cursor-none">
+    <section className="w-full py-20 md:py-32 bg-white relative z-10 border-t border-slate-100 cursor-none bg-[linear-gradient(to_right,#eef2ff_1px,transparent_1px),linear-gradient(to_bottom,#eef2ff_1px,transparent_1px)] [background-size:32px_32px]">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         
         <div className="text-center mb-16 md:mb-20">

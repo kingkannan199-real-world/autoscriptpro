@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SmoothCursor from "../components/SmoothCursor";
-import Navbar from "../components/Navbar"; // Brought this back!
+import Navbar from "../components/Navbar";
+import ScrollProgress from "../components/ScrollProgress";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -54,9 +55,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased bg-white text-slate-900`}>
+        <ScrollProgress />
         <SmoothCursor />
-        {/* Navbar sits globally above all page content */}
-        <Navbar /> 
+        <Navbar />
         {children}
       </body>
     </html>

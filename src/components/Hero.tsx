@@ -28,14 +28,21 @@ export default function Hero() {
   };
 
   return (
-    <section 
+    <section
       onMouseMove={handleMouseMove}
       className="relative w-full min-h-[95vh] flex flex-col items-center justify-center bg-white overflow-hidden pt-36 md:pt-20 cursor-none"
     >
       <AutomationBackground mousePosition={mousePosition} />
 
+      {/* Floating Gradient Orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="orb-float-1 absolute top-[8%] left-[3%] w-[420px] h-[420px] bg-blue-600/10 rounded-full blur-[100px]" />
+        <div className="orb-float-2 absolute bottom-[5%] right-[4%] w-[380px] h-[380px] bg-indigo-600/10 rounded-full blur-[90px]" />
+        <div className="orb-float-3 absolute top-[45%] right-[22%] w-[260px] h-[260px] bg-blue-400/8 rounded-full blur-[70px]" />
+      </div>
+
       <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10 flex flex-col items-center text-center mt-10 md:mt-0">
-        
+
         <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 shadow-sm cursor-none max-w-fit mx-auto mb-6 md:mb-8">
           <span className="relative flex h-2 w-2 md:h-2.5 md:w-2.5 shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -54,7 +61,7 @@ export default function Hero() {
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-col items-center gap-6 w-full md:w-auto">
-          <MagneticButton 
+          <MagneticButton
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="group w-full md:w-auto px-8 py-4 bg-slate-900 text-white font-bold rounded-xl md:rounded-full hover:bg-blue-600 transition-colors shadow-xl hover:shadow-blue-600/20 duration-300 flex items-center justify-center gap-3 cursor-none text-base md:text-lg"
           >

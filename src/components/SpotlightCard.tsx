@@ -35,7 +35,7 @@ export default function SpotlightCard({
     <div
       ref={divRef}
       className={`relative rounded-[24px] overflow-hidden bg-slate-200/50 ${className}`}
-      style={{ padding: '1px' }} // Hard-locks the border to exactly 1px
+      style={{ padding: '2px' }}
     >
       {/* THE 1PX LASER MASK */}
       <div
@@ -49,7 +49,7 @@ export default function SpotlightCard({
       />
       
       {/* WRAPPER TO PROTECT CONTENT */}
-      <div className="relative z-10 w-full h-full rounded-[23px] bg-white overflow-hidden">
+      <div className="relative z-10 w-full h-full rounded-[22px] bg-white overflow-hidden">
         {children}
       </div>
     </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import SpotlightCard from "./SpotlightCard"; // <-- Imported Physics Engine
+import SpotlightCard from "./SpotlightCard";
 
 const stats = [
   { value: "60-80%", label: "Reduction in manual work", desc: "Free up your engineering and sales teams to focus on actual growth." },
@@ -60,8 +60,8 @@ export default function Impact() {
               {/* Added SpotlightCard Wrapper with a slight float effect */}
               <SpotlightCard className="h-full group cursor-none hover:-translate-y-1 transition-transform duration-500">
                 
-                {/* Perfectly nested inner card */}
                 <div className="relative h-full w-full bg-white flex flex-col items-center justify-center p-6 md:p-8 rounded-[23px] z-10 text-center shadow-sm group-hover:shadow-xl transition-shadow duration-300">
+
                   <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-blue-400 mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-500 drop-shadow-sm">
                     {stat.value}
                   </h3>

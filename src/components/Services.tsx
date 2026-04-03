@@ -26,17 +26,22 @@ const solutions = [
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } } 
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  hidden: { opacity: 0, y: 60, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { type: "spring", stiffness: 120, damping: 14 }
+  }
 };
 
 export default function Services() {
   return (
-    <section className="w-full py-16 md:py-28 bg-white relative z-10 border-t border-slate-100">
+    <section className="w-full py-16 md:py-28 bg-white relative z-10 border-t border-slate-100 bg-[radial-gradient(circle,_#e0e7ff_1.5px,_transparent_1.5px)] [background-size:26px_26px]">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         
         <div className="mb-20 md:mb-32 text-center">
@@ -102,20 +107,29 @@ export default function Services() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8"
           >
             {solutions.map((sol, index) => (
-              <motion.div key={index} variants={itemVariants} className="h-full">
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="h-full rounded-2xl md:rounded-3xl"
+                whileInView={{
+                  boxShadow: [
+                    "0 0 0px rgba(37,99,235,0)",
+                    "0 0 40px rgba(37,99,235,0.22)",
+                    "0 0 12px rgba(79,70,229,0.08)",
+                  ],
+                }}
+                viewport={{ once: true }}
+                transition={{ boxShadow: { duration: 1.4, delay: index * 0.1, times: [0, 0.35, 1] } }}
+              >
                 <SpotlightCard className="h-full">
-                  <div className="h-full w-full bg-white text-left p-6 md:p-10 rounded-2xl md:rounded-3xl group cursor-none relative z-10">
+                  <div className="h-full w-full bg-white/90 backdrop-blur-sm text-left p-6 md:p-10 rounded-2xl md:rounded-3xl group cursor-none relative z-10">
                     <div className="relative z-10">
                       <div className="relative w-12 h-12 md:w-16 md:h-16 mb-5 md:mb-8">
                         <div className="absolute inset-0 bg-blue-500 rounded-xl md:rounded-2xl blur-lg md:blur-xl opacity-0 group-hover:opacity-40 transition-all" />
                         <div className="relative flex items-center justify-center w-full h-full bg-slate-900 rounded-xl md:rounded-2xl overflow-hidden shadow-lg border border-slate-700/50">
                           <div className="absolute inset-[2px] bg-slate-900 rounded-[10px] md:rounded-[14px] flex items-center justify-center overflow-hidden">
                             <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] bg-[size:4px_4px]" />
-                            <sol.icon 
-                              size={24} 
-                              strokeWidth={1.5} 
-                              className="text-blue-400 relative z-10" 
-                            />
+                            <sol.icon size={24} strokeWidth={1.5} className="text-blue-400 relative z-10" />
                           </div>
                         </div>
                       </div>
