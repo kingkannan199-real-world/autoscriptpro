@@ -74,14 +74,20 @@ nextjs-portal,
   animation: grid-pan 20s linear infinite;
 }
 
-/* --- NAVBAR ONE-TIME BORDER TRAVEL (Gemini-style, brand-blue palette) --- */
+/* --- NAVBAR ONE-TIME SWEEPING ARC (Google AI Mode style) --- */
 
+/* Animatable angle property for the conic gradient */
+@property --nav-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
 
-@keyframes nav-ring {
-  0%   { opacity: 0; }
-  12%  { opacity: 1; }
-  75%  { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes nav-sweep {
+  0%   { --nav-angle: 0deg;   opacity: 0; }
+  6%   { opacity: 1; }
+  94%  { opacity: 1; }
+  100% { --nav-angle: 360deg; opacity: 0; }
 }
 
 .navbar-border-anim {
@@ -95,14 +101,16 @@ nextjs-portal,
   border-radius: 9999px;
   padding: 2px;
   background: conic-gradient(
-    from 0deg,
-    #4285f4  0deg,
-    #9333ea  60deg,
-    #ec4899  120deg,
-    #f59e0b  180deg,
-    #22c55e  240deg,
-    #06b6d4  300deg,
-    #4285f4  360deg
+    from var(--nav-angle),
+    transparent      0deg,
+    #4285f4         18deg,
+    #9333ea         45deg,
+    #ec4899         72deg,
+    #f59e0b         99deg,
+    #22c55e        117deg,
+    #06b6d4        130deg,
+    transparent    148deg,
+    transparent    360deg
   );
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -110,7 +118,7 @@ nextjs-portal,
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
-  animation: nav-ring 3s ease-in-out 0.6s 1 both;
+  animation: nav-sweep 2.8s linear 0.5s 1 both;
 }
 
 /* ── Animated Gradient Mesh (Hero Background) ───────────────── */

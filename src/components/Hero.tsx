@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { motion, Variants } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, Variants, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import MagneticButton from "./MagneticButton"; 
+import MagneticButton from "./MagneticButton";
 import AutomationBackground from "./AutomationBackground";
 import GradientText from "./GradientText";
+
+const cyclingWords = ["AI Agents.", "Automation.", "Custom Software.", "Autonomous Systems."];
 
 const customEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -21,6 +23,14 @@ const itemVariants: Variants = {
 
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setWordIndex((prev) => (prev + 1) % cyclingWords.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e;
@@ -53,7 +63,20 @@ export default function Hero() {
 
         <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tighter md:tracking-tight mb-6 md:mb-8 leading-[1.05] md:leading-[1.1] max-w-4xl">
           Scale Your Business With <br />
-          <GradientText>Autonomous Systems.</GradientText>
+          <span className="inline-block relative">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={wordIndex}
+                initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -30, filter: "blur(8px)" }}
+                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-500 to-indigo-600"
+              >
+                {cyclingWords[wordIndex]}
+              </motion.span>
+            </AnimatePresence>
+          </span>
         </motion.h1>
 
         <motion.p variants={itemVariants} className="text-base md:text-xl text-slate-500 max-w-2xl font-medium mb-10 leading-relaxed px-2">

@@ -32,7 +32,7 @@ export default function FAQ() {
   const toggleFAQ = (index: number) => setOpenIndex(openIndex === index ? null : index);
 
   return (
-    <section className="w-full py-20 md:py-28 bg-white relative z-10 cursor-none scroll-mt-20">
+    <section id="faq" className="w-full py-20 md:py-28 bg-white relative z-10 cursor-none scroll-mt-20">
       
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 

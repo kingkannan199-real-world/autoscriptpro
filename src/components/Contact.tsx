@@ -23,12 +23,7 @@ export default function Contact() {
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let rawInput = e.target.value;
-    if (rawInput.startsWith("+91 ")) rawInput = rawInput.substring(4);
-    else if (rawInput.startsWith("+91")) rawInput = rawInput.substring(3);
-
-    let digits = rawInput.replace(/\D/g, "").substring(0, 10);
-    setPhone(digits.length > 0 ? `+91 ${digits.length > 5 ? digits.substring(0, 5) + " " + digits.substring(5) : digits}` : "");
+    setPhone(e.target.value);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -147,7 +142,7 @@ export default function Contact() {
                 </div>
                 <div className="space-y-1.5 md:space-y-2">
                   <label className="text-xs md:text-sm font-bold text-slate-700">Phone Number</label>
-                  <input type="tel" value={phone} onChange={handlePhoneChange} placeholder="+91 98765 43210" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
+                  <input type="tel" value={phone} onChange={handlePhoneChange} placeholder="+1 415 000 0000" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
                 </div>
               </div>
               <div className="space-y-1.5 md:space-y-2">
@@ -157,6 +152,9 @@ export default function Contact() {
                   <option value="ai-agents">Automation & AI Agents</option>
                   <option value="web-dev">Web & Custom Development</option>
                   <option value="data-insights">Data Analysis & Insights</option>
+                  <option value="database">Database Solutions</option>
+                  <option value="campaigns">WhatsApp & Email Campaigns</option>
+                  <option value="custom">Custom Workflow Solution</option>
                 </select>
               </div>
               <div className="space-y-1.5 md:space-y-2">

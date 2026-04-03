@@ -2,12 +2,41 @@
 
 import { motion, Variants } from "framer-motion";
 import SpotlightCard from "./SpotlightCard";
+import CountUp from "./CountUp";
 
 const stats = [
-  { value: "60-80%", label: "Reduction in manual work", desc: "Free up your engineering and sales teams to focus on actual growth." },
-  { value: "10x", label: "Faster lead response", desc: "AI agents engage and qualify prospects instantly, 24/7." },
-  { value: "2-4x", label: "Higher campaign conversions", desc: "Hyper-personalized messaging at scale across WhatsApp and Email." },
-  { value: "Real-time", label: "Business visibility", desc: "Live, actionable data dashboards tracking every metric." }
+  {
+    displayValue: (
+      <>
+        <CountUp end={60} suffix="" duration={1800} />
+        <span className="text-3xl md:text-4xl text-blue-400 mx-0.5">-</span>
+        <CountUp end={80} suffix="%" duration={2200} />
+      </>
+    ),
+    label: "Reduction in manual work",
+    desc: "Free up your engineering and sales teams to focus on actual growth.",
+  },
+  {
+    displayValue: <><CountUp end={10} suffix="x" duration={1800} /></>,
+    label: "Faster lead response",
+    desc: "AI agents engage and qualify prospects instantly, 24/7.",
+  },
+  {
+    displayValue: (
+      <>
+        <CountUp end={2} suffix="" duration={1400} />
+        <span className="text-3xl md:text-4xl text-blue-400 mx-0.5">-</span>
+        <CountUp end={4} suffix="x" duration={2000} />
+      </>
+    ),
+    label: "Higher campaign conversions",
+    desc: "Hyper-personalized messaging at scale across WhatsApp and Email.",
+  },
+  {
+    displayValue: <span>Real&#8209;time</span>,
+    label: "Business visibility",
+    desc: "Live, actionable data dashboards tracking every metric.",
+  },
 ];
 
 const containerVariants: Variants = {
@@ -52,23 +81,19 @@ export default function Impact() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-8"
         >
           {stats.map((stat, index) => (
-            <motion.div 
-              key={index} 
+            <motion.div
+              key={index}
               variants={itemVariants}
               className="h-full"
             >
-              {/* Added SpotlightCard Wrapper with a slight float effect */}
               <SpotlightCard className="h-full group cursor-none hover:-translate-y-1 transition-transform duration-500">
-                
                 <div className="relative h-full w-full bg-white flex flex-col items-center justify-center p-6 md:p-8 rounded-[23px] z-10 text-center shadow-sm group-hover:shadow-xl transition-shadow duration-300">
-
                   <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-blue-400 mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-500 drop-shadow-sm">
-                    {stat.value}
+                    {stat.displayValue}
                   </h3>
                   <p className="text-lg md:text-xl font-bold text-slate-900 mb-2 md:mb-3">{stat.label}</p>
                   <p className="text-xs md:text-sm text-slate-500 font-medium leading-relaxed">{stat.desc}</p>
                 </div>
-
               </SpotlightCard>
             </motion.div>
           ))}

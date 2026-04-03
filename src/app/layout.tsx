@@ -4,6 +4,7 @@ import "./globals.css";
 import SmoothCursor from "../components/SmoothCursor";
 import Navbar from "../components/Navbar";
 import ScrollProgress from "../components/ScrollProgress";
+import AIChatWidget from "../components/AIChatWidget";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,6 +60,7 @@ export default function RootLayout({
         <SmoothCursor />
         <Navbar />
         {children}
+        <AIChatWidget />
       </body>
     </html>
   );
