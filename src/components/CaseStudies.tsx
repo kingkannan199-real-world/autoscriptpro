@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowLeft, Activity, Database, GitMerge, TrendingUp } from "lucide-react";
+import { ArrowRight, ArrowLeft, Activity, Database, GitMerge, TrendingUp, Monitor } from "lucide-react";
+import Image from "next/image";
 
 const initialCaseStudies = [
   {
@@ -10,28 +11,40 @@ const initialCaseStudies = [
     icon: Database, client: "Healthcare Supply Chain", location: "Chennai, TN",
     title: "Pharmaceutical Inventory Optimization", tech: "Next.js • Spring Boot • PostgreSQL",
     metric: "100%", metricLabel: "Real-Time Stock Accuracy",
-    desc: "Engineered a custom dashboard to automate inventory tracking and eliminate manual stock discrepancies, drastically reducing operational bleed."
+    desc: "Engineered a custom dashboard to automate inventory tracking and eliminate manual stock discrepancies, drastically reducing operational bleed.",
+    screenshot: "/case-studies/healthcare.png",
+    screenshotAlt: "Healthcare inventory dashboard showing real-time stock levels",
+    screenshotGradient: "from-sky-500/20 to-blue-600/20",
   },
   {
     id: "cs-2",
     icon: GitMerge, client: "Local Tech Startup", location: "Tamil Nadu",
     title: "Autonomous Multi-Agent System", tech: "LLMs • RAG • Fast API",
     metric: "40+", metricLabel: "Hours Saved / Week",
-    desc: "Deployed an interconnected AI architecture routing complex research tasks across Perplexity and GPT, acting as a tireless backend intelligence team."
+    desc: "Deployed an interconnected AI architecture routing complex research tasks across Perplexity and GPT, acting as a tireless backend intelligence team.",
+    screenshot: "/case-studies/ai-agents.png",
+    screenshotAlt: "Multi-agent AI system architecture with connected nodes",
+    screenshotGradient: "from-violet-500/20 to-indigo-600/20",
   },
   {
     id: "cs-3",
     icon: Activity, client: "Civic Tech Initiative", location: "Chennai, TN",
     title: "High-Speed Issue Tracking Portal", tech: "React • Node.js • AWS",
     metric: "60%", metricLabel: "Drop in Resolution Time",
-    desc: "Architected a scalable, automated complaint routing system that categorizes and assigns public issues instantly, replacing a completely manual workflow."
+    desc: "Architected a scalable, automated complaint routing system that categorizes and assigns public issues instantly, replacing a completely manual workflow.",
+    screenshot: "/case-studies/civic-tech.png",
+    screenshotAlt: "Issue tracking portal with kanban board and analytics",
+    screenshotGradient: "from-emerald-500/20 to-teal-600/20",
   },
   {
     id: "cs-4",
     icon: TrendingUp, client: "E-Commerce Brand", location: "Global",
     title: "Predictive CRM & Sales Automation", tech: "Python • LangChain • Stripe API",
     metric: "3.5x", metricLabel: "Increase in Re-engagement",
-    desc: "Built a predictive customer engine that analyzes buying patterns and automatically triggers hyper-personalized WhatsApp and Email sequences."
+    desc: "Built a predictive customer engine that analyzes buying patterns and automatically triggers hyper-personalized WhatsApp and Email sequences.",
+    screenshot: "/case-studies/ecommerce.png",
+    screenshotAlt: "CRM dashboard showing customer analytics and campaign metrics",
+    screenshotGradient: "from-rose-500/20 to-pink-600/20",
   }
 ];
 
@@ -91,7 +104,6 @@ export default function CaseStudies() {
             <span className="text-xs md:text-sm font-bold text-blue-600 tracking-wider uppercase">Proven Impact</span>
           </motion.div>
 
-          {/* THE FIX: Tighter text margins for mobile */}
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 md:mb-6 tracking-tight">
             Real Clients. Real Numbers. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Verified ROI.</span>
@@ -111,12 +123,10 @@ export default function CaseStudies() {
           </div>
         </div>
 
-        {/* THE FIX: Drastically reduced mobile height (400px down from 550px) */}
-        <div className="w-full lg:w-2/3 h-[400px] md:h-[450px] relative perspective-[1000px] mt-4 lg:mt-0">
+        <div className="w-full lg:w-2/3 h-[400px] md:h-[500px] relative perspective-[1000px] mt-4 lg:mt-0">
           <AnimatePresence mode="popLayout">
             {studies.map((study, index) => {
               const isFront = index === 0;
-              // THE FIX: Tighter Y-offset stack for mobile so they don't drag down the screen
               const yOffset = index * 16; 
               const scale = 1 - index * 0.05;
               const zIndex = studies.length - index;
@@ -132,7 +142,6 @@ export default function CaseStudies() {
                   exit={{ opacity: 0, y: -100, scale: 1.1, filter: "blur(10px)" }}
                   transition={{ type: "spring", stiffness: 120, damping: 20, mass: 1 }}
                   style={{ zIndex, transformOrigin: "top center" }}
-                  // THE FIX: Adjusted inner padding for mobile to fit inside the 400px height
                   className={`absolute top-0 left-0 right-0 mx-auto w-full max-w-2xl bg-white rounded-[2rem] overflow-hidden transition-all duration-300 ${
                     isFront
                       ? "border-2 border-blue-400 shadow-[0_20px_60px_-10px_rgba(37,99,235,0.18)] cursor-none"
@@ -141,12 +150,13 @@ export default function CaseStudies() {
                 >
                   {isFront && <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-blue-600 to-indigo-600" />}
 
-                  <div className="p-5 md:p-10 h-full flex flex-col justify-between relative bg-white min-h-[400px] md:min-h-0">
+                  <div className="p-5 md:p-8 h-full flex flex-col justify-between relative bg-white">
                     
-                    <div className="flex items-start justify-between mb-4 md:mb-8">
+                    {/* Top row */}
+                    <div className="flex items-start justify-between mb-3 md:mb-5">
                       <div className="flex items-center gap-3 md:gap-4">
-                        <div className={`w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center border shadow-sm ${isFront ? 'bg-blue-50 border-blue-100 text-blue-600' : 'bg-slate-50 border-slate-100 text-slate-500'}`}>
-                          <study.icon size={20} strokeWidth={2} className="md:w-7 md:h-7" />
+                        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl flex items-center justify-center border shadow-sm ${isFront ? 'bg-blue-50 border-blue-100 text-blue-600' : 'bg-slate-50 border-slate-100 text-slate-500'}`}>
+                          <study.icon size={18} strokeWidth={2} className="md:w-6 md:h-6" />
                         </div>
                         <div>
                           <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">{study.client}</p>
@@ -165,25 +175,47 @@ export default function CaseStudies() {
                       )}
                     </div>
 
-                    <div className="mb-4 md:mb-8">
-                      <h3 className={`text-xl md:text-3xl font-extrabold mb-2 md:mb-4 tracking-tight ${isFront ? 'text-slate-900' : 'text-slate-700'}`}>
-                        {study.title}
-                      </h3>
-                      <p className="text-slate-500 text-xs md:text-base font-medium leading-relaxed max-w-lg">
-                        {study.desc}
-                      </p>
-                      <div className="mt-3 md:mt-5 inline-block px-2 py-1 md:px-3 md:py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[10px] md:text-xs font-bold text-slate-600">
-                        {study.tech}
+                    {/* Content + Screenshot side by side on desktop */}
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-6 mb-3 md:mb-5 flex-1">
+                      {/* Text content */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className={`text-lg md:text-2xl font-extrabold mb-2 md:mb-3 tracking-tight ${isFront ? 'text-slate-900' : 'text-slate-700'}`}>
+                          {study.title}
+                        </h3>
+                        <p className="text-slate-500 text-xs md:text-sm font-medium leading-relaxed line-clamp-3">
+                          {study.desc}
+                        </p>
+                        <div className="mt-2 md:mt-3 inline-block px-2 py-1 md:px-3 md:py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[10px] md:text-xs font-bold text-slate-600">
+                          {study.tech}
+                        </div>
                       </div>
+
+                      {/* Product screenshot — only on front card */}
+                      {isFront && (
+                        <div className={`hidden md:block w-[220px] h-[150px] rounded-xl overflow-hidden border border-slate-200 shadow-sm bg-gradient-to-br ${study.screenshotGradient} shrink-0 relative group`}>
+                          <Image
+                            src={study.screenshot}
+                            alt={study.screenshotAlt}
+                            fill
+                            className="object-cover rounded-xl group-hover:scale-105 transition-transform duration-500"
+                            sizes="220px"
+                          />
+                          {/* Overlay badge */}
+                          <div className="absolute bottom-2 left-2 flex items-center gap-1 px-2 py-1 bg-white/90 backdrop-blur-sm rounded-md shadow-sm">
+                            <Monitor size={10} className="text-blue-600" />
+                            <span className="text-[9px] font-bold text-slate-700">Live Preview</span>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
-                    <div className={`pt-4 md:pt-6 border-t ${isFront ? 'border-blue-100' : 'border-slate-100'} flex items-end justify-between`}>
+                    {/* Bottom metric row */}
+                    <div className={`pt-3 md:pt-4 border-t ${isFront ? 'border-blue-100' : 'border-slate-100'} flex items-end justify-between`}>
                       <div>
-                        {/* THE FIX: Shrunk the massive font slightly on mobile so it doesn't break out */}
-                        <div className="text-4xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 tracking-tighter mb-1">
+                        <div className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500 tracking-tighter mb-1">
                           {study.metric}
                         </div>
-                        <div className="text-[10px] md:text-sm font-extrabold text-slate-900 uppercase tracking-widest">
+                        <div className="text-[10px] md:text-xs font-extrabold text-slate-900 uppercase tracking-widest">
                           {study.metricLabel}
                         </div>
                       </div>

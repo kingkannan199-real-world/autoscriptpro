@@ -55,7 +55,7 @@ export default function SmoothCursor() {
       >
         <path
           d="M5.5 3.21V20.8C5.5 21.45 6.27 21.8 6.76 21.37L11.53 17.18H17.5C18.05 17.18 18.5 16.73 18.5 16.18V15.71C18.5 15.35 18.3 15.02 17.98 14.88L6.44 2.87C5.95 2.36 5.5 2.7 5.5 3.21Z"
-          fill="#2563EB" // This matches your brand blue
+          fill="#2563EB"
           stroke="white"
           strokeWidth="2"
         />

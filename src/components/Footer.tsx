@@ -158,7 +158,7 @@ export default function Footer() {
             whileTap={{ scale: 0.97 }}
             className="mt-2 w-full py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 transition-colors cursor-none"
           >
-            Book a Free Strategy Call
+            Book Free Consultation
             <ArrowRight size={15} />
           </motion.a>
         </div>

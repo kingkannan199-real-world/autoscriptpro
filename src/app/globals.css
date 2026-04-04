@@ -21,10 +21,7 @@ html {
   scroll-padding-top: 120px;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  * { cursor: none !important; }
-  input, textarea, select, button, a { cursor: none !important; }
-}
+/* cursor: none removed — let browser show normal cursor for accessibility */
 
 .vercel-toolbar, 
 #vercel-live-feedback-widget,

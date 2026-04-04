@@ -9,6 +9,7 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import CaseStudies from "../components/CaseStudies";
 import Testimonials from "../components/Testimonials";
 import Pricing from "../components/Pricing";
+import ROICalculator from "../components/ROICalculator";
 import WhatDrivesUs from "../components/WhatDrivesUs";
 import FAQ from "../components/FAQ";
 import Contact from "../components/Contact";
@@ -28,6 +29,7 @@ export default function Home() {
       <CaseStudies />
       <Testimonials />
       <Pricing />
+      <ROICalculator />
       <WhatDrivesUs />
       <FAQ />
       <Contact />

@@ -16,7 +16,9 @@ export default function Contact() {
     message: ""
   });
   const [phone, setPhone] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,33 +31,38 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitState("loading");
+    setErrorMessage("");
 
     try {
-      await fetch("https://script.google.com/macros/s/AKfycbwDlOss2vGe8Vwl0ml5-eiQquOxWM19gc0WUMHb7aM9LWVxShhXmE1DJgCtrcTQYdh8Wg/exec", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
           company: formData.company,
           phone: phone,
           service: formData.service,
-          message: formData.message
+          message: formData.message,
+          _honeypot: honeypot,
         }),
       });
 
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Something went wrong. Please try again.");
+      }
+
       setSubmitState("success");
-      setFormData({ name: "", email: "", company: "", service: "", message: "" }); 
+      setFormData({ name: "", email: "", company: "", service: "", message: "" });
       setPhone("");
-      
       setTimeout(() => setSubmitState("idle"), 3000);
 
     } catch (error) {
       setSubmitState("error");
-      setTimeout(() => setSubmitState("idle"), 3000);
+      setErrorMessage(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+      setTimeout(() => setSubmitState("idle"), 5000);
     }
   };
 
@@ -85,7 +92,7 @@ export default function Contact() {
           >
             {[
               { icon: Zap, text: "Reply within 2 hours" },
-              { icon: Shield, text: "No hidden charges" },
+              { icon: Shield, text: "NDA on every project" },
               { icon: Clock, text: "Mon–Sat, 9AM–7PM IST" },
             ].map(({ icon: Icon, text }) => (
               <div key={text} className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-full">
@@ -183,7 +190,7 @@ export default function Contact() {
                 </div>
                 <div className="space-y-1.5 md:space-y-2">
                   <label className="text-xs md:text-sm font-bold text-slate-700">Email Address *</label>
-                  <input required name="email" value={formData.email} onChange={handleChange} type="email" placeholder="raju@company.com" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
+                  <input required name="email" value={formData.email} onChange={handleChange} type="email" inputMode="email" placeholder="raju@company.com" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -193,7 +200,7 @@ export default function Contact() {
                 </div>
                 <div className="space-y-1.5 md:space-y-2">
                   <label className="text-xs md:text-sm font-bold text-slate-700">Phone Number</label>
-                  <input type="tel" value={phone} onChange={handlePhoneChange} placeholder="+1 415 000 0000" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
+                  <input type="tel" inputMode="tel" value={phone} onChange={handlePhoneChange} placeholder="+91 98765 43210" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
                 </div>
               </div>
               <div className="space-y-1.5 md:space-y-2">
@@ -210,7 +217,19 @@ export default function Contact() {
               </div>
               <div className="space-y-1.5 md:space-y-2">
                 <label className="text-xs md:text-sm font-bold text-slate-700">Message *</label>
-                <textarea name="message" value={formData.message} onChange={handleChange} required rows={3} placeholder="Project details..." className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base resize-none"></textarea>
+                <textarea name="message" value={formData.message} onChange={handleChange} required rows={3} placeholder="Tell us about your bottleneck..." className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base resize-none"></textarea>
+              </div>
+
+              {/* Honeypot — hidden from real users, bots fill it */}
+              <div className="absolute -left-[9999px]" aria-hidden="true">
+                <input
+                  type="text"
+                  name="_honeypot"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
               </div>
               
               {/* THE ANIMATED SUBMIT BUTTON */}
@@ -251,12 +270,12 @@ export default function Contact() {
                   ) : submitState === "error" ? (
                     <motion.div
                       key="error"
-                      initial={{ opacity: 0, x: [0, -10, 10, -10, 10, 0] }}
-                      animate={{ opacity: 1, x: 0 }}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.4 }}
                       className="flex items-center gap-2"
                     >
-                      Error. Please try again.
+                      {errorMessage || "Error. Please try again."}
                     </motion.div>
                   ) : (
                     <motion.div
@@ -266,7 +285,7 @@ export default function Contact() {
                       exit={{ opacity: 0, y: -15 }}
                       className="flex items-center gap-2"
                     >
-                      Submit Architecture Request
+                      Book Free Consultation
                       <Send size={18} />
                     </motion.div>
                   )}

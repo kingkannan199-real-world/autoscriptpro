@@ -9,10 +9,10 @@ import MagneticButton from "./MagneticButton";
 import SpotlightCard from "./SpotlightCard";
 
 const painPoints = [
-  { icon: Clock, title: "Time Drain", desc: "Repetitive tasks & manual processes eating up valuable hours." },
-  { icon: Target, title: "Missed Opportunities", desc: "Slow responses & poor follow-ups losing you customers." },
-  { icon: TrendingDown, title: "Data Without Direction", desc: "No actionable insights from your business data." },
-  { icon: Unplug, title: "Disconnected Tools", desc: "Systems not talking to each other, creating silos." }
+  { icon: Clock, title: "Time Drain", desc: "Repetitive tasks & manual processes eating up valuable hours.", stat: "42%", statLabel: "of startup work hours are spent on tasks that can be automated" },
+  { icon: Target, title: "Missed Opportunities", desc: "Slow responses & poor follow-ups losing you customers.", stat: "78%", statLabel: "of leads go cold when response time exceeds 5 minutes" },
+  { icon: TrendingDown, title: "Data Without Direction", desc: "No actionable insights from your business data.", stat: "67%", statLabel: "of Indian startups lack real-time analytics on operations" },
+  { icon: Unplug, title: "Disconnected Tools", desc: "Systems not talking to each other, creating silos.", stat: "3.5hrs", statLabel: "wasted daily by teams switching between disconnected tools" },
 ];
 
 const solutions = [
@@ -73,6 +73,10 @@ export default function Services() {
                     <div className="z-10 relative">
                       <h3 className="text-lg md:text-xl font-bold text-slate-900 mb-1 md:mb-3">{point.title}</h3>
                       <p className="text-slate-500 text-sm md:leading-relaxed font-medium">{point.desc}</p>
+                      <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-slate-200">
+                        <span className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">{point.stat}</span>
+                        <p className="text-[10px] md:text-xs text-slate-400 font-bold mt-0.5 leading-tight">{point.statLabel}</p>
+                      </div>
                     </div>
                   </div>
                 </SpotlightCard>
@@ -139,9 +143,9 @@ export default function Services() {
           >
             <MagneticButton 
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="w-full md:w-auto px-8 py-4 bg-slate-900 text-white font-bold rounded-xl md:rounded-full hover:bg-blue-600 transition-colors shadow-xl flex items-center justify-center gap-2 cursor-none text-base md:text-lg"
+              className="w-full md:w-auto px-8 py-4 bg-slate-900 text-white font-bold rounded-xl md:rounded-full hover:bg-blue-600 transition-colors shadow-xl flex items-center justify-center gap-2 text-base md:text-lg"
             >
-              Book Your Free Architecture Call
+              Book Free Consultation
               <Workflow size={18} />
             </MagneticButton>
           </motion.div>

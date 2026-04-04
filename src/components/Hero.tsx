@@ -2,12 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Cpu, Rocket, Bot, Zap } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import AutomationBackground from "./AutomationBackground";
-import GradientText from "./GradientText";
 
 const cyclingWords = ["AI Agents.", "Automation.", "Custom Software.", "Autonomous Systems."];
+
+const industries = [
+  { label: "D2C & E-Commerce", icon: Rocket },
+  { label: "HealthTech", icon: Cpu },
+  { label: "SaaS Startups", icon: Bot },
+  { label: "FinTech", icon: Zap },
+];
 
 const customEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -21,20 +27,9 @@ const itemVariants: Variants = {
   visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1, ease: customEase } },
 };
 
-// Auto-calculates slots: 10 on day 1 → 1 on last day of month
-function getOpenSlots(): number {
-  const now = new Date();
-  const day = now.getDate(); // 1–31
-  const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-  // Linear: day 1 = 10 slots, last day = 1 slot
-  const slots = Math.round(10 - ((day - 1) / (daysInMonth - 1)) * 9);
-  return Math.max(1, Math.min(10, slots));
-}
-
 export default function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [wordIndex, setWordIndex] = useState(0);
-  const [slots] = useState(() => getOpenSlots());
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -51,7 +46,7 @@ export default function Hero() {
   return (
     <section
       onMouseMove={handleMouseMove}
-      className="relative w-full min-h-[95vh] flex flex-col items-center justify-center bg-white overflow-hidden pt-36 md:pt-20 cursor-none"
+      className="relative w-full min-h-[80vh] flex flex-col items-center justify-center bg-white overflow-hidden pt-28 md:pt-20 pb-10 md:pb-16"
     >
       <AutomationBackground mousePosition={mousePosition} />
 
@@ -64,27 +59,21 @@ export default function Hero() {
 
       <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10 flex flex-col items-center text-center mt-10 md:mt-0">
 
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-2 mb-6 md:mb-8">
+        <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 mb-6 md:mb-8">
           {/* Live badge */}
-          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 shadow-sm cursor-none">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 border border-slate-200 shadow-sm">
             <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-full w-full bg-blue-600"></span>
             </span>
             <span className="text-[11px] md:text-sm font-bold text-slate-600 whitespace-nowrap">Engineered in Chennai 🇮🇳 · Free Consultation</span>
           </div>
-          {/* Urgency badge */}
-          <div className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-amber-50 border border-amber-200 cursor-none">
-            <span className="relative flex h-2 w-2 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-full w-full bg-amber-500"></span>
-            </span>
-            <span className="text-[11px] md:text-xs font-extrabold text-amber-700 whitespace-nowrap">Only {slots} client slot{slots === 1 ? "" : "s"} open this month</span>
-          </div>
         </motion.div>
 
+        {/* #17 — New startup-focused headline */}
         <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl font-extrabold text-slate-900 tracking-tighter md:tracking-tight mb-6 md:mb-8 leading-[1.05] md:leading-[1.1] max-w-4xl">
-          Scale Your Business With <br />
+          Stop Burning Capital. <br />
+          Start Scaling With{" "}
           <span className="inline-block relative">
             <AnimatePresence mode="wait">
               <motion.span
@@ -101,16 +90,31 @@ export default function Hero() {
           </span>
         </motion.h1>
 
-        <motion.p variants={itemVariants} className="text-base md:text-xl text-slate-500 max-w-2xl font-medium mb-10 leading-relaxed px-2">
-          From immersive frontend architectures to custom AI agents, we engineer the digital infrastructure that eliminates manual work and accelerates your growth.
+        {/* #18 — Sub-headline with specific services */}
+        <motion.p variants={itemVariants} className="text-base md:text-xl text-slate-500 max-w-2xl font-medium mb-6 leading-relaxed px-2">
+          We engineer AI agents, custom backends, WhatsApp campaigns, and end-to-end automation systems — so your startup recovers 40+ hours/week and grows without adding headcount.
         </motion.p>
+
+        {/* #4 — Industry callout tags */}
+        <motion.div variants={itemVariants} className="flex flex-wrap items-center justify-center gap-2 mb-8">
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mr-1">Built for:</span>
+          {industries.map((ind) => (
+            <div
+              key={ind.label}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-slate-200 rounded-full shadow-sm hover:border-blue-300 hover:shadow-md transition-all duration-200"
+            >
+              <ind.icon size={12} className="text-blue-600" />
+              <span className="text-xs font-bold text-slate-700">{ind.label}</span>
+            </div>
+          ))}
+        </motion.div>
 
         <motion.div variants={itemVariants} className="flex flex-col items-center gap-6 w-full md:w-auto">
           <MagneticButton
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="group w-full md:w-auto px-8 py-4 bg-slate-900 text-white font-bold rounded-xl md:rounded-full hover:bg-blue-600 transition-colors shadow-xl hover:shadow-blue-600/20 duration-300 flex items-center justify-center gap-3 cursor-none text-base md:text-lg"
+            className="group w-full md:w-auto px-8 py-4 bg-slate-900 text-white font-bold rounded-xl md:rounded-full hover:bg-blue-600 transition-colors shadow-xl hover:shadow-blue-600/20 duration-300 flex items-center justify-center gap-3 text-base md:text-lg"
           >
-            Book Free Consultation — Starting ₹5,000
+            Book Free Consultation
             <ArrowRight className="group-hover:translate-x-1 transition-transform shrink-0" size={18} />
           </MagneticButton>
 
@@ -122,14 +126,14 @@ export default function Hero() {
             <span>✓ Reply in 2hrs</span>
           </div>
 
-          {/* Social proof strip */}
+          {/* #19 — ROI stat + social proof strip */}
           <div className="w-full mt-3">
             {/* Mobile: 2×2 grid */}
             <div className="grid grid-cols-2 gap-3 sm:hidden">
               {[
-                { value: "47+", label: "Projects Delivered" },
+                { value: "40+", label: "Hours Saved / Week" },
                 { value: "₹50L+", label: "Saved for Clients" },
-                { value: "100%", label: "On-Time Rate" },
+                { value: "3.5x", label: "Avg. ROI in 90 Days" },
                 { value: "4.9★", label: "Avg. Client Rating" },
               ].map((stat, i) => (
                 <div key={i} className="flex flex-col items-center justify-center py-4 px-3 bg-white border border-slate-200 rounded-2xl shadow-sm">
@@ -146,9 +150,9 @@ export default function Hero() {
             {/* Desktop: single row strip */}
             <div className="hidden sm:flex items-center bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden divide-x divide-slate-100 w-full md:w-auto md:mx-auto">
               {[
-                { value: "47+", label: "Projects Delivered" },
+                { value: "40+", label: "Hours Saved / Week" },
                 { value: "₹50L+", label: "Saved for Clients" },
-                { value: "100%", label: "On-Time Rate" },
+                { value: "3.5x", label: "Avg. ROI in 90 Days" },
                 { value: "4.9★", label: "Avg. Client Rating" },
               ].map((stat, i) => (
                 <div key={i} className="flex flex-col items-center justify-center px-7 py-4 flex-1">

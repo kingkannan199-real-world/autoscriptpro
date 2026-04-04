@@ -1,16 +1,16 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { Check, Zap, ArrowRight, Shield, Star } from "lucide-react";
+import { Check, Zap, ArrowRight, Shield, Star, Lock, Milestone, BadgeCheck } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 
 const plans = [
   {
     name: "Starter",
     tag: "For small businesses",
-    price: "₹5,000",
-    priceNote: "per project",
-    description: "Perfect for solopreneurs and small teams looking to automate one core workflow.",
+    price: "₹6,000",
+    priceNote: "starting at · per project",
+    description: "Perfect for solopreneurs and small teams looking to automate one core workflow and see results fast.",
     color: "from-slate-500 to-slate-600",
     borderColor: "border-slate-200",
     features: [
@@ -22,7 +22,7 @@ const plans = [
       "1 revision round",
       "Email support",
     ],
-    cta: "Get Started",
+    cta: "Book Free Consultation",
     popular: false,
   },
   {
@@ -68,16 +68,17 @@ const plans = [
       "Dedicated WhatsApp channel",
       "60-day post-launch support",
     ],
-    cta: "Let's Architect This",
+    cta: "Book Free Consultation",
     popular: false,
   },
 ];
 
 const trustBadges = [
   { icon: Shield, text: "No hidden charges" },
-  { icon: Zap, text: "Pay in milestones" },
+  { icon: Milestone, text: "Pay in milestones only" },
+  { icon: Lock, text: "NDA-protected projects" },
   { icon: Star, text: "Free consultation included" },
-  { icon: Check, text: "100% satisfaction guarantee" },
+  { icon: BadgeCheck, text: "100% satisfaction guarantee" },
 ];
 
 const containerVariants: Variants = {
@@ -137,14 +138,17 @@ export default function Pricing() {
             <motion.div
               key={plan.name}
               variants={itemVariants}
-              className={`relative flex flex-col rounded-[2rem] border-2 ${plan.borderColor} bg-white overflow-hidden shadow-sm ${plan.popular ? "shadow-blue-600/10 shadow-2xl md:-translate-y-3" : "hover:shadow-lg"} transition-all duration-300`}
+              className={`relative flex flex-col rounded-[2rem] border-2 ${plan.borderColor} bg-white overflow-hidden ${plan.popular ? "shadow-blue-600/10 shadow-2xl md:-translate-y-3" : "shadow-sm hover:shadow-xl hover:-translate-y-1"} transition-all duration-300 group/card`}
             >
               {/* Popular badge */}
               {plan.popular && (
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500" />
               )}
 
-              <div className="p-7 md:p-8 flex flex-col flex-grow">
+              {/* Subtle corner glow on hover */}
+              <div className={`absolute top-0 right-0 w-40 h-40 rounded-full blur-[60px] pointer-events-none opacity-0 group-hover/card:opacity-30 transition-opacity duration-500 ${plan.popular ? "bg-blue-400" : "bg-slate-300"}`} />
+
+              <div className="p-7 md:p-8 flex flex-col flex-grow relative z-10">
                 {/* Plan header */}
                 <div className="mb-6">
                   <span className={`inline-block text-xs font-extrabold uppercase tracking-widest mb-3 ${plan.popular ? "text-blue-600" : "text-slate-500"}`}>
@@ -161,11 +165,11 @@ export default function Pricing() {
                       {plan.price}
                     </span>
                   </div>
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1 block">{plan.priceNote}</span>
+                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-2 block">{plan.priceNote}</span>
                 </div>
 
                 {/* Features */}
-                <ul className="flex flex-col gap-3 mb-8 flex-grow">
+                <ul className="flex flex-col gap-3.5 mb-8 flex-grow">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
                       <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${plan.color} flex items-center justify-center shrink-0 mt-0.5 shadow-sm`}>
@@ -206,7 +210,6 @@ export default function Pricing() {
           ))}
         </motion.div>
 
-        {/* Custom quote note */}
         <motion.p
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
           className="text-center text-sm text-slate-400 font-medium mt-8"
@@ -216,6 +219,25 @@ export default function Pricing() {
             Tell us your budget → we'll make it work.
           </a>
         </motion.p>
+
+        {/* #21 — Guarantee Statement */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="mt-10 bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-4 md:gap-6 text-center md:text-left"
+        >
+          <div className="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center shrink-0">
+            <BadgeCheck size={28} className="text-emerald-600" />
+          </div>
+          <div>
+            <h4 className="text-lg font-extrabold text-slate-900 mb-1">Our Delivery Guarantee</h4>
+            <p className="text-sm text-slate-600 font-medium leading-relaxed">
+              If the final deliverable doesn't match the signed-off scope document, we'll revise it at zero additional cost until it does. Every project is NDA-protected and milestone-billed — you never pay for unfinished work.
+            </p>
+          </div>
+        </motion.div>
 
       </div>
     </section>

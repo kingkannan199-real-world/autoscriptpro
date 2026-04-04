@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import SmoothCursor from "../components/SmoothCursor";
+
 import Navbar from "../components/Navbar";
 import ScrollProgress from "../components/ScrollProgress";
 import AIChatWidget from "../components/AIChatWidget";
 import WhatsAppButton from "../components/WhatsAppButton";
 import BackToTop from "../components/BackToTop";
 import StickyCTA from "../components/StickyCTA";
+import SmoothCursor from "../components/SmoothCursor";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,9 +60,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased bg-white text-slate-900`}>
+        <SmoothCursor />
         <StickyCTA />
         <ScrollProgress />
-        <SmoothCursor />
         <Navbar />
         {children}
         <AIChatWidget />

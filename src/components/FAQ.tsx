@@ -112,7 +112,7 @@ export default function FAQ() {
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-colors duration-200 cursor-none text-sm whitespace-nowrap"
             >
-              Book Free Call
+              Book Free Consultation
               <ArrowRight size={15} />
             </button>
             <a
