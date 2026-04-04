@@ -33,7 +33,7 @@ export default function Navbar() {
           className="hidden md:flex items-center gap-1 relative"
           onMouseLeave={() => setHoveredLink(null)}
         >
-          {["Services", "Process", "Impact", "Case Studies", "FAQ"].map((item) => (
+          {["Services", "Process", "Pricing", "Case Studies", "FAQ"].map((item) => (
             <div
               key={item}
               className="relative px-3 py-2 cursor-none"
@@ -72,7 +72,7 @@ export default function Navbar() {
             className="absolute top-[115%] left-0 w-full bg-white/95 backdrop-blur-3xl border border-slate-200 shadow-2xl rounded-3xl overflow-hidden md:hidden"
           >
             <div className="flex flex-col p-4 gap-2">
-              {["Services", "Process", "Impact", "Case Studies", "FAQ"].map((item) => (
+              {["Services", "Process", "Pricing", "Case Studies", "FAQ"].map((item) => (
                 <a key={item} href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-bold text-slate-900 hover:bg-slate-50 px-4 py-3 rounded-xl transition-colors">{item}</a>
               ))}
               <div className="pt-2 mt-2 border-t border-slate-100">

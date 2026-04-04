@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MessageSquare, Github, Linkedin, Twitter, ArrowRight } from "lucide-react";
+import { Mail, Phone, MessageSquare, Github, Linkedin, Twitter, ArrowRight, Clock } from "lucide-react";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -75,6 +75,12 @@ export default function Footer() {
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-800/60 border border-slate-700/50 rounded-full w-fit">
             <span className="text-lg leading-none">🇮🇳</span>
             <span className="text-xs font-bold text-slate-400 tracking-wide">Engineered in Chennai</span>
+          </div>
+
+          {/* Business hours */}
+          <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+            <Clock size={12} className="text-slate-600 shrink-0" />
+            <span>Mon–Sat, 9AM–7PM <span className="text-slate-400 font-bold">IST</span></span>
           </div>
         </div>
 
@@ -165,9 +171,13 @@ export default function Footer() {
           <p className="text-xs text-slate-600 font-medium">
             © {new Date().getFullYear()} AutoScriptPro. All rights reserved.
           </p>
-          <p className="text-xs text-slate-600 font-medium">
-            Built with <span className="text-blue-500 font-bold">Next.js</span> · Deployed from <span className="text-blue-500 font-bold">Chennai, India</span>
-          </p>
+          <div className="flex items-center gap-4 text-xs text-slate-600 font-medium">
+            <a href="/privacy-policy" className="hover:text-slate-400 transition-colors cursor-none">Privacy Policy</a>
+            <span className="w-1 h-1 rounded-full bg-slate-700" />
+            <a href="/terms" className="hover:text-slate-400 transition-colors cursor-none">Terms & Conditions</a>
+            <span className="w-1 h-1 rounded-full bg-slate-700" />
+            <span>Built with <span className="text-blue-500 font-bold">Next.js</span> · <span className="text-blue-500 font-bold">Chennai, India</span></span>
+          </div>
         </div>
       </div>
 

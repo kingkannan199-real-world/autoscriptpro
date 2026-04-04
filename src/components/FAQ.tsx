@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus } from "lucide-react";
+import { Plus, Minus, ArrowRight, MessageCircle } from "lucide-react";
 
 const faqs = [
   {
@@ -32,7 +32,7 @@ export default function FAQ() {
   const toggleFAQ = (index: number) => setOpenIndex(openIndex === index ? null : index);
 
   return (
-    <section id="faq" className="w-full py-20 md:py-28 bg-white relative z-10 cursor-none scroll-mt-20">
+    <section id="faq" className="w-full py-20 md:py-28 bg-slate-50 relative z-10 cursor-none scroll-mt-20 border-t border-slate-200">
       
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
@@ -93,6 +93,40 @@ export default function FAQ() {
             );
           })}
         </div>
+
+        {/* CTA block below FAQ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+          className="mt-14 md:mt-20 bg-slate-900 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative z-10 text-center md:text-left">
+            <p className="text-xs font-extrabold text-blue-400 uppercase tracking-widest mb-2">Still have questions?</p>
+            <h3 className="text-xl md:text-2xl font-extrabold text-white mb-1">
+              Talk to us directly — no scripts, no sales pitch.
+            </h3>
+            <p className="text-sm text-slate-400 font-medium">Book a free 15-min call and ask us anything.</p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 relative z-10 shrink-0">
+            <button
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-colors duration-200 cursor-none text-sm whitespace-nowrap"
+            >
+              Book Free Call
+              <ArrowRight size={15} />
+            </button>
+            <a
+              href="https://wa.me/917200696059?text=Hi%20AutoScriptPro,%20I%20have%20a%20question!"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-full transition-colors duration-200 cursor-none text-sm border border-white/20 whitespace-nowrap pointer-events-auto"
+            >
+              <MessageCircle size={15} />
+              Chat on WhatsApp
+            </a>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

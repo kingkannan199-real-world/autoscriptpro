@@ -140,9 +140,10 @@ export default function AIChatWidget() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isTyping]);
 
-  // Focus input when chat opens
+  // Focus input when chat opens + notify WhatsApp button
   useEffect(() => {
     if (isOpen) setTimeout(() => inputRef.current?.focus(), 400);
+    window.dispatchEvent(new CustomEvent("aria-chat-toggle", { detail: { open: isOpen } }));
   }, [isOpen]);
 
   const pushUserMessage = (text: string) => {

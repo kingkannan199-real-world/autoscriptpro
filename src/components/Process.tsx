@@ -38,13 +38,13 @@ export default function Process() {
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight"
           >
-            How We Build <br className="md:hidden" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">The Future.</span>
+            From First Call to <br className="md:hidden" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Live System in 30 Days.</span>
           </motion.h2>
         </div>
 
         <div ref={timelineRef} className="relative w-full max-w-5xl mx-auto">
           {/* Scroll-draw timeline line */}
-          <div className="absolute top-0 bottom-0 left-4 md:left-1/2 w-2 bg-slate-100 md:-translate-x-1/2 rounded-full z-0 overflow-hidden">
+          <div className="absolute top-0 bottom-0 left-3 md:left-1/2 w-[3px] md:w-2 bg-slate-100 md:-translate-x-1/2 rounded-full z-0 overflow-hidden">
             <motion.div
               style={{ scaleY: lineScaleY, originY: 0 }}
               className="absolute inset-0 bg-gradient-to-b from-blue-400 via-blue-500 to-indigo-600 rounded-full"
@@ -55,7 +55,7 @@ export default function Process() {
             const isEven = index % 2 === 0;
 
             return (
-              <div key={index} className="relative flex items-center justify-between w-full mb-12 md:mb-24 last:mb-0">
+              <div key={index} className="relative flex items-center justify-between w-full mb-7 md:mb-24 last:mb-0">
                 
                 {/* THE FIX: Removed margin="-100px" so icons animate immediately. Tightened left-4 alignment */}
                 <motion.div
@@ -63,7 +63,7 @@ export default function Process() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2, duration: 0.4 }}
-                  className="absolute left-4 md:left-1/2 w-10 h-10 md:w-14 md:h-14 -translate-x-1/2 z-[40]"
+                  className="absolute left-3 md:left-1/2 w-7 h-7 md:w-14 md:h-14 -translate-x-1/2 z-[40]"
                 >
                   {/* Pulse ring */}
                   <motion.div
@@ -73,8 +73,9 @@ export default function Process() {
                     transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
                     className="absolute inset-0 rounded-full bg-blue-400/40"
                   />
-                  <div className="w-full h-full bg-white border-4 border-blue-100 rounded-full flex items-center justify-center shadow-lg text-blue-600">
-                    <step.icon size={18} strokeWidth={2.5} className="md:w-6 md:h-6" />
+                  <div className="w-full h-full bg-white border-2 md:border-4 border-blue-100 rounded-full flex items-center justify-center shadow-md md:shadow-lg text-blue-600">
+                    <step.icon size={12} strokeWidth={2.5} className="md:hidden" />
+                    <step.icon size={22} strokeWidth={2.5} className="hidden md:block" />
                   </div>
                 </motion.div>
 
@@ -84,13 +85,13 @@ export default function Process() {
                   whileInView={{ opacity: 1, x: 0, y: 0 }} 
                   viewport={{ once: true }} 
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className={`w-full md:w-[45%] pl-12 md:pl-0 z-20 ${isEven ? "md:mr-auto md:pr-12 md:text-right" : "md:ml-auto md:pl-12 md:text-left"}`}
+                  className={`w-full md:w-[45%] pl-9 md:pl-0 z-20 ${isEven ? "md:mr-auto md:pr-12 md:text-right" : "md:ml-auto md:pl-12 md:text-left"}`}
                 >
-                  <div className="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-200 transition-all duration-300 group cursor-none">
-                    <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-2 md:mb-3 group-hover:text-blue-600 transition-colors">
+                  <div className="bg-white p-3.5 md:p-8 rounded-xl md:rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-blue-200 transition-all duration-300 group cursor-none">
+                    <h3 className="text-sm md:text-2xl font-bold text-slate-900 mb-1 md:mb-3 group-hover:text-blue-600 transition-colors">
                       {step.title}
                     </h3>
-                    <p className="text-sm md:text-base text-slate-500 font-medium leading-relaxed">
+                    <p className="text-xs md:text-base text-slate-500 font-medium leading-relaxed">
                       {step.desc}
                     </p>
                   </div>

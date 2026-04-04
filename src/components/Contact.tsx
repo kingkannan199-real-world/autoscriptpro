@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, MessageSquare, Send, Loader2, CheckCircle } from "lucide-react";
+import { Mail, Phone, MessageSquare, Send, Loader2, CheckCircle, Clock, Shield, Zap } from "lucide-react";
 import { useState, useRef } from "react";
 import MagneticButton from "./MagneticButton";
 
@@ -72,52 +72,103 @@ export default function Contact() {
             <span className="text-xs md:text-sm font-bold text-blue-600 tracking-wider uppercase">Book Your Call</span>
           </motion.div>
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 md:mb-6 tracking-tight">
-            Let's Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Journey</span>
+            Tell Us Your Bottleneck —{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+              We'll Map the Automation in 48 Hours.
+            </span>
           </motion.h2>
+
+          {/* Trust signals row */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}
+            className="flex flex-wrap items-center justify-center gap-3 mt-2"
+          >
+            {[
+              { icon: Zap, text: "Reply within 2 hours" },
+              { icon: Shield, text: "No hidden charges" },
+              { icon: Clock, text: "Mon–Sat, 9AM–7PM IST" },
+            ].map(({ icon: Icon, text }) => (
+              <div key={text} className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-full">
+                <Icon size={12} className="text-blue-600 shrink-0" />
+                <span className="text-xs font-bold text-slate-600">{text}</span>
+              </div>
+            ))}
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
           
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="lg:col-span-4 flex flex-col gap-4 md:gap-6">
-            
-            <div className="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm flex items-center md:items-start md:flex-col gap-4 md:gap-0 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group cursor-none">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 rounded-xl flex items-center justify-center md:mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 text-blue-600 shrink-0">
-                <Mail size={18} className="md:w-5 md:h-5" />
-              </div>
-              <div>
-                <h3 className="text-base md:text-lg font-bold text-slate-900 mb-1">Email Us</h3>
-                <p className="text-sm text-slate-500 font-medium">autoscriptpro@gmail.com</p>
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="lg:col-span-4 flex flex-col gap-5 md:gap-6">
+
+            {/* What happens next block */}
+            <div className="bg-slate-900 rounded-2xl md:rounded-3xl p-6 md:p-8 relative overflow-hidden border border-slate-800">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-blue-600 rounded-full blur-3xl opacity-10 pointer-events-none" />
+              <h3 className="text-base md:text-lg font-extrabold text-white mb-6 relative z-10">What Happens After You Submit</h3>
+              <div className="flex flex-col gap-5 relative z-10">
+                {[
+                  {
+                    step: "01",
+                    title: "We Review Your Brief",
+                    desc: "Within 2 hours on business days, our team reads every detail you send.",
+                    color: "bg-blue-600",
+                  },
+                  {
+                    step: "02",
+                    title: "Free 30-Min Strategy Call",
+                    desc: "We jump on a call, map your workflow gap, and show you exactly what we'd build.",
+                    color: "bg-indigo-500",
+                  },
+                  {
+                    step: "03",
+                    title: "Custom Proposal + Pricing",
+                    desc: "You get a clear scope, INR milestone plan, and timeline — before any commitment.",
+                    color: "bg-violet-500",
+                  },
+                ].map((item) => (
+                  <div key={item.step} className="flex items-start gap-4">
+                    <div className={`w-8 h-8 ${item.color} rounded-xl flex items-center justify-center shrink-0 shadow-lg`}>
+                      <span className="text-[10px] font-extrabold text-white">{item.step}</span>
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-white mb-0.5">{item.title}</p>
+                      <p className="text-xs text-slate-400 font-medium leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="bg-white p-5 md:p-8 rounded-2xl md:rounded-3xl border border-slate-200 shadow-sm flex items-center md:items-start md:flex-col gap-4 md:gap-0 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group cursor-none">
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-50 rounded-xl flex items-center justify-center md:mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 text-blue-600 shrink-0">
-                <Phone size={18} className="md:w-5 md:h-5" />
+            {/* Contact cards */}
+            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group cursor-none">
+              <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 text-blue-600 shrink-0">
+                <Mail size={17} />
               </div>
               <div>
-                <h3 className="text-base md:text-lg font-bold text-slate-900 mb-1">Call Us</h3>
-                <p className="text-sm text-slate-500 font-medium">+91 72006 96059</p>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Email</p>
+                <p className="text-sm font-bold text-slate-900">autoscriptpro@gmail.com</p>
               </div>
             </div>
 
-            {/* WHATSAPP DIRECT LINK CARD */}
-            <a 
-              href="https://wa.me/917200696059?text=Hi%20AutoScriptPro,%20I'm%20interested%20in%20scaling%20my%20business%20with%20AI%20and%20Automation." 
-              target="_blank" 
+            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group cursor-none">
+              <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 text-blue-600 shrink-0">
+                <Phone size={17} />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Call / WhatsApp</p>
+                <p className="text-sm font-bold text-slate-900">+91 72006 96059</p>
+              </div>
+            </div>
+
+            <a
+              href="https://wa.me/917200696059?text=Hi%20AutoScriptPro,%20I'm%20interested%20in%20scaling%20my%20business%20with%20AI%20and%20Automation."
+              target="_blank"
               rel="noopener noreferrer"
-              className="bg-slate-900 p-5 md:p-8 rounded-2xl md:rounded-3xl border border-slate-800 shadow-xl text-white group cursor-none relative overflow-hidden flex items-center md:items-start md:flex-col gap-4 md:gap-0 block hover:shadow-2xl hover:border-blue-500/50 transition-all duration-300 pointer-events-auto"
+              className="flex items-center justify-center gap-2 py-3.5 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold rounded-2xl transition-colors duration-200 cursor-none text-sm shadow-lg shadow-green-500/20 pointer-events-auto"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20 pointer-events-none group-hover:opacity-40 transition-opacity duration-500" />
-              <div className="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-xl flex items-center justify-center md:mb-5 text-blue-400 group-hover:scale-110 transition-transform duration-300 shrink-0 relative z-10">
-                <MessageSquare size={18} className="md:w-5 md:h-5" />
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-base md:text-lg font-bold mb-1">Live Chat</h3>
-                <p className="text-xs md:text-sm text-slate-400 font-medium mb-0 md:mb-4 hidden md:block">Chat with our AI Architect right now.</p>
-                <span className="text-xs md:text-sm font-bold text-blue-400 group-hover:text-white transition-colors flex items-center gap-2 mt-1 md:mt-0">
-                  Open WhatsApp →
-                </span>
-              </div>
+              <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 shrink-0">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Chat on WhatsApp Now
             </a>
 
           </motion.div>

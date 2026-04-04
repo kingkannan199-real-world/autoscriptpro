@@ -52,18 +52,19 @@ export default function Services() {
             className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-10 md:mb-16 tracking-tight"
           >
             {/* GRADIENT APPLIED TO MANUAL WORK */}
-            Is Your Business Slowed Down <br className="hidden md:block"/> by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Manual Work?</span>
+            Every Hour You Spend on Manual Work <br className="hidden md:block"/> Is Revenue <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Walking Out the Door.</span>
           </motion.h2>
 
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {painPoints.map((point, index) => (
-              <motion.div key={index} variants={itemVariants} className="h-full">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+                className="h-full"
+              >
                 <SpotlightCard className="h-full">
                   <div className="h-full w-full bg-slate-50 p-5 md:p-8 rounded-2xl md:rounded-3xl group cursor-none text-left md:text-center flex items-start md:items-center md:flex-col gap-4 md:gap-0 z-10 relative">
                     <div className="w-12 h-12 md:w-14 md:h-14 shrink-0 bg-white shadow-sm text-slate-600 rounded-xl md:rounded-2xl flex items-center justify-center md:mb-6 group-hover:bg-slate-900 group-hover:text-white transition-all z-10 relative">
@@ -77,7 +78,7 @@ export default function Services() {
                 </SpotlightCard>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         <div id="services" className="text-center pt-12 md:pt-16 border-t border-slate-100 scroll-mt-20">
@@ -96,30 +97,18 @@ export default function Services() {
             viewport={{ once: true, margin: "-50px" }}
             className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-10 md:mb-16 tracking-tight"
           >
-            What We Do <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Best</span>
+            Six Ways We Turn Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Bottlenecks Into Growth</span>
           </motion.h2>
 
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
             {solutions.map((sol, index) => (
               <motion.div
                 key={index}
-                variants={itemVariants}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
                 className="h-full rounded-2xl md:rounded-3xl"
-                whileInView={{
-                  boxShadow: [
-                    "0 0 0px rgba(37,99,235,0)",
-                    "0 0 40px rgba(37,99,235,0.22)",
-                    "0 0 12px rgba(79,70,229,0.08)",
-                  ],
-                }}
-                viewport={{ once: true }}
-                transition={{ boxShadow: { duration: 1.4, delay: index * 0.1, times: [0, 0.35, 1] } }}
               >
                 <SpotlightCard className="h-full">
                   <div className="h-full w-full bg-white/90 backdrop-blur-sm text-left p-6 md:p-10 rounded-2xl md:rounded-3xl group cursor-none relative z-10">
@@ -140,9 +129,9 @@ export default function Services() {
                 </SpotlightCard>
               </motion.div>
             ))}
-          </motion.div>
-          
-          <motion.div 
+          </div>
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

@@ -93,8 +93,8 @@ export default function CaseStudies() {
 
           {/* THE FIX: Tighter text margins for mobile */}
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 mb-4 md:mb-6 tracking-tight">
-            Real Systems. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Massive ROI.</span>
+            Real Clients. Real Numbers. <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Verified ROI.</span>
           </motion.h2>
 
           <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-sm md:text-lg text-slate-500 font-medium mb-6 md:mb-10 leading-relaxed max-w-sm">
@@ -133,8 +133,10 @@ export default function CaseStudies() {
                   transition={{ type: "spring", stiffness: 120, damping: 20, mass: 1 }}
                   style={{ zIndex, transformOrigin: "top center" }}
                   // THE FIX: Adjusted inner padding for mobile to fit inside the 400px height
-                  className={`absolute top-0 left-0 right-0 mx-auto w-full max-w-2xl bg-white border rounded-[2rem] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] overflow-hidden ${
-                    isFront ? "border-blue-200 cursor-none shadow-blue-900/5" : "border-slate-200 cursor-none hover:border-blue-300 transition-colors"
+                  className={`absolute top-0 left-0 right-0 mx-auto w-full max-w-2xl bg-white rounded-[2rem] overflow-hidden transition-all duration-300 ${
+                    isFront
+                      ? "border-2 border-blue-400 shadow-[0_20px_60px_-10px_rgba(37,99,235,0.18)] cursor-none"
+                      : "border-2 border-slate-200 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.06)] cursor-none hover:border-blue-200"
                   }`}
                 >
                   {isFront && <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-blue-600 to-indigo-600" />}

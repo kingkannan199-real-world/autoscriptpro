@@ -5,6 +5,9 @@ import SmoothCursor from "../components/SmoothCursor";
 import Navbar from "../components/Navbar";
 import ScrollProgress from "../components/ScrollProgress";
 import AIChatWidget from "../components/AIChatWidget";
+import WhatsAppButton from "../components/WhatsAppButton";
+import BackToTop from "../components/BackToTop";
+import StickyCTA from "../components/StickyCTA";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,11 +59,14 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased bg-white text-slate-900`}>
+        <StickyCTA />
         <ScrollProgress />
         <SmoothCursor />
         <Navbar />
         {children}
         <AIChatWidget />
+        <WhatsAppButton />
+        <BackToTop />
       </body>
     </html>
   );
