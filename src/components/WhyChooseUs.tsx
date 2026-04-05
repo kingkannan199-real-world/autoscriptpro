@@ -9,22 +9,30 @@ const features = [
   {
     icon: Settings,
     title: "Custom Architecture, Not Templates",
-    desc: "We engineer bespoke systems tailored to your exact operational bottlenecks. Whether it's complex RAG pipelines, custom LLM integrations, or robust backends, we build infrastructure that scales with you."
+    desc: "We engineer bespoke systems tailored to your exact operational bottlenecks. Whether it's complex RAG pipelines, custom LLM integrations, or robust backends, we build infrastructure that scales with you.",
+    accent: "#2563EB",
+    accentLight: "#DBEAFE",
   },
   {
     icon: Zap,
     title: "Rapid Deployment",
-    desc: "We move fast. By utilizing modern frameworks and agile methodologies, we take you from strategy call to deployed automation in record time."
+    desc: "We move fast. By utilizing modern frameworks and agile methodologies, we take you from strategy call to deployed automation in record time.",
+    accent: "#7C3AED",
+    accentLight: "#EDE9FE",
   },
   {
     icon: TrendingUp,
     title: "Pure ROI Focus",
-    desc: "If it doesn't save you hours of manual work or generate new leads, we don't build it. Every line of code is mapped to your bottom line."
+    desc: "If it doesn't save you hours of manual work or generate new leads, we don't build it. Every line of code is mapped to your bottom line.",
+    accent: "#059669",
+    accentLight: "#D1FAE5",
   },
   {
     icon: ShieldCheck,
     title: "Enterprise-Grade Security",
-    desc: "Your data is your most valuable asset. We implement zero-trust architectures, secure API handling, and scalable databases to ensure your automated workflows are locked down."
+    desc: "Your data is your most valuable asset. We implement zero-trust architectures, secure API handling, and scalable databases to ensure your automated workflows are locked down.",
+    accent: "#D97706",
+    accentLight: "#FEF3C7",
   }
 ];
 
@@ -103,10 +111,28 @@ export default function WhyChooseUs() {
                 <div className="relative h-full w-full bg-white p-10 rounded-[23px] overflow-hidden z-10">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                   <div className="relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 border border-slate-100 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors duration-500">
-                      <feature.icon className="w-7 h-7 text-slate-600 group-hover:text-white transition-colors duration-500" strokeWidth={2} />
+                    {/* Ring icon with accent dot */}
+                    <div className="relative w-14 h-14 mb-6">
+                      {/* Accent ring — draws on hover */}
+                      <div
+                        className="absolute inset-0 rounded-2xl border-2 opacity-20 group-hover:opacity-100 transition-all duration-500"
+                        style={{ borderColor: feature.accent }}
+                      />
+                      {/* Corner accent dot */}
+                      <div
+                        className="absolute -top-1 -right-1 w-3 h-3 rounded-full opacity-0 group-hover:opacity-100 scale-0 group-hover:scale-100 transition-all duration-500 delay-100 shadow-sm"
+                        style={{ backgroundColor: feature.accent }}
+                      />
+                      {/* Icon */}
+                      <div className="w-full h-full flex items-center justify-center">
+                        <feature.icon
+                          className="w-7 h-7 transition-colors duration-500"
+                          style={{ color: feature.accent }}
+                          strokeWidth={1.8}
+                        />
+                      </div>
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-3 tracking-tight group-hover:text-blue-600 transition-colors duration-300">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-3 tracking-tight transition-colors duration-300" style={{ ['--hover-color' as string]: feature.accent }}>
                       {feature.title}
                     </h3>
                     <p className="text-base text-slate-500 leading-relaxed font-medium">{feature.desc}</p>
@@ -130,8 +156,23 @@ export default function WhyChooseUs() {
                 <SpotlightCard className="h-full group">
                   <div className="relative h-full w-full bg-white p-6 rounded-2xl overflow-hidden z-10">
                     <div className="relative z-10">
-                      <div className="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center mb-4 border border-blue-100">
-                        <feature.icon className="w-5 h-5 text-blue-600" strokeWidth={2} />
+                      {/* Ring icon with accent */}
+                      <div className="relative w-11 h-11 mb-4">
+                        <div
+                          className="absolute inset-0 rounded-xl border-2"
+                          style={{ borderColor: feature.accent, opacity: 0.25 }}
+                        />
+                        <div
+                          className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full shadow-sm"
+                          style={{ backgroundColor: feature.accent }}
+                        />
+                        <div className="w-full h-full flex items-center justify-center">
+                          <feature.icon
+                            className="w-5 h-5"
+                            style={{ color: feature.accent }}
+                            strokeWidth={2}
+                          />
+                        </div>
                       </div>
                       <h3 className="text-base font-bold text-slate-900 mb-2 tracking-tight">
                         {feature.title}

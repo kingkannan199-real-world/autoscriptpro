@@ -16,12 +16,12 @@ const painPoints = [
 ];
 
 const solutions = [
-  { icon: Bot, title: "Automation & AI Agents", desc: "Intelligent workflows, AI agents, and database automation that work 24/7." },
-  { icon: MessageSquare, title: "WhatsApp & Email Campaigns", desc: "Bulk messaging, automated follow-ups, and CRM automation." },
-  { icon: Code2, title: "Web & Custom Development", desc: "Landing pages, dashboards, and automation-ready systems." },
-  { icon: BarChart3, title: "Data Analysis & Insights", desc: "Interactive dashboards, reports, and business intelligence." },
-  { icon: Database, title: "Database Solutions", desc: "Scalable database design, optimization, and integration." },
-  { icon: Workflow, title: "Custom Solutions", desc: "Tailor-made automation for any workflow or industry." }
+  { icon: Bot, title: "Automation & AI Agents", desc: "Intelligent workflows, AI agents, and database automation that work 24/7.", gradient: "from-blue-500 to-indigo-600", glow: "bg-blue-500", iconColor: "text-blue-300" },
+  { icon: MessageSquare, title: "WhatsApp & Email Campaigns", desc: "Bulk messaging, automated follow-ups, and CRM automation.", gradient: "from-emerald-500 to-teal-600", glow: "bg-emerald-500", iconColor: "text-emerald-300" },
+  { icon: Code2, title: "Web & Custom Development", desc: "Landing pages, dashboards, and automation-ready systems.", gradient: "from-violet-500 to-purple-600", glow: "bg-violet-500", iconColor: "text-violet-300" },
+  { icon: BarChart3, title: "Data Analysis & Insights", desc: "Interactive dashboards, reports, and business intelligence.", gradient: "from-cyan-500 to-blue-600", glow: "bg-cyan-500", iconColor: "text-cyan-300" },
+  { icon: Database, title: "Database Solutions", desc: "Scalable database design, optimization, and integration.", gradient: "from-amber-500 to-orange-600", glow: "bg-amber-500", iconColor: "text-amber-300" },
+  { icon: Workflow, title: "Custom Solutions", desc: "Tailor-made automation for any workflow or industry.", gradient: "from-rose-500 to-red-600", glow: "bg-rose-500", iconColor: "text-rose-300" }
 ];
 
 const containerVariants: Variants = {
@@ -117,13 +117,16 @@ export default function Services() {
                 <SpotlightCard className="h-full">
                   <div className="h-full w-full bg-white/90 backdrop-blur-sm text-left p-6 md:p-10 rounded-2xl md:rounded-3xl group relative z-10">
                     <div className="relative z-10">
-                      <div className="relative w-12 h-12 md:w-16 md:h-16 mb-5 md:mb-8">
-                        <div className="absolute inset-0 bg-blue-500 rounded-xl md:rounded-2xl blur-lg md:blur-xl opacity-0 group-hover:opacity-40 transition-all" />
-                        <div className="relative flex items-center justify-center w-full h-full bg-slate-900 rounded-xl md:rounded-2xl overflow-hidden shadow-lg border border-slate-700/50">
-                          <div className="absolute inset-[2px] bg-slate-900 rounded-[10px] md:rounded-[14px] flex items-center justify-center overflow-hidden">
-                            <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#3b82f6_1px,transparent_1px),linear-gradient(to_bottom,#3b82f6_1px,transparent_1px)] bg-[size:4px_4px]" />
-                            <sol.icon size={24} strokeWidth={1.5} className="text-blue-400 relative z-10" />
-                          </div>
+                      <div className="relative w-12 h-12 md:w-16 md:h-16 mb-5 md:mb-8 group-hover:-translate-y-1 transition-transform duration-500">
+                        {/* Colored glow behind */}
+                        <div className={`absolute inset-0 ${sol.glow} rounded-xl md:rounded-2xl blur-xl opacity-0 group-hover:opacity-50 transition-all duration-500 scale-150`} />
+                        {/* Gradient icon container */}
+                        <div className={`relative flex items-center justify-center w-full h-full bg-gradient-to-br ${sol.gradient} rounded-xl md:rounded-2xl shadow-lg overflow-hidden`}>
+                          {/* Subtle grid overlay */}
+                          <div className="absolute inset-0 opacity-15 bg-[linear-gradient(to_right,rgba(255,255,255,0.3)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.3)_1px,transparent_1px)] bg-[size:4px_4px]" />
+                          {/* Shimmer on hover */}
+                          <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                          <sol.icon size={24} strokeWidth={1.5} className="text-white relative z-10 drop-shadow-sm" />
                         </div>
                       </div>
                       <h3 className="text-lg md:text-2xl font-bold text-slate-900 mb-2 md:mb-3">{sol.title}</h3>
