@@ -84,7 +84,7 @@ export default function WhatDrivesUs() {
   };
 
   return (
-    <section className="w-full py-20 md:py-28 bg-slate-900 relative z-10 border-t border-slate-800 cursor-none scroll-mt-20 overflow-hidden">
+    <section className="w-full py-20 md:py-28 bg-slate-900 relative z-10 border-t border-slate-800 scroll-mt-20 overflow-hidden">
       {/* Ambient glows */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[300px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[200px] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none" />
@@ -94,7 +94,7 @@ export default function WhatDrivesUs() {
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
-            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-900/50 border border-blue-700/50 cursor-none"
+            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-900/50 border border-blue-700/50"
           >
             <span className="text-sm font-bold text-blue-400 tracking-wider uppercase">Our Core Values</span>
           </motion.div>
@@ -119,7 +119,7 @@ export default function WhatDrivesUs() {
             <motion.div key={index} variants={itemVariants} initial="hidden" whileInView="visible"
               viewport={{ once: true, margin: "-60px" }} className="h-full"
             >
-              <SpotlightCard className="h-full group cursor-none">
+              <SpotlightCard className="h-full group">
                 <div className="relative h-full w-full bg-white flex flex-col p-10 rounded-[23px] overflow-hidden z-10">
                   <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-br ${value.bgGlow} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
                   <div className="relative z-10 flex flex-col h-full">
@@ -153,7 +153,7 @@ export default function WhatDrivesUs() {
                     exit={{ opacity: 0, x: -40 }}
                     transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                   >
-                    <SpotlightCard className="w-full group cursor-none">
+                    <SpotlightCard className="w-full group">
                       <div className="relative w-full bg-white flex flex-col p-6 rounded-[23px] overflow-hidden z-10">
                         <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-br ${value.bgGlow} opacity-40 pointer-events-none`} />
                         <div className="relative z-10">
@@ -177,7 +177,7 @@ export default function WhatDrivesUs() {
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className={`rounded-full transition-all duration-300 cursor-none ${
+                className={`rounded-full transition-all duration-300 ${
                   i === current
                     ? "w-6 h-2 bg-blue-400"
                     : "w-2 h-2 bg-slate-600 hover:bg-slate-400"

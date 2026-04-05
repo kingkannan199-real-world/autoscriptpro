@@ -62,7 +62,7 @@ export default function WhyChooseUs() {
   const next = () => scrollToCard(Math.min(features.length - 1, activeIndex + 1));
 
   return (
-    <section className="w-full py-20 md:py-32 bg-white relative z-10 border-t border-slate-100 cursor-none bg-[linear-gradient(to_right,#eef2ff_1px,transparent_1px),linear-gradient(to_bottom,#eef2ff_1px,transparent_1px)] [background-size:32px_32px]">
+    <section className="w-full py-20 md:py-32 bg-white relative z-10 border-t border-slate-100 bg-[linear-gradient(to_right,#eef2ff_1px,transparent_1px),linear-gradient(to_bottom,#eef2ff_1px,transparent_1px)] [background-size:32px_32px]">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
 
         <div className="text-center mb-16 md:mb-20">
@@ -99,7 +99,7 @@ export default function WhyChooseUs() {
         >
           {features.map((feature, index) => (
             <motion.div key={index} variants={itemVariants} className="h-full">
-              <SpotlightCard className="h-full group cursor-none hover:-translate-y-1 transition-transform duration-500">
+              <SpotlightCard className="h-full group hover:-translate-y-1 transition-transform duration-500">
                 <div className="relative h-full w-full bg-white p-10 rounded-[23px] overflow-hidden z-10">
                   <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-blue-50 to-transparent rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                   <div className="relative z-10">
@@ -127,7 +127,7 @@ export default function WhyChooseUs() {
           >
             {features.map((feature, index) => (
               <div key={index} className="min-w-[85vw] snap-center">
-                <SpotlightCard className="h-full group cursor-none">
+                <SpotlightCard className="h-full group">
                   <div className="relative h-full w-full bg-white p-6 rounded-2xl overflow-hidden z-10">
                     <div className="relative z-10">
                       <div className="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center mb-4 border border-blue-100">
@@ -149,7 +149,7 @@ export default function WhyChooseUs() {
             <button
               onClick={prev}
               disabled={activeIndex === 0}
-              className="w-9 h-9 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-600 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-200 cursor-none"
+              className="w-9 h-9 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-600 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-200"
             >
               <ChevronLeft size={17} strokeWidth={2.5} />
             </button>
@@ -160,7 +160,7 @@ export default function WhyChooseUs() {
                 <button
                   key={i}
                   onClick={() => scrollToCard(i)}
-                  className={`rounded-full transition-all duration-300 cursor-none ${
+                  className={`rounded-full transition-all duration-300 ${
                     i === activeIndex
                       ? "w-5 h-2 bg-blue-600"
                       : "w-2 h-2 bg-slate-300 hover:bg-slate-400"
@@ -172,7 +172,7 @@ export default function WhyChooseUs() {
             <button
               onClick={next}
               disabled={activeIndex === features.length - 1}
-              className="w-9 h-9 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-600 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-200 cursor-none"
+              className="w-9 h-9 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-600 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-200"
             >
               <ChevronRight size={17} strokeWidth={2.5} />
             </button>

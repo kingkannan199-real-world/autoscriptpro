@@ -1,7 +1,7 @@
 import Hero from "../components/Hero";
 import LogoTicker from "../components/LogoTicker";
 import Services from "../components/Services";
-import TechMarquee from "../components/TechMarquee";
+
 import ComparisonSection from "../components/ComparisonSection";
 import Process from "../components/Process";
 import Impact from "../components/Impact";
@@ -21,7 +21,7 @@ export default function Home() {
       <Hero />
       <LogoTicker />
       <Services />
-      <TechMarquee />
+
       <ComparisonSection />
       <Process />
       <Impact />

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6 text-center relative overflow-hidden cursor-none">
+    <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6 text-center relative overflow-hidden">
 
       {/* Ambient glows */}
       <div className="absolute top-[-10%] left-[-5%] w-[400px] h-[400px] bg-blue-100/60 rounded-full blur-[120px] pointer-events-none" />
@@ -14,7 +14,7 @@ export default function NotFound() {
       <div className="relative z-10 flex flex-col items-center">
 
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-2 mb-12 cursor-none">
+        <Link href="/" className="flex items-center gap-2 mb-12">
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white text-lg">A</div>
           <span className="text-lg font-extrabold text-slate-900 tracking-tight">AutoScriptPro<span className="text-blue-600">.</span></span>
         </Link>
@@ -35,13 +35,13 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row items-center gap-4">
           <Link
             href="/"
-            className="px-8 py-3.5 bg-slate-900 text-white font-bold rounded-full hover:bg-blue-600 transition-colors shadow-xl text-sm cursor-none"
+            className="px-8 py-3.5 bg-slate-900 text-white font-bold rounded-full hover:bg-blue-600 transition-colors shadow-xl text-sm"
           >
             ← Back to Homepage
           </Link>
           <Link
             href="/#contact"
-            className="px-8 py-3.5 bg-white text-slate-900 font-bold rounded-full border border-slate-200 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm cursor-none"
+            className="px-8 py-3.5 bg-white text-slate-900 font-bold rounded-full border border-slate-200 hover:border-blue-400 hover:text-blue-600 transition-colors text-sm"
           >
             Contact Us
           </Link>

@@ -33,7 +33,7 @@ export default function BackToTop() {
           exit={{ opacity: 0, scale: 0.7, y: 20 }}
           transition={{ type: "spring", stiffness: 260, damping: 22 }}
           onClick={scrollToTop}
-          className="fixed bottom-28 md:bottom-8 right-28 md:right-28 z-[199] w-11 h-11 rounded-full bg-slate-900 hover:bg-blue-600 text-white flex items-center justify-center shadow-lg hover:shadow-blue-600/30 transition-all duration-300 cursor-none border border-slate-700 hover:border-blue-500"
+          className="fixed bottom-5 md:bottom-8 right-5 md:right-6 z-[198] w-10 h-10 md:w-11 md:h-11 rounded-full bg-slate-900 hover:bg-blue-600 text-white flex items-center justify-center shadow-lg hover:shadow-blue-600/30 transition-all duration-300 border border-slate-700 hover:border-blue-500"
           aria-label="Back to top"
         >
           <ArrowUp size={18} strokeWidth={2.5} />

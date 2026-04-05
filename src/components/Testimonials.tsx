@@ -145,7 +145,7 @@ export default function Testimonials() {
   const next = () => setCurrent((c) => (c + 1) % testimonials.length);
 
   return (
-    <section className="w-full py-20 md:py-32 bg-white relative z-10 overflow-hidden cursor-none border-t border-slate-100 bg-[radial-gradient(circle,_#dbeafe_1.5px,_transparent_1.5px)] [background-size:28px_28px]">
+    <section className="w-full py-20 md:py-32 bg-white relative z-10 overflow-hidden border-t border-slate-100 bg-[radial-gradient(circle,_#dbeafe_1.5px,_transparent_1.5px)] [background-size:28px_28px]">
 
       {/* Soft ambient glows */}
       <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-50 rounded-full blur-[120px] pointer-events-none opacity-80" />
@@ -156,7 +156,7 @@ export default function Testimonials() {
         {/* Header */}
         <div className="text-center mb-14 md:mb-20">
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100 cursor-none"
+            className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
             <span className="text-xs md:text-sm font-bold text-blue-600 tracking-wider uppercase">Client Results</span>
@@ -209,7 +209,7 @@ export default function Testimonials() {
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`flex items-center gap-3 p-3 rounded-2xl text-left transition-all duration-300 cursor-none group ${
+                className={`flex items-center gap-3 p-3 rounded-2xl text-left transition-all duration-300 group ${
                   i === current
                     ? "bg-white shadow-md border border-slate-200"
                     : "hover:bg-slate-50 border border-transparent"
@@ -303,15 +303,15 @@ export default function Testimonials() {
             <div className="flex items-center justify-between mt-6 lg:hidden">
               <div className="flex items-center gap-2">
                 {testimonials.map((_, i) => (
-                  <button key={i} onClick={() => setCurrent(i)} className="cursor-none transition-all duration-300 rounded-full"
+                  <button key={i} onClick={() => setCurrent(i)} className="transition-all duration-300 rounded-full"
                     style={{ width: i === current ? 24 : 8, height: 8, background: i === current ? t.accentFrom : "#e2e8f0" }} />
                 ))}
               </div>
               <div className="flex items-center gap-2">
-                <button onClick={prev} className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-500 hover:border-blue-300 hover:text-blue-600 transition-all cursor-none shadow-sm">
+                <button onClick={prev} className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-500 hover:border-blue-300 hover:text-blue-600 transition-all shadow-sm">
                   <ChevronLeft size={17} />
                 </button>
-                <button onClick={next} className="w-10 h-10 rounded-full text-white flex items-center justify-center transition-all cursor-none shadow-md"
+                <button onClick={next} className="w-10 h-10 rounded-full text-white flex items-center justify-center transition-all shadow-md"
                   style={{ background: `linear-gradient(135deg, ${t.accentFrom}, ${t.accentTo})` }}>
                   <ChevronRight size={17} />
                 </button>
@@ -320,10 +320,10 @@ export default function Testimonials() {
 
             {/* Desktop prev/next */}
             <div className="hidden lg:flex items-center justify-end gap-2 mt-5">
-              <button onClick={prev} className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-500 hover:border-blue-300 hover:text-blue-600 transition-all cursor-none shadow-sm">
+              <button onClick={prev} className="w-10 h-10 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-500 hover:border-blue-300 hover:text-blue-600 transition-all shadow-sm">
                 <ChevronLeft size={17} />
               </button>
-              <button onClick={next} className="w-10 h-10 rounded-full text-white flex items-center justify-center transition-all cursor-none shadow-md"
+              <button onClick={next} className="w-10 h-10 rounded-full text-white flex items-center justify-center transition-all shadow-md"
                 style={{ background: `linear-gradient(135deg, ${t.accentFrom}, ${t.accentTo})` }}>
                 <ChevronRight size={17} />
               </button>

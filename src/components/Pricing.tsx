@@ -1,75 +1,60 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-import { Check, Zap, ArrowRight, Shield, Star, Lock, Milestone, BadgeCheck } from "lucide-react";
+import { ArrowRight, Shield, Star, Lock, Milestone, BadgeCheck, Target, Clock, RefreshCw, MessageSquare, Rocket } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 
 const plans = [
   {
     name: "Starter",
-    tag: "For small businesses",
+    tag: "Quick Win",
     price: "₹6,000",
-    priceNote: "starting at · per project",
-    description: "Perfect for solopreneurs and small teams looking to automate one core workflow and see results fast.",
+    priceNote: "starting at",
+    description: "For solo founders and small teams who need one focused automation or micro-app — delivered fast.",
     color: "from-slate-500 to-slate-600",
     borderColor: "border-slate-200",
-    features: [
-      "1 automation workflow",
-      "Landing page or dashboard",
-      "WhatsApp / Email integration",
-      "Basic data reporting",
-      "7-day delivery",
-      "1 revision round",
-      "Email support",
-    ],
-    cta: "Book Free Consultation",
     popular: false,
+    specs: [
+      { icon: Target, label: "Scope", value: "1 focused deliverable" },
+      { icon: Clock, label: "Timeline", value: "5–7 days" },
+      { icon: RefreshCw, label: "Revisions", value: "1 round" },
+      { icon: MessageSquare, label: "Support", value: "Email" },
+      { icon: Rocket, label: "Post-Launch", value: "—" },
+    ],
   },
   {
     name: "Growth",
     tag: "Most Popular 🔥",
     price: "₹15,000",
-    priceNote: "per project",
-    description: "For funded startups and growing teams that need real automation systems built fast.",
+    priceNote: "starting at",
+    description: "For funded startups that need a full system — multiple modules, AI integration, and real architecture.",
     color: "from-blue-600 to-indigo-600",
     borderColor: "border-blue-500",
-    features: [
-      "Up to 5 automation workflows",
-      "Custom web app or dashboard",
-      "AI agent integration",
-      "CRM & database setup",
-      "WhatsApp / Email campaigns",
-      "14-day delivery",
-      "3 revision rounds",
-      "Priority WhatsApp support",
-      "30-day post-launch monitoring",
-    ],
-    cta: "Book Free Consultation",
     popular: true,
+    specs: [
+      { icon: Target, label: "Scope", value: "Up to 5 modules" },
+      { icon: Clock, label: "Timeline", value: "10–14 days" },
+      { icon: RefreshCw, label: "Revisions", value: "3 rounds" },
+      { icon: MessageSquare, label: "Support", value: "Priority WhatsApp" },
+      { icon: Rocket, label: "Post-Launch", value: "30-day monitoring" },
+    ],
   },
   {
     name: "Scale",
-    tag: "For serious growth",
-    price: "₹35,000+",
-    priceNote: "per project",
-    description: "Full-scale AI architecture, custom backends, and end-to-end automation for high-growth companies.",
+    tag: "Enterprise Grade",
+    price: "₹35,000",
+    priceNote: "starting at",
+    description: "For high-growth companies that need end-to-end platforms, multi-agent AI, and custom backend architecture.",
     color: "from-violet-600 to-purple-600",
     borderColor: "border-violet-200",
-    features: [
-      "Unlimited automation workflows",
-      "Multi-agent AI systems (RAG, LLMs)",
-      "Custom backend architecture",
-      "Full-stack web platform",
-      "Database design & optimisation",
-      "API integrations (any stack)",
-      "Predictive analytics & insights",
-      "4–6 week delivery",
-      "Unlimited revisions",
-      "Dedicated WhatsApp channel",
-      "60-day post-launch support",
-    ],
-    cta: "Book Free Consultation",
     popular: false,
+    specs: [
+      { icon: Target, label: "Scope", value: "End-to-end platform" },
+      { icon: Clock, label: "Timeline", value: "4–6 weeks" },
+      { icon: RefreshCw, label: "Revisions", value: "Unlimited" },
+      { icon: MessageSquare, label: "Support", value: "Dedicated channel" },
+      { icon: Rocket, label: "Post-Launch", value: "60-day partnership" },
+    ],
   },
 ];
 
@@ -93,7 +78,7 @@ const itemVariants: Variants = {
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="w-full py-20 md:py-32 bg-white relative z-10 overflow-hidden cursor-none border-t border-slate-100 bg-[radial-gradient(circle,_#e0e7ff_1.5px,_transparent_1.5px)] [background-size:28px_28px]">
+    <section id="pricing" className="w-full py-20 md:py-32 bg-white relative z-10 overflow-hidden border-t border-slate-100 bg-[radial-gradient(circle,_#e0e7ff_1.5px,_transparent_1.5px)] [background-size:28px_28px]">
 
       {/* Ambient glow */}
       <div className="absolute top-[-5%] right-[-5%] w-[400px] h-[400px] bg-blue-50 rounded-full blur-[120px] pointer-events-none" />
@@ -104,7 +89,7 @@ export default function Pricing() {
         <div className="text-center mb-14 md:mb-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
-            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100 cursor-none"
+            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100"
           >
             <span className="text-xs md:text-sm font-bold text-blue-600 tracking-wider uppercase">Transparent Pricing</span>
           </motion.div>
@@ -140,56 +125,65 @@ export default function Pricing() {
               variants={itemVariants}
               className={`relative flex flex-col rounded-[2rem] border-2 ${plan.borderColor} bg-white overflow-hidden ${plan.popular ? "shadow-blue-600/10 shadow-2xl md:-translate-y-3" : "shadow-sm hover:shadow-xl hover:-translate-y-1"} transition-all duration-300 group/card`}
             >
-              {/* Popular badge */}
+              {/* Popular top bar */}
               {plan.popular && (
                 <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-blue-500" />
               )}
 
-              {/* Subtle corner glow on hover */}
+              {/* Corner glow on hover */}
               <div className={`absolute top-0 right-0 w-40 h-40 rounded-full blur-[60px] pointer-events-none opacity-0 group-hover/card:opacity-30 transition-opacity duration-500 ${plan.popular ? "bg-blue-400" : "bg-slate-300"}`} />
 
               <div className="p-7 md:p-8 flex flex-col flex-grow relative z-10">
-                {/* Plan header */}
-                <div className="mb-6">
-                  <span className={`inline-block text-xs font-extrabold uppercase tracking-widest mb-3 ${plan.popular ? "text-blue-600" : "text-slate-500"}`}>
-                    {plan.tag}
-                  </span>
-                  <h3 className="text-2xl font-extrabold text-slate-900 mb-1">{plan.name}</h3>
-                  <p className="text-sm text-slate-500 font-medium leading-relaxed">{plan.description}</p>
-                </div>
+
+                {/* Tag */}
+                <span className={`inline-block text-xs font-extrabold uppercase tracking-widest mb-3 ${plan.popular ? "text-blue-600" : "text-slate-500"}`}>
+                  {plan.tag}
+                </span>
+
+                {/* Plan Name */}
+                <h3 className="text-2xl font-extrabold text-slate-900 mb-2">{plan.name}</h3>
+
+                {/* Description */}
+                <p className="text-sm text-slate-500 font-medium leading-relaxed mb-6">{plan.description}</p>
 
                 {/* Price */}
                 <div className="mb-7 pb-7 border-b border-slate-100">
-                  <div className="flex items-end gap-2">
+                  <div className="flex items-baseline gap-1.5">
                     <span className={`text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r ${plan.color}`}>
                       {plan.price}
                     </span>
+                    <span className="text-lg font-bold text-slate-400">+</span>
                   </div>
                   <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mt-2 block">{plan.priceNote}</span>
                 </div>
 
-                {/* Features */}
-                <ul className="flex flex-col gap-3.5 mb-8 flex-grow">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${plan.color} flex items-center justify-center shrink-0 mt-0.5 shadow-sm`}>
-                        <Check size={11} className="text-white" strokeWidth={3} />
+                {/* Scope Specs */}
+                <div className="flex flex-col gap-4 mb-8 flex-grow">
+                  {plan.specs.map((spec) => (
+                    <div key={spec.label} className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${plan.color} bg-opacity-10 flex items-center justify-center shrink-0`}
+                        style={{ background: plan.popular ? "rgba(59,130,246,0.08)" : "rgba(100,116,139,0.06)" }}
+                      >
+                        <spec.icon size={15} className={plan.popular ? "text-blue-600" : "text-slate-500"} strokeWidth={2.5} />
                       </div>
-                      <span className="text-sm text-slate-600 font-medium">{feature}</span>
-                    </li>
+                      <div className="flex flex-col">
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider leading-none">{spec.label}</span>
+                        <span className="text-sm font-bold text-slate-800 mt-0.5">{spec.value}</span>
+                      </div>
+                    </div>
                   ))}
-                </ul>
+                </div>
 
                 {/* CTA */}
                 <MagneticButton
                   onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                  className={`w-full py-3.5 font-bold rounded-xl flex items-center justify-center gap-2 cursor-none transition-all duration-300 text-sm ${
+                  className={`w-full py-3.5 font-bold rounded-xl flex items-center justify-center gap-2 transition-all duration-300 text-sm ${
                     plan.popular
                       ? "bg-blue-600 text-white hover:bg-slate-900 shadow-lg shadow-blue-600/20"
                       : "bg-slate-900 text-white hover:bg-blue-600"
                   }`}
                 >
-                  {plan.cta}
+                  Book Free Consultation
                   <ArrowRight size={15} />
                 </MagneticButton>
               </div>
@@ -215,12 +209,12 @@ export default function Pricing() {
           className="text-center text-sm text-slate-400 font-medium mt-8"
         >
           Need something outside these packages?{" "}
-          <a href="#contact" className="text-blue-600 font-bold hover:underline cursor-none">
-            Tell us your budget → we'll make it work.
+          <a href="#contact" className="text-blue-600 font-bold hover:underline">
+            Tell us your budget → we&apos;ll make it work.
           </a>
         </motion.p>
 
-        {/* #21 — Guarantee Statement */}
+        {/* Guarantee */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -234,7 +228,7 @@ export default function Pricing() {
           <div>
             <h4 className="text-lg font-extrabold text-slate-900 mb-1">Our Delivery Guarantee</h4>
             <p className="text-sm text-slate-600 font-medium leading-relaxed">
-              If the final deliverable doesn't match the signed-off scope document, we'll revise it at zero additional cost until it does. Every project is NDA-protected and milestone-billed — you never pay for unfinished work.
+              If the final deliverable doesn&apos;t match the signed-off scope document, we&apos;ll revise it at zero additional cost until it does. Every project is NDA-protected and milestone-billed — you never pay for unfinished work.
             </p>
           </div>
         </motion.div>

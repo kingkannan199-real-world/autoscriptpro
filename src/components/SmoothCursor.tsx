@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export default function SmoothCursor() {
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -14,9 +15,19 @@ export default function SmoothCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    // Detect touch devices — don't show custom cursor
+    const isTouch =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches;
+
+    if (isTouch) {
+      setIsTouchDevice(true);
+      return;
+    }
+
     const moveCursor = (e: MouseEvent) => {
-      // No offset needed for an arrow, the tip is at 0,0
-      cursorX.set(e.clientX); 
+      cursorX.set(e.clientX);
       cursorY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
     };
@@ -34,6 +45,9 @@ export default function SmoothCursor() {
       document.removeEventListener("mouseenter", handleMouseEnter);
     };
   }, [cursorX, cursorY, isVisible]);
+
+  // Don't render on touch devices
+  if (isTouchDevice) return null;
 
   return (
     <motion.div

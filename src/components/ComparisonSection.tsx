@@ -6,31 +6,37 @@ import MagneticButton from "./MagneticButton";
 
 const rows = [
   {
+    icon: "🔄",
     topic: "Repetitive daily tasks",
     without: "Done manually, 3–6 hrs/day",
     with: "Fully automated, 0 human hours",
   },
   {
+    icon: "📞",
     topic: "Lead follow-up",
     without: "Missed calls, delayed replies",
     with: "Instant WhatsApp + email response",
   },
   {
+    icon: "📊",
     topic: "Data & reports",
     without: "Spreadsheets built every Monday",
     with: "Live dashboard, auto-updated",
   },
   {
+    icon: "🧑‍💼",
     topic: "New employee onboarding",
     without: "Week-long manual process",
     with: "Automated workflow, day one ready",
   },
   {
+    icon: "💬",
     topic: "Customer support",
     without: "One person answering the same 10 questions",
     with: "AI agent handles 80% of queries 24/7",
   },
   {
+    icon: "🚀",
     topic: "Scaling operations",
     without: "Hire more people to handle more volume",
     with: "Systems scale, headcount stays the same",
@@ -60,7 +66,7 @@ export default function ComparisonSection() {
         <div className="text-center mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
-            className="inline-flex items-center justify-center px-4 py-1.5 mb-5 rounded-full bg-blue-50 border border-blue-100 cursor-none"
+            className="inline-flex items-center justify-center px-4 py-1.5 mb-5 rounded-full bg-blue-50 border border-blue-100"
           >
             <span className="text-xs md:text-sm font-bold text-blue-600 tracking-wider uppercase">The Real Cost of Doing Nothing</span>
           </motion.div>
@@ -83,8 +89,8 @@ export default function ComparisonSection() {
           </motion.p>
         </div>
 
-        {/* Table header */}
-        <div className="grid grid-cols-[1fr_1fr_1fr] gap-3 md:gap-4 mb-3 px-1">
+        {/* Table header — desktop only */}
+        <div className="hidden md:grid grid-cols-[1fr_1fr_1fr] gap-4 mb-3 px-1">
           <div className="text-xs font-extrabold text-slate-400 uppercase tracking-widest pl-2">Area</div>
           <div className="flex items-center justify-center gap-1.5 bg-amber-50 border border-amber-100 rounded-xl py-2 px-3">
             <X size={13} className="text-amber-500 shrink-0" />
@@ -108,23 +114,66 @@ export default function ComparisonSection() {
             <motion.div
               key={i}
               variants={rowVariants}
-              className="grid grid-cols-[1fr_1fr_1fr] gap-3 md:gap-4 items-center"
             >
-              {/* Topic */}
-              <div className="bg-white border border-slate-200 rounded-xl px-3 md:px-4 py-3 shadow-sm">
-                <span className="text-xs md:text-sm font-bold text-slate-700">{row.topic}</span>
+              {/* Desktop — 3-column row */}
+              <div className="hidden md:grid grid-cols-[1fr_1fr_1fr] gap-4 items-center">
+                <div className="bg-white border border-slate-200 rounded-xl px-4 py-3 shadow-sm">
+                  <span className="text-sm font-bold text-slate-700">{row.icon} {row.topic}</span>
+                </div>
+                <div className="bg-amber-50/70 border border-amber-100 rounded-xl px-4 py-3 flex items-start gap-2">
+                  <X size={13} className="text-amber-400 mt-0.5 shrink-0" />
+                  <span className="text-sm text-amber-800 font-medium leading-snug">{row.without}</span>
+                </div>
+                <div className="bg-blue-50/60 border border-blue-100 rounded-xl px-4 py-3 flex items-start gap-2">
+                  <Check size={13} className="text-blue-600 mt-0.5 shrink-0" />
+                  <span className="text-sm text-blue-800 font-semibold leading-snug">{row.with}</span>
+                </div>
               </div>
 
-              {/* Without */}
-              <div className="bg-amber-50/70 border border-amber-100 rounded-xl px-3 md:px-4 py-3 flex items-start gap-2">
-                <X size={13} className="text-amber-400 mt-0.5 shrink-0" />
-                <span className="text-xs md:text-sm text-amber-800 font-medium leading-snug">{row.without}</span>
-              </div>
+              {/* Mobile — Premium Vertical Before → After card */}
+              <div
+                className="md:hidden rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-slate-100 relative"
+                style={{ background: "linear-gradient(180deg, #FFFDF7 0%, #F8FAFF 100%)" }}
+              >
+                {/* Gradient left accent bar — amber → emerald */}
+                <div
+                  className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl"
+                  style={{ background: "linear-gradient(180deg, #f59e0b 0%, #10b981 100%)" }}
+                />
 
-              {/* With */}
-              <div className="bg-blue-50/60 border border-blue-100 rounded-xl px-3 md:px-4 py-3 flex items-start gap-2">
-                <Check size={13} className="text-blue-600 mt-0.5 shrink-0" />
-                <span className="text-xs md:text-sm text-blue-800 font-semibold leading-snug">{row.with}</span>
+                {/* Topic header with emoji */}
+                <div className="px-5 pt-4 pb-2 flex items-center gap-2">
+                  <span className="text-base">{row.icon}</span>
+                  <span className="text-[13px] font-extrabold text-slate-900">{row.topic}</span>
+                </div>
+
+                {/* Before (pain) */}
+                <div className="mx-4 bg-amber-50/80 border border-amber-100/60 rounded-xl px-3.5 py-3 flex items-center gap-2.5">
+                  <div className="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
+                    <X size={10} className="text-amber-500" strokeWidth={3} />
+                  </div>
+                  <span className="text-[12px] text-amber-800 font-medium leading-snug">{row.without}</span>
+                </div>
+
+                {/* Gradient arrow */}
+                <div className="flex justify-center py-2">
+                  <div className="flex flex-col items-center gap-0.5">
+                    <div className="w-[1.5px] h-3 rounded-full" style={{ background: "linear-gradient(180deg, #f59e0b, #10b981)" }} />
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+                      <path d="M1 1L5 5L9 1" stroke="#10b981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* After (solution) — with shimmer */}
+                <div className="mx-4 mb-4 bg-emerald-50/80 border border-emerald-100/60 rounded-xl px-3.5 py-3 flex items-center gap-2.5 relative overflow-hidden">
+                  <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                    <Check size={10} className="text-emerald-600" strokeWidth={3} />
+                  </div>
+                  <span className="text-[12px] text-emerald-700 font-bold leading-snug">{row.with}</span>
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 -translate-x-full animate-[shimmer_3s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+                </div>
               </div>
             </motion.div>
           ))}
@@ -137,7 +186,7 @@ export default function ComparisonSection() {
         >
           <MagneticButton
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="px-8 py-4 bg-slate-900 text-white font-bold rounded-full hover:bg-blue-600 transition-colors shadow-xl hover:shadow-blue-600/20 duration-300 flex items-center gap-3 cursor-none text-base md:text-lg"
+            className="px-8 py-4 bg-slate-900 text-white font-bold rounded-full hover:bg-blue-600 transition-colors shadow-xl hover:shadow-blue-600/20 duration-300 flex items-center gap-3 text-base md:text-lg"
           >
             Stop the Drain — Book Free Call
             <ArrowRight size={18} />

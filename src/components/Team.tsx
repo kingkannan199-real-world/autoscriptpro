@@ -39,7 +39,7 @@ export default function Team() {
   };
 
   return (
-    <section id="team" className="w-full py-28 bg-white relative z-10 border-t border-slate-100 cursor-none scroll-mt-20">
+    <section id="team" className="w-full py-28 bg-white relative z-10 border-t border-slate-100 scroll-mt-20">
       
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-bl from-blue-50 to-transparent rounded-full blur-3xl opacity-50 pointer-events-none" />
 
@@ -57,10 +57,10 @@ export default function Team() {
           
           {/* Desktop Navigation Arrows */}
           <div className="hidden md:flex gap-3">
-            <button onClick={() => scroll("left")} disabled={!canScrollLeft} className={`p-3 rounded-full border transition-all cursor-none ${canScrollLeft ? "border-slate-300 hover:bg-slate-50 text-slate-900" : "border-slate-100 text-slate-300"}`}>
+            <button onClick={() => scroll("left")} disabled={!canScrollLeft} className={`p-3 rounded-full border transition-all ${canScrollLeft ? "border-slate-300 hover:bg-slate-50 text-slate-900" : "border-slate-100 text-slate-300"}`}>
               <ChevronLeft size={24} />
             </button>
-            <button onClick={() => scroll("right")} disabled={!canScrollRight} className={`p-3 rounded-full border transition-all cursor-none ${canScrollRight ? "border-slate-300 hover:bg-slate-50 text-slate-900" : "border-slate-100 text-slate-300"}`}>
+            <button onClick={() => scroll("right")} disabled={!canScrollRight} className={`p-3 rounded-full border transition-all ${canScrollRight ? "border-slate-300 hover:bg-slate-50 text-slate-900" : "border-slate-100 text-slate-300"}`}>
               <ChevronRight size={24} />
             </button>
           </div>
@@ -88,9 +88,9 @@ export default function Team() {
                   <p className="text-sm font-bold text-blue-500 uppercase tracking-wide mb-4">{member.role}</p>
                   <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">{member.bio}</p>
                   <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
-                    <a href={member.socials.github} className="text-slate-400 hover:text-slate-900 cursor-none"><Github size={20} /></a>
-                    <a href={member.socials.linkedin} className="text-slate-400 hover:text-blue-600 cursor-none"><Linkedin size={20} /></a>
-                    <a href={member.socials.email} className="text-slate-400 hover:text-red-500 cursor-none"><Mail size={20} /></a>
+                    <a href={member.socials.github} className="text-slate-400 hover:text-slate-900"><Github size={20} /></a>
+                    <a href={member.socials.linkedin} className="text-slate-400 hover:text-blue-600"><Linkedin size={20} /></a>
+                    <a href={member.socials.email} className="text-slate-400 hover:text-red-500"><Mail size={20} /></a>
                   </div>
                 </div>
               </motion.div>

@@ -92,7 +92,7 @@ export default function CaseStudies() {
   };
 
   return (
-    <section id="case-studies" className="w-full py-20 md:py-32 bg-slate-50 relative z-10 cursor-none overflow-hidden border-t border-slate-200">
+    <section id="case-studies" className="w-full py-20 md:py-32 bg-slate-50 relative z-10 overflow-hidden border-t border-slate-200">
       
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/50 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-[100px] pointer-events-none" />
@@ -100,7 +100,7 @@ export default function CaseStudies() {
       <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
         
         <div className="w-full lg:w-1/3 flex flex-col items-center lg:items-start text-center lg:text-left z-20">
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="inline-flex items-center justify-center px-4 py-1.5 mb-4 md:mb-6 rounded-full bg-white border border-blue-100 shadow-sm cursor-none">
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="inline-flex items-center justify-center px-4 py-1.5 mb-4 md:mb-6 rounded-full bg-white border border-blue-100 shadow-sm">
             <span className="text-xs md:text-sm font-bold text-blue-600 tracking-wider uppercase">Proven Impact</span>
           </motion.div>
 
@@ -114,10 +114,10 @@ export default function CaseStudies() {
           </motion.p>
 
           <div className="flex items-center gap-4">
-            <button onClick={handlePrev} className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:shadow-md transition-all duration-300 cursor-none active:scale-95">
+            <button onClick={handlePrev} className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-200 hover:shadow-md transition-all duration-300 active:scale-95">
               <ArrowLeft size={20} strokeWidth={2.5} className="md:w-6 md:h-6" />
             </button>
-            <button onClick={handleNext} className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-blue-600 border border-blue-500 shadow-lg shadow-blue-600/20 flex items-center justify-center text-white hover:bg-slate-900 hover:border-slate-800 hover:shadow-xl transition-all duration-300 cursor-none active:scale-95">
+            <button onClick={handleNext} className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-blue-600 border border-blue-500 shadow-lg shadow-blue-600/20 flex items-center justify-center text-white hover:bg-slate-900 hover:border-slate-800 hover:shadow-xl transition-all duration-300 active:scale-95">
               <ArrowRight size={20} strokeWidth={2.5} className="md:w-6 md:h-6" />
             </button>
           </div>
@@ -144,8 +144,8 @@ export default function CaseStudies() {
                   style={{ zIndex, transformOrigin: "top center" }}
                   className={`absolute top-0 left-0 right-0 mx-auto w-full max-w-2xl bg-white rounded-[2rem] overflow-hidden transition-all duration-300 ${
                     isFront
-                      ? "border-2 border-blue-400 shadow-[0_20px_60px_-10px_rgba(37,99,235,0.18)] cursor-none"
-                      : "border-2 border-slate-200 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.06)] cursor-none hover:border-blue-200"
+                      ? "border-2 border-blue-400 shadow-[0_20px_60px_-10px_rgba(37,99,235,0.18)]"
+                      : "border-2 border-slate-200 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.06)] hover:border-blue-200"
                   }`}
                 >
                   {isFront && <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-blue-600 to-indigo-600" />}
@@ -221,7 +221,7 @@ export default function CaseStudies() {
                       </div>
                       
                       {isFront && (
-                        <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="hidden md:flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-slate-900 transition-colors cursor-none group">
+                        <button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} className="hidden md:flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-slate-900 transition-colors group">
                           View Blueprint <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                         </button>
                       )}

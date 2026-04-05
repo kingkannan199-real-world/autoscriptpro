@@ -8,8 +8,6 @@ import AIChatWidget from "../components/AIChatWidget";
 import WhatsAppButton from "../components/WhatsAppButton";
 import BackToTop from "../components/BackToTop";
 import StickyCTA from "../components/StickyCTA";
-import SmoothCursor from "../components/SmoothCursor";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -60,7 +58,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} antialiased bg-white text-slate-900`}>
-        <SmoothCursor />
         <StickyCTA />
         <ScrollProgress />
         <Navbar />

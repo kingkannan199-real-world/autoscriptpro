@@ -8,16 +8,16 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <main className="min-h-screen bg-white cursor-none">
+    <main className="min-h-screen bg-white">
 
       {/* Navbar-style header */}
       <div className="border-b border-slate-100 px-6 py-5">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 cursor-none">
+          <Link href="/" className="flex items-center gap-2">
             <div className="w-7 h-7 bg-blue-600 rounded-md flex items-center justify-center font-bold text-white text-sm">A</div>
             <span className="text-base font-extrabold text-slate-900 tracking-tight">AutoScriptPro<span className="text-blue-600">.</span></span>
           </Link>
-          <Link href="/" className="text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors cursor-none">← Back to Home</Link>
+          <Link href="/" className="text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors">← Back to Home</Link>
         </div>
       </div>
 
@@ -33,7 +33,7 @@ export default function PrivacyPolicy() {
 
           <section>
             <h2 className="text-xl font-extrabold text-slate-900 mb-3">1. Who We Are</h2>
-            <p className="leading-relaxed">AutoScriptPro is a freelance technology and automation studio based in Chennai, Tamil Nadu, India. We provide AI automation, custom web development, and data solutions to businesses globally. For any privacy-related queries, contact us at <a href="mailto:autoscriptpro@gmail.com" className="text-blue-600 font-semibold hover:underline">autoscriptpro@gmail.com</a>.</p>
+            <p className="leading-relaxed">AutoScriptPro is a freelance technology and automation studio based in Chennai, Tamil Nadu, India. We provide AI automation, custom web development, and data solutions to businesses globally. For any privacy-related queries, contact us at <a href="mailto:reachout@autoscriptpro.in" className="text-blue-600 font-semibold hover:underline">reachout@autoscriptpro.in</a>.</p>
           </section>
 
           <section>
@@ -77,7 +77,7 @@ export default function PrivacyPolicy() {
               <li>Request deletion of your data</li>
               <li>Withdraw consent at any time</li>
             </ul>
-            <p className="mt-3 text-sm">To exercise these rights, email us at <a href="mailto:autoscriptpro@gmail.com" className="text-blue-600 font-semibold hover:underline">autoscriptpro@gmail.com</a>.</p>
+            <p className="mt-3 text-sm">To exercise these rights, email us at <a href="mailto:reachout@autoscriptpro.in" className="text-blue-600 font-semibold hover:underline">reachout@autoscriptpro.in</a>.</p>
           </section>
 
           <section>
@@ -92,14 +92,14 @@ export default function PrivacyPolicy() {
 
           <section>
             <h2 className="text-xl font-extrabold text-slate-900 mb-3">9. Contact</h2>
-            <p className="leading-relaxed">For any privacy concerns: <a href="mailto:autoscriptpro@gmail.com" className="text-blue-600 font-semibold hover:underline">autoscriptpro@gmail.com</a> · +91 72006 96059 · Chennai, Tamil Nadu, India.</p>
+            <p className="leading-relaxed">For any privacy concerns: <a href="mailto:reachout@autoscriptpro.in" className="text-blue-600 font-semibold hover:underline">reachout@autoscriptpro.in</a> · +91 72006 96059 · Chennai, Tamil Nadu, India.</p>
           </section>
 
         </div>
       </div>
 
       <div className="border-t border-slate-100 py-6 text-center text-xs text-slate-400">
-        © {new Date().getFullYear()} AutoScriptPro · <Link href="/terms" className="hover:text-blue-600 cursor-none">Terms & Conditions</Link>
+        © {new Date().getFullYear()} AutoScriptPro · <Link href="/terms" className="hover:text-blue-600">Terms & Conditions</Link>
       </div>
     </main>
   );

@@ -51,7 +51,7 @@ const itemVariants: Variants = {
 
 export default function Impact() {
   return (
-    <section id="impact" className="w-full py-20 md:py-32 bg-slate-50 relative z-10 overflow-hidden cursor-none border-t border-slate-200">
+    <section id="impact" className="w-full py-20 md:py-32 bg-slate-50 relative z-10 overflow-hidden border-t border-slate-200">
       
       {/* Light Mode Glows */}
       <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-blue-100 rounded-full blur-[120px] pointer-events-none" />
@@ -86,7 +86,7 @@ export default function Impact() {
               variants={itemVariants}
               className="h-full"
             >
-              <SpotlightCard className="h-full group cursor-none hover:-translate-y-1 transition-transform duration-500">
+              <SpotlightCard className="h-full group hover:-translate-y-1 transition-transform duration-500">
                 <div className="relative h-full w-full bg-white flex flex-col items-center justify-center p-6 md:p-8 rounded-[23px] z-10 text-center shadow-sm group-hover:shadow-xl transition-shadow duration-300">
                   <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-blue-400 mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-500 drop-shadow-sm">
                     {stat.displayValue}

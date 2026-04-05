@@ -66,7 +66,7 @@ export default function Services() {
                 className="h-full"
               >
                 <SpotlightCard className="h-full">
-                  <div className="h-full w-full bg-slate-50 p-5 md:p-8 rounded-2xl md:rounded-3xl group cursor-none text-left md:text-center flex items-start md:items-center md:flex-col gap-4 md:gap-0 z-10 relative">
+                  <div className="h-full w-full bg-slate-50 p-5 md:p-8 rounded-2xl md:rounded-3xl group text-left md:text-center flex items-start md:items-center md:flex-col gap-4 md:gap-0 z-10 relative">
                     <div className="w-12 h-12 md:w-14 md:h-14 shrink-0 bg-white shadow-sm text-slate-600 rounded-xl md:rounded-2xl flex items-center justify-center md:mb-6 group-hover:bg-slate-900 group-hover:text-white transition-all z-10 relative">
                       <point.icon size={22} strokeWidth={2.5} />
                     </div>
@@ -90,7 +90,7 @@ export default function Services() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100 cursor-none"
+            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100"
           >
             <span className="text-xs md:text-sm font-bold text-blue-600 tracking-wider uppercase">AutoScriptPro Solutions</span>
           </motion.div>
@@ -115,7 +115,7 @@ export default function Services() {
                 className="h-full rounded-2xl md:rounded-3xl"
               >
                 <SpotlightCard className="h-full">
-                  <div className="h-full w-full bg-white/90 backdrop-blur-sm text-left p-6 md:p-10 rounded-2xl md:rounded-3xl group cursor-none relative z-10">
+                  <div className="h-full w-full bg-white/90 backdrop-blur-sm text-left p-6 md:p-10 rounded-2xl md:rounded-3xl group relative z-10">
                     <div className="relative z-10">
                       <div className="relative w-12 h-12 md:w-16 md:h-16 mb-5 md:mb-8">
                         <div className="absolute inset-0 bg-blue-500 rounded-xl md:rounded-2xl blur-lg md:blur-xl opacity-0 group-hover:opacity-40 transition-all" />

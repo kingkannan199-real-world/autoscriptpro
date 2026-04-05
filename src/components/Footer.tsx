@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MessageSquare, Github, Linkedin, Twitter, ArrowRight, Clock } from "lucide-react";
+import { Mail, Phone, MessageSquare, Github, Linkedin, Twitter, ArrowRight } from "lucide-react";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -22,15 +22,15 @@ const services = [
 ];
 
 const socials = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter / X" },
-  { icon: Mail, href: "mailto:autoscriptpro@gmail.com", label: "Email" },
+  { icon: Github, href: "https://github.com/autoscriptpro", label: "GitHub" },
+  { icon: Linkedin, href: "https://linkedin.com/company/autoscriptpro", label: "LinkedIn" },
+  { icon: Twitter, href: "https://x.com/autoscriptpro", label: "Twitter / X" },
+  { icon: Mail, href: "mailto:reachout@autoscriptpro.in", label: "Email" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-slate-950 text-slate-400 relative z-10 overflow-hidden cursor-none">
+    <footer className="w-full bg-slate-950 text-slate-400 relative z-10 overflow-hidden">
 
       {/* Top gradient divider */}
       <div className="w-full h-px bg-gradient-to-r from-transparent via-blue-600/40 to-transparent" />
@@ -47,9 +47,16 @@ export default function Footer() {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             className="flex items-center gap-2 cursor-pointer w-fit"
           >
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white text-lg">A</div>
-            <span className="text-lg font-extrabold text-white tracking-tight">
-              AutoScriptPro<span className="text-blue-500">.</span>
+            <img
+              src="/logo-icon.png"
+              alt=""
+              className="h-8 w-auto rounded-md"
+              draggable={false}
+            />
+            <span className="text-lg font-extrabold tracking-tight leading-none flex">
+              <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(90deg, #202a62, #1c4b95)" }}>Auto</span>
+              <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(90deg, #1d8955, #f8b312)" }}>Script</span>
+              <span className="bg-clip-text text-transparent ml-1" style={{ backgroundImage: "linear-gradient(90deg, #de4126, #d03121)" }}>Pro</span>
             </span>
           </div>
 
@@ -64,7 +71,9 @@ export default function Footer() {
                 key={label}
                 href={href}
                 aria-label={label}
-                className="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all duration-300 cursor-none"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 hover:text-white hover:bg-blue-600 hover:border-blue-600 transition-all duration-300"
               >
                 <Icon size={16} />
               </a>
@@ -78,9 +87,12 @@ export default function Footer() {
           </div>
 
           {/* Business hours */}
-          <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-            <Clock size={12} className="text-slate-600 shrink-0" />
-            <span>Mon–Sat, 9AM–7PM <span className="text-slate-400 font-bold">IST</span></span>
+          <div className="flex items-center gap-2 text-xs text-slate-400 font-bold">
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-full w-full bg-emerald-500"></span>
+            </span>
+            <span>Always Online · We Never Sleep</span>
           </div>
         </div>
 
@@ -92,7 +104,7 @@ export default function Footer() {
               <li key={label}>
                 <a
                   href={href}
-                  className="text-sm font-medium text-slate-500 hover:text-blue-400 transition-colors flex items-center gap-2 group cursor-none"
+                  className="text-sm font-medium text-slate-500 hover:text-blue-400 transition-colors flex items-center gap-2 group"
                 >
                   <ArrowRight size={12} className="opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all text-blue-500" />
                   {label}
@@ -110,7 +122,7 @@ export default function Footer() {
               <li key={service}>
                 <a
                   href="#services"
-                  className="text-sm font-medium text-slate-500 hover:text-blue-400 transition-colors cursor-none"
+                  className="text-sm font-medium text-slate-500 hover:text-blue-400 transition-colors"
                 >
                   {service}
                 </a>
@@ -124,14 +136,14 @@ export default function Footer() {
           <h4 className="text-sm font-extrabold text-white uppercase tracking-widest">Get In Touch</h4>
 
           <div className="flex flex-col gap-4">
-            <a href="mailto:autoscriptpro@gmail.com" className="flex items-center gap-3 group cursor-none">
+            <a href="mailto:reachout@autoscriptpro.in" className="flex items-center gap-3 group">
               <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 shrink-0">
                 <Mail size={14} />
               </div>
-              <span className="text-sm text-slate-500 group-hover:text-slate-200 transition-colors font-medium">autoscriptpro@gmail.com</span>
+              <span className="text-sm text-slate-500 group-hover:text-slate-200 transition-colors font-medium">reachout@autoscriptpro.in</span>
             </a>
 
-            <a href="tel:+917200696059" className="flex items-center gap-3 group cursor-none">
+            <a href="tel:+917200696059" className="flex items-center gap-3 group">
               <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:bg-blue-600 group-hover:text-white group-hover:border-blue-600 transition-all duration-300 shrink-0">
                 <Phone size={14} />
               </div>
@@ -142,7 +154,7 @@ export default function Footer() {
               href="https://wa.me/917200696059?text=Hi%20AutoScriptPro,%20I'm%20interested%20in%20scaling%20my%20business."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 group cursor-none"
+              className="flex items-center gap-3 group"
             >
               <div className="w-8 h-8 rounded-lg bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-400 group-hover:bg-emerald-600 group-hover:text-white group-hover:border-emerald-600 transition-all duration-300 shrink-0">
                 <MessageSquare size={14} />
@@ -156,7 +168,7 @@ export default function Footer() {
             href="#contact"
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
-            className="mt-2 w-full py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 transition-colors cursor-none"
+            className="mt-2 w-full py-3 px-4 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 transition-colors"
           >
             Book Free Consultation
             <ArrowRight size={15} />
@@ -167,16 +179,14 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="border-t border-slate-800/60">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-slate-600 font-medium">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 pb-20 md:pb-5 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-slate-600 font-medium text-center md:text-left">
             © {new Date().getFullYear()} AutoScriptPro. All rights reserved.
           </p>
-          <div className="flex items-center gap-4 text-xs text-slate-600 font-medium">
-            <a href="/privacy-policy" className="hover:text-slate-400 transition-colors cursor-none">Privacy Policy</a>
-            <span className="w-1 h-1 rounded-full bg-slate-700" />
-            <a href="/terms" className="hover:text-slate-400 transition-colors cursor-none">Terms & Conditions</a>
-            <span className="w-1 h-1 rounded-full bg-slate-700" />
-            <span>Built with <span className="text-blue-500 font-bold">Next.js</span> · <span className="text-blue-500 font-bold">Chennai, India</span></span>
+          <div className="flex items-center gap-3 text-xs text-slate-600 font-medium flex-wrap justify-center md:pr-52">
+            <a href="/privacy-policy" className="hover:text-slate-400 transition-colors">Privacy Policy</a>
+            <span className="w-1 h-1 rounded-full bg-slate-700 shrink-0" />
+            <a href="/terms" className="hover:text-slate-400 transition-colors">Terms & Conditions</a>
           </div>
         </div>
       </div>

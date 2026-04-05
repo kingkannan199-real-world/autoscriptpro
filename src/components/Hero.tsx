@@ -46,7 +46,7 @@ export default function Hero() {
   return (
     <section
       onMouseMove={handleMouseMove}
-      className="relative w-full min-h-[80vh] flex flex-col items-center justify-center bg-white overflow-hidden pt-28 md:pt-20 pb-10 md:pb-16"
+      className="relative w-full min-h-[80vh] flex flex-col items-center justify-center bg-white overflow-hidden pt-20 md:pt-20 pb-10 md:pb-16"
     >
       <AutomationBackground mousePosition={mousePosition} />
 
@@ -57,7 +57,7 @@ export default function Hero() {
         <div className="orb-float-3 absolute top-[45%] right-[22%] w-[260px] h-[260px] bg-blue-400/8 rounded-full blur-[70px]" />
       </div>
 
-      <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10 flex flex-col items-center text-center mt-10 md:mt-0">
+      <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10 flex flex-col items-center text-center">
 
         <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 mb-6 md:mb-8">
           {/* Live badge */}

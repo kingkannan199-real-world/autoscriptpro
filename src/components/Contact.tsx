@@ -67,7 +67,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="w-full py-20 md:py-28 bg-white relative z-10 overflow-hidden cursor-none">
+    <section id="contact" className="w-full py-20 md:py-28 bg-white relative z-10 overflow-hidden">
       
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[120px] opacity-60 pointer-events-none" />
@@ -75,7 +75,7 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-5 lg:px-8 relative z-10 mt-8 md:mt-0">
         
         <div className="text-center mb-12 md:mb-20">
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="inline-flex items-center justify-center px-4 py-1.5 mb-4 md:mb-6 rounded-full bg-blue-50 border border-blue-100 cursor-none">
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="inline-flex items-center justify-center px-4 py-1.5 mb-4 md:mb-6 rounded-full bg-blue-50 border border-blue-100">
             <span className="text-xs md:text-sm font-bold text-blue-600 tracking-wider uppercase">Book Your Call</span>
           </motion.div>
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 md:mb-6 tracking-tight">
@@ -146,17 +146,17 @@ export default function Contact() {
             </div>
 
             {/* Contact cards */}
-            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group cursor-none">
+            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group">
               <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 text-blue-600 shrink-0">
                 <Mail size={17} />
               </div>
               <div>
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Email</p>
-                <p className="text-sm font-bold text-slate-900">autoscriptpro@gmail.com</p>
+                <p className="text-sm font-bold text-slate-900">reachout@autoscriptpro.in</p>
               </div>
             </div>
 
-            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group cursor-none">
+            <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-4 hover:shadow-lg hover:border-blue-200 transition-all duration-300 group">
               <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 text-blue-600 shrink-0">
                 <Phone size={17} />
               </div>
@@ -170,7 +170,7 @@ export default function Contact() {
               href="https://wa.me/917200696059?text=Hi%20AutoScriptPro,%20I'm%20interested%20in%20scaling%20my%20business%20with%20AI%20and%20Automation."
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-3.5 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold rounded-2xl transition-colors duration-200 cursor-none text-sm shadow-lg shadow-green-500/20 pointer-events-auto"
+              className="flex items-center justify-center gap-2 py-3.5 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold rounded-2xl transition-colors duration-200 text-sm shadow-lg shadow-green-500/20 pointer-events-auto"
             >
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 shrink-0">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -186,26 +186,26 @@ export default function Contact() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div className="space-y-1.5 md:space-y-2">
                   <label className="text-xs md:text-sm font-bold text-slate-700">Full Name *</label>
-                  <input required name="name" value={formData.name} onChange={handleChange} type="text" placeholder="Raju" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
+                  <input required name="name" value={formData.name} onChange={handleChange} type="text" placeholder="Raju" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base text-slate-900 placeholder:text-slate-400" />
                 </div>
                 <div className="space-y-1.5 md:space-y-2">
                   <label className="text-xs md:text-sm font-bold text-slate-700">Email Address *</label>
-                  <input required name="email" value={formData.email} onChange={handleChange} type="email" inputMode="email" placeholder="raju@company.com" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
+                  <input required name="email" value={formData.email} onChange={handleChange} type="email" inputMode="email" placeholder="raju@company.com" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base text-slate-900 placeholder:text-slate-400" />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div className="space-y-1.5 md:space-y-2">
                   <label className="text-xs md:text-sm font-bold text-slate-700">Company Name</label>
-                  <input name="company" value={formData.company} onChange={handleChange} type="text" placeholder="Your Company" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
+                  <input name="company" value={formData.company} onChange={handleChange} type="text" placeholder="Your Company" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base text-slate-900 placeholder:text-slate-400" />
                 </div>
                 <div className="space-y-1.5 md:space-y-2">
                   <label className="text-xs md:text-sm font-bold text-slate-700">Phone Number</label>
-                  <input type="tel" inputMode="tel" value={phone} onChange={handlePhoneChange} placeholder="+91 98765 43210" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base" />
+                  <input type="tel" inputMode="tel" value={phone} onChange={handlePhoneChange} placeholder="+91 98765 43210" className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base text-slate-900 placeholder:text-slate-400" />
                 </div>
               </div>
               <div className="space-y-1.5 md:space-y-2">
                 <label className="text-xs md:text-sm font-bold text-slate-700">Service Interest</label>
-                <select name="service" value={formData.service} onChange={handleChange} required className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base appearance-none bg-white">
+                <select name="service" value={formData.service} onChange={handleChange} required className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base text-slate-900 appearance-none bg-white">
                   <option value="" disabled>Select a service...</option>
                   <option value="ai-agents">Automation & AI Agents</option>
                   <option value="web-dev">Web & Custom Development</option>
@@ -217,7 +217,7 @@ export default function Contact() {
               </div>
               <div className="space-y-1.5 md:space-y-2">
                 <label className="text-xs md:text-sm font-bold text-slate-700">Message *</label>
-                <textarea name="message" value={formData.message} onChange={handleChange} required rows={3} placeholder="Tell us about your bottleneck..." className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base resize-none"></textarea>
+                <textarea name="message" value={formData.message} onChange={handleChange} required rows={3} placeholder="Tell us about your bottleneck..." className="w-full px-4 md:px-5 py-3 md:py-4 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 text-sm md:text-base text-slate-900 placeholder:text-slate-400 resize-none"></textarea>
               </div>
 
               {/* Honeypot — hidden from real users, bots fill it */}
@@ -236,7 +236,7 @@ export default function Contact() {
               <button 
                 type="submit"
                 disabled={submitState === "loading" || submitState === "success"}
-                className={`w-full py-3 md:py-4 font-bold rounded-xl transition-all duration-500 flex items-center justify-center cursor-none mt-2 relative overflow-hidden ${
+                className={`w-full py-3 md:py-4 font-bold rounded-xl transition-all duration-500 flex items-center justify-center mt-2 relative overflow-hidden ${
                   submitState === "success" 
                     ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30" 
                     : submitState === "error"

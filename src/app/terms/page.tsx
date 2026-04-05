@@ -8,15 +8,15 @@ export const metadata: Metadata = {
 
 export default function Terms() {
   return (
-    <main className="min-h-screen bg-white cursor-none">
+    <main className="min-h-screen bg-white">
 
       <div className="border-b border-slate-100 px-6 py-5">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 cursor-none">
+          <Link href="/" className="flex items-center gap-2">
             <div className="w-7 h-7 bg-blue-600 rounded-md flex items-center justify-center font-bold text-white text-sm">A</div>
             <span className="text-base font-extrabold text-slate-900 tracking-tight">AutoScriptPro<span className="text-blue-600">.</span></span>
           </Link>
-          <Link href="/" className="text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors cursor-none">← Back to Home</Link>
+          <Link href="/" className="text-sm font-bold text-slate-500 hover:text-blue-600 transition-colors">← Back to Home</Link>
         </div>
       </div>
 
@@ -92,14 +92,14 @@ export default function Terms() {
 
           <section>
             <h2 className="text-xl font-extrabold text-slate-900 mb-3">11. Contact</h2>
-            <p className="leading-relaxed">Questions about these terms? Reach us at <a href="mailto:autoscriptpro@gmail.com" className="text-blue-600 font-semibold hover:underline">autoscriptpro@gmail.com</a> · +91 72006 96059.</p>
+            <p className="leading-relaxed">Questions about these terms? Reach us at <a href="mailto:reachout@autoscriptpro.in" className="text-blue-600 font-semibold hover:underline">reachout@autoscriptpro.in</a> · +91 72006 96059.</p>
           </section>
 
         </div>
       </div>
 
       <div className="border-t border-slate-100 py-6 text-center text-xs text-slate-400">
-        © {new Date().getFullYear()} AutoScriptPro · <Link href="/privacy-policy" className="hover:text-blue-600 cursor-none">Privacy Policy</Link>
+        © {new Date().getFullYear()} AutoScriptPro · <Link href="/privacy-policy" className="hover:text-blue-600">Privacy Policy</Link>
       </div>
     </main>
   );

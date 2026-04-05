@@ -32,7 +32,7 @@ export default function FAQ() {
   const toggleFAQ = (index: number) => setOpenIndex(openIndex === index ? null : index);
 
   return (
-    <section id="faq" className="w-full py-20 md:py-28 bg-slate-50 relative z-10 cursor-none scroll-mt-20 border-t border-slate-200">
+    <section id="faq" className="w-full py-20 md:py-28 bg-slate-50 relative z-10 scroll-mt-20 border-t border-slate-200">
       
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
@@ -40,7 +40,7 @@ export default function FAQ() {
         <div className="text-center mb-12 md:mb-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }}
-            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100 cursor-none"
+            className="inline-flex items-center justify-center px-4 py-1.5 mb-6 rounded-full bg-blue-50 border border-blue-100"
           >
             <span className="text-sm font-bold text-blue-600 tracking-wider uppercase">F.A.Q</span>
           </motion.div>
@@ -69,7 +69,7 @@ export default function FAQ() {
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full flex items-center justify-between p-5 md:p-8 text-left cursor-none focus:outline-none group"
+                  className="w-full flex items-center justify-between p-5 md:p-8 text-left focus:outline-none group"
                 >
                   <span className={`text-base md:text-xl font-bold transition-colors duration-300 pr-4 md:pr-8 ${isOpen ? "text-blue-600" : "text-slate-900 group-hover:text-blue-600"}`}>
                     {faq.question}
@@ -110,7 +110,7 @@ export default function FAQ() {
           <div className="flex flex-col sm:flex-row gap-3 relative z-10 shrink-0">
             <button
               onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-colors duration-200 cursor-none text-sm whitespace-nowrap"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-full transition-colors duration-200 text-sm whitespace-nowrap"
             >
               Book Free Consultation
               <ArrowRight size={15} />
@@ -119,7 +119,7 @@ export default function FAQ() {
               href="https://wa.me/917200696059?text=Hi%20AutoScriptPro,%20I%20have%20a%20question!"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-full transition-colors duration-200 cursor-none text-sm border border-white/20 whitespace-nowrap pointer-events-auto"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-full transition-colors duration-200 text-sm border border-white/20 whitespace-nowrap pointer-events-auto"
             >
               <MessageCircle size={15} />
               Chat on WhatsApp

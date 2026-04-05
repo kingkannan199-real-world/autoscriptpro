@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import MagneticButton from "./MagneticButton";
@@ -8,68 +8,32 @@ import MagneticButton from "./MagneticButton";
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
-  const [navVisible, setNavVisible] = useState(true);
-  const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const currentY = window.scrollY;
-
-      // Always show navbar while scrolling
-      setNavVisible(true);
-
-      // Clear existing hide timer
-      if (hideTimer.current) clearTimeout(hideTimer.current);
-
-      // Hide after 1.5s of no scrolling (only past hero)
-      if (currentY > 80) {
-        hideTimer.current = setTimeout(() => {
-          setNavVisible(false);
-        }, 1500);
-      }
-
-      lastScrollY.current = currentY;
-    };
-
-    // Show on any mouse/touch movement too
-    const onActivity = () => {
-      setNavVisible(true);
-      if (hideTimer.current) clearTimeout(hideTimer.current);
-      if (lastScrollY.current > 80) {
-        hideTimer.current = setTimeout(() => setNavVisible(false), 1500);
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("mousemove", onActivity, { passive: true });
-    window.addEventListener("touchstart", onActivity, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("mousemove", onActivity);
-      window.removeEventListener("touchstart", onActivity);
-      if (hideTimer.current) clearTimeout(hideTimer.current);
-    };
-  }, []);
-
 
   return (
     <motion.header
       initial={{ y: -100, x: "-50%" }}
-      animate={{ y: navVisible ? 0 : -120, x: "-50%", opacity: navVisible ? 1 : 0 }}
+      animate={{ y: 0, x: "-50%", opacity: 1 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className="fixed top-8 left-1/2 z-[100] w-[90%] max-w-5xl bg-white/80 backdrop-blur-xl border border-slate-200 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] rounded-full px-4 md:px-6 py-2 navbar-border-anim"
     >
       <div className="flex items-center justify-between h-12 md:h-14 relative" style={{ zIndex: 3 }}>
         
-        {/* Brand Logo - Added pointer-events-auto so clicking works even with custom cursor */}
+        {/* Brand Logo */}
         <div 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center gap-2 cursor-pointer pointer-events-auto"
+          className="flex items-center gap-2 cursor-pointer pointer-events-auto group/logo"
         >
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white text-lg">A</div>
-          <span className="text-lg font-extrabold text-slate-900 tracking-tight">AutoScriptPro<span className="text-blue-600">.</span></span>
+          <img
+            src="/logo-icon.png"
+            alt=""
+            className="h-7 md:h-8 w-auto rounded-md group-hover/logo:scale-105 transition-transform duration-300"
+            draggable={false}
+          />
+          <span className="text-[15px] md:text-lg font-extrabold tracking-tight leading-none flex">
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(90deg, #202a62, #1c4b95)" }}>Auto</span>
+            <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(90deg, #1d8955, #f8b312)" }}>Script</span>
+            <span className="bg-clip-text text-transparent ml-1" style={{ backgroundImage: "linear-gradient(90deg, #de4126, #d03121)" }}>Pro</span>
+          </span>
         </div>
 
         {/* Nav Links */}
@@ -80,13 +44,13 @@ export default function Navbar() {
           {["Services", "Process", "Pricing", "Case Studies", "FAQ"].map((item) => (
             <div
               key={item}
-              className="relative px-3 py-2 cursor-none"
+              className="relative px-3 py-2"
               onMouseEnter={() => setHoveredLink(item)}
             >
               {hoveredLink === item && (
                 <motion.div layoutId="nav-pill" className="absolute inset-0 bg-slate-100/80 rounded-full -z-10" transition={{ type: "spring", bounce: 0.2, duration: 0.6 }} />
               )}
-              <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors relative z-10 cursor-none">
+              <a href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} className="text-sm font-bold text-slate-600 hover:text-blue-600 transition-colors relative z-10">
                 {item}
               </a>
             </div>
@@ -102,7 +66,7 @@ export default function Navbar() {
             Book Free Consultation
           </MagneticButton>
 
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden p-2 text-slate-900 hover:bg-slate-100 rounded-full transition-colors cursor-none pointer-events-auto">
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden p-2 text-slate-900 hover:bg-slate-100 rounded-full transition-colors pointer-events-auto">
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>

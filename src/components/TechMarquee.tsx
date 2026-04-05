@@ -17,7 +17,7 @@ const technologies = [
 
 export default function TechMarquee() {
   return (
-    <section className="py-12 border-b border-slate-100 bg-white overflow-hidden cursor-none">
+    <section className="py-12 border-b border-slate-100 bg-white overflow-hidden">
       
       <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-8 text-center">
         <p className="text-xs font-bold text-slate-400 tracking-[0.2em] uppercase">

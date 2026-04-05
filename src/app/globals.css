@@ -8,12 +8,19 @@
   --foreground: #171717;
 }
 
+/* Shimmer animation for comparison cards */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
 html, body {
   background-color: #ffffff !important;
   margin: 0 !important;
   padding: 0 !important;
   width: 100%;
   overflow-x: hidden;
+  position: relative;
 }
 
 html {
@@ -187,3 +194,102 @@ nextjs-portal,
 .orb-float-1 { animation: orb-float-1 9s  ease-in-out infinite; }
 .orb-float-2 { animation: orb-float-2 11s ease-in-out infinite; }
 .orb-float-3 { animation: orb-float-3 7s  ease-in-out infinite; }
+
+/* ── Process Card Border-Draw Animation ─────────────────────── */
+@property --card-sweep {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes card-border-draw {
+  0%   { --card-sweep: 0deg; }
+  100% { --card-sweep: 360deg; }
+}
+
+.card-border-wrap {
+  position: relative;
+  border-radius: 1.5rem;
+}
+
+.card-border-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: calc(1.5rem + 3px);
+  padding: 3px;
+  background: conic-gradient(
+    from var(--border-start, 0deg),
+    var(--card-color, #3b82f6) 0deg,
+    var(--card-color, #3b82f6) var(--card-sweep),
+    transparent var(--card-sweep),
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+/* Soft outer glow behind the border for premium look */
+.card-border-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: calc(1.5rem + 6px);
+  background: conic-gradient(
+    from var(--border-start, 0deg),
+    var(--card-color, #3b82f6) 0deg,
+    var(--card-color, #3b82f6) var(--card-sweep),
+    transparent var(--card-sweep),
+    transparent 360deg
+  );
+  opacity: 0;
+  filter: blur(8px);
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.card-border-wrap.active::before {
+  opacity: 1;
+  animation: card-border-draw 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.card-border-wrap.active::after {
+  opacity: 0.3;
+  animation: card-border-draw 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Thinner border on mobile */
+@media (max-width: 767px) {
+  .card-border-wrap {
+    border-radius: 0.75rem;
+  }
+  .card-border-wrap::before {
+    inset: -1.5px;
+    border-radius: calc(0.75rem + 1.5px);
+    padding: 1.5px;
+  }
+  .card-border-wrap::after {
+    inset: -3px;
+    border-radius: calc(0.75rem + 3px);
+    filter: blur(4px);
+  }
+  .card-border-wrap.active::after {
+    opacity: 0.2;
+  }
+}
+
+/* Left cards — border starts drawing from the right (timeline side) */
+.card-border-wrap.from-right { --border-start: 0deg; }
+/* Right cards — border starts drawing from the left (timeline side) */
+.card-border-wrap.from-left { --border-start: 180deg; }
+
+/* Mobile — always start from the left (timeline is on the left) */
+@media (max-width: 767px) {
+  .card-border-wrap.from-right { --border-start: 180deg; }
+}

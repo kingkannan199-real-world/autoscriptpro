@@ -81,7 +81,7 @@ export default function SocialProofToast() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="pointer-events-auto w-[320px] bg-white/90 backdrop-blur-xl border border-slate-200/60 p-4 rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] relative overflow-hidden group cursor-none"
+            className="pointer-events-auto w-[320px] bg-white/90 backdrop-blur-xl border border-slate-200/60 p-4 rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] relative overflow-hidden group"
           >
             {/* Subtle blue accent line on the left */}
             <div className="absolute top-0 left-0 w-1 h-full bg-blue-600" />
@@ -111,7 +111,7 @@ export default function SocialProofToast() {
                   setIsVisible(false);
                   setHasBeenDismissed(true);
                 }}
-                className="flex-shrink-0 text-slate-400 hover:text-slate-600 transition-colors p-1 cursor-none rounded-md hover:bg-slate-100"
+                className="flex-shrink-0 text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-md hover:bg-slate-100"
               >
                 <X size={14} />
               </button>
