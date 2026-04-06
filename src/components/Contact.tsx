@@ -34,24 +34,45 @@ export default function Contact() {
     setErrorMessage("");
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          phone: phone,
-          service: formData.service,
-          message: formData.message,
-          _honeypot: honeypot,
-        }),
-      });
+      // Honeypot check
+      if (honeypot) {
+        setSubmitState("success");
+        return;
+      }
 
-      const data = await res.json();
+      // Client-side validation
+      if (!formData.name.trim() || formData.name.trim().length < 2) {
+        throw new Error("Please provide a valid name.");
+      }
+      if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+        throw new Error("Please provide a valid email address.");
+      }
+      if (!formData.service) {
+        throw new Error("Please select a service.");
+      }
+      if (!formData.message.trim() || formData.message.trim().length < 10) {
+        throw new Error("Please provide a message (at least 10 characters).");
+      }
 
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || "Something went wrong. Please try again.");
+      // Send directly to Google Apps Script
+      const res = await fetch(
+        "https://script.google.com/macros/s/AKfycbw5jmAl-yCPPLpKxtXNh89CSvLLpYNXg0IkOjpSPe0MIgPvmlLW66AM0Ng8wCCJRW8/exec",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            company: formData.company?.trim() || "",
+            phone: phone?.trim() || "",
+            service: formData.service,
+            message: formData.message.trim(),
+            submittedAt: new Date().toISOString(),
+          }),
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Something went wrong. Please try again.");
       }
 
       setSubmitState("success");

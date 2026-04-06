@@ -66,7 +66,7 @@ export default function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-full w-full bg-blue-600"></span>
             </span>
-            <span className="text-[11px] md:text-sm font-bold text-slate-600 whitespace-nowrap">Engineered in Chennai 🇮🇳 · Free Consultation</span>
+            <span className="text-[11px] md:text-sm font-bold text-slate-600 whitespace-nowrap">Engineered in Chennai · Free Consultation</span>
           </div>
         </motion.div>
 

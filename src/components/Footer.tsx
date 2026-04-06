@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, Phone, MessageSquare, Github, Linkedin, Twitter, ArrowRight } from "lucide-react";
+import { Mail, Phone, MessageSquare, Instagram, Linkedin, ArrowRight } from "lucide-react";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -22,9 +22,8 @@ const services = [
 ];
 
 const socials = [
-  { icon: Github, href: "https://github.com/autoscriptpro", label: "GitHub" },
+  { icon: Instagram, href: "https://instagram.com/autoscriptpro", label: "Instagram" },
   { icon: Linkedin, href: "https://linkedin.com/company/autoscriptpro", label: "LinkedIn" },
-  { icon: Twitter, href: "https://x.com/autoscriptpro", label: "Twitter / X" },
   { icon: Mail, href: "mailto:reachout@autoscriptpro.in", label: "Email" },
 ];
 
@@ -82,7 +81,6 @@ export default function Footer() {
 
           {/* Location badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-800/60 border border-slate-700/50 rounded-full w-fit">
-            <span className="text-lg leading-none">🇮🇳</span>
             <span className="text-xs font-bold text-slate-400 tracking-wide">Engineered in Chennai</span>
           </div>
 

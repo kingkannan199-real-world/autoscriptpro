@@ -6,31 +6,31 @@ import MagneticButton from "./MagneticButton";
 
 const rows = [
   {
-    icon: "🔄",
+    icon: "⚡",
     topic: "Repetitive daily tasks",
     without: "Done manually, 3–6 hrs/day",
     with: "Fully automated, 0 human hours",
   },
   {
-    icon: "📞",
+    icon: "🎯",
     topic: "Lead follow-up",
     without: "Missed calls, delayed replies",
     with: "Instant WhatsApp + email response",
   },
   {
-    icon: "📊",
+    icon: "📈",
     topic: "Data & reports",
     without: "Spreadsheets built every Monday",
     with: "Live dashboard, auto-updated",
   },
   {
-    icon: "🧑‍💼",
+    icon: "🛡️",
     topic: "New employee onboarding",
     without: "Week-long manual process",
     with: "Automated workflow, day one ready",
   },
   {
-    icon: "💬",
+    icon: "🤖",
     topic: "Customer support",
     without: "One person answering the same 10 questions",
     with: "AI agent handles 80% of queries 24/7",
@@ -130,49 +130,42 @@ export default function ComparisonSection() {
                 </div>
               </div>
 
-              {/* Mobile — Premium Vertical Before → After card */}
+              {/* Mobile — Side-by-side Before | After row */}
               <div
                 className="md:hidden rounded-2xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.06)] border border-slate-100 relative"
                 style={{ background: "linear-gradient(180deg, #FFFDF7 0%, #F8FAFF 100%)" }}
               >
-                {/* Gradient left accent bar — amber → emerald */}
-                <div
-                  className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl"
-                  style={{ background: "linear-gradient(180deg, #f59e0b 0%, #10b981 100%)" }}
-                />
-
                 {/* Topic header with emoji */}
-                <div className="px-5 pt-4 pb-2 flex items-center gap-2">
+                <div className="px-4 pt-3.5 pb-2.5 flex items-center gap-2 border-b border-slate-100/80">
                   <span className="text-base">{row.icon}</span>
                   <span className="text-[13px] font-extrabold text-slate-900">{row.topic}</span>
                 </div>
 
-                {/* Before (pain) */}
-                <div className="mx-4 bg-amber-50/80 border border-amber-100/60 rounded-xl px-3.5 py-3 flex items-center gap-2.5">
-                  <div className="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
-                    <X size={10} className="text-amber-500" strokeWidth={3} />
+                {/* Side-by-side comparison */}
+                <div className="grid grid-cols-2 divide-x divide-slate-100">
+                  {/* Without */}
+                  <div className="px-3.5 py-3 bg-amber-50/50 flex flex-col gap-1.5">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-4 h-4 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
+                        <X size={8} className="text-amber-500" strokeWidth={3} />
+                      </div>
+                      <span className="text-[9px] font-extrabold text-amber-500 uppercase tracking-wider">Without</span>
+                    </div>
+                    <span className="text-[11px] text-amber-800 font-medium leading-snug">{row.without}</span>
                   </div>
-                  <span className="text-[12px] text-amber-800 font-medium leading-snug">{row.without}</span>
-                </div>
 
-                {/* Gradient arrow */}
-                <div className="flex justify-center py-2">
-                  <div className="flex flex-col items-center gap-0.5">
-                    <div className="w-[1.5px] h-3 rounded-full" style={{ background: "linear-gradient(180deg, #f59e0b, #10b981)" }} />
-                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
-                      <path d="M1 1L5 5L9 1" stroke="#10b981" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                  {/* With */}
+                  <div className="px-3.5 py-3 bg-blue-50/50 flex flex-col gap-1.5 relative overflow-hidden">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+                        <Check size={8} className="text-blue-600" strokeWidth={3} />
+                      </div>
+                      <span className="text-[9px] font-extrabold text-blue-600 uppercase tracking-wider">With Us</span>
+                    </div>
+                    <span className="text-[11px] text-blue-800 font-bold leading-snug">{row.with}</span>
+                    {/* Shimmer effect */}
+                    <div className="absolute inset-0 -translate-x-full animate-[shimmer_3s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
                   </div>
-                </div>
-
-                {/* After (solution) — with shimmer */}
-                <div className="mx-4 mb-4 bg-emerald-50/80 border border-emerald-100/60 rounded-xl px-3.5 py-3 flex items-center gap-2.5 relative overflow-hidden">
-                  <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
-                    <Check size={10} className="text-emerald-600" strokeWidth={3} />
-                  </div>
-                  <span className="text-[12px] text-emerald-700 font-bold leading-snug">{row.with}</span>
-                  {/* Shimmer effect */}
-                  <div className="absolute inset-0 -translate-x-full animate-[shimmer_3s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
                 </div>
               </div>
             </motion.div>

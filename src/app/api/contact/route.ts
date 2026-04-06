@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
 
     // Forward to Google Apps Script
     const googleResponse = await fetch(
-      "https://script.google.com/macros/s/AKfycbwDlOss2vGe8Vwl0ml5-eiQquOxWM19gc0WUMHb7aM9LWVxShhXmE1DJgCtrcTQYdh8Wg/exec",
+      "https://script.google.com/macros/s/AKfycbw5jmAl-yCPPLpKxtXNh89CSvLLpYNXg0IkOjpSPe0MIgPvmlLW66AM0Ng8wCCJRW8/exec",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
